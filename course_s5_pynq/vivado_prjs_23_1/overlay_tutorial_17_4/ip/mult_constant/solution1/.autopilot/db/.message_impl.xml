@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message prefix="[IMPL 213-8]" severity="INFO" keynum="IMPL_8_1776" content="Exporting RTL as a Vivado IP." tag=""/>
+	<Message prefix="[HLS 200-112]" severity="INFO" keynum="472" content="Total elapsed time: 54.832 seconds; peak allocated memory: 91.508 MB." tag=""/>
+</Messages>

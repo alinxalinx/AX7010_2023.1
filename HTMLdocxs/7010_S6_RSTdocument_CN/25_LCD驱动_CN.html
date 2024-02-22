@@ -1,0 +1,1356 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>LCD驱动 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S6_RSTdocument_CN/25_LCD驱动_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="版权说明" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html" />
+    <link rel="prev" title="多点触摸屏驱动" href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S6_RSTdocument_CN/25_LCD驱动_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LCD驱动</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#framebuffer">framebuffer框架</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vdma">VDMA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drm">DRM框架</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">运行测试</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="lcd">
+<h1>LCD驱动<a class="headerlink" href="#lcd" title="此标题的永久链接">#</a></h1>
+<section id="framebuffer">
+<h2>framebuffer框架<a class="headerlink" href="#framebuffer" title="此标题的永久链接">#</a></h2>
+<p>lcd显示原理通俗的来说一般是这样：lcd通过若干数据线连接到主控芯片(除了数据线之外，还有时钟线、同步信号线等)，主控芯片分配一块内存空间用于存放显示画面数据，通过数据线发送画面数据到lcd屏幕显示。这一块内存空间就是帧缓冲framebuffer。Linux中把framebuffer抽象成一个设备，对lcd的操作最终被简化成了framebuffer的操作，所以lcd驱动在Linux内核中的实现也就是framebuffer框架。</p>
+<p>framebuffer框架本质上是一个字符设备，和之前讲的misc设备如出一辙，是对字符设备的再封装，并且创建了一个类/sys/class/graphics。对于应用层来说，使用framebuffer的方法大概是这样的：报函头文件linux/fb.h、打开设备文件/dev/fbn、mmap映射、填充framebuffer。</p>
+<p>framebuffer框架相关的代码在/driver/video/fbdev/core/fbmem.c中，与具体硬件操作相关的代码则是/driver/video/fbdev目录下*fb.c的这些文件。fbmem.c中提供了与用户层对接的操作函数接口以及并和*fb.c关联，而*fb.c则负责接口函数的具体实现。驱动开发者需要完成的也就是*fb.c部分，xilinx也提供了xilinxfb.c。参考这些已经实现的*fb.c，大概能推测实现一个lcd驱动的步骤大致如下：</p>
+<ol class="arabic simple">
+<li><p>使用framebuffer_alloc函数注册一个fb_info结构体变量</p></li>
+</ol>
+<p>fb_info结构体定义在/include/linux/fb.h中，用于描述fb设备。我们主要需要关心的是：可变参数struct
+fb_var_screeninfo var、不可变参数struct fb_fix_screeninfo
+fix、操作函数集struct fb_ops
+*fbops。也是我们设置fb_info结构体变量的重点。</p>
+<ol class="arabic simple" start="2">
+<li><p>设置fb_info结构体变量，包括实现fb_fops操作函数集</p></li>
+</ol>
+<p>设置固定参数显存字节大小、类型、lcd行长等。设置可变参数水平分片率、垂直分辨率、虚拟水平分辨率、虚拟垂直分辨率、像素深度、RGB等。其他参数根据需求设置。操作函数根据也需要实现。</p>
+<ol class="arabic simple" start="3">
+<li><p>完成硬件相关操作</p></li>
+</ol>
+<p>映射相关寄存器并完成硬件初始化，需要结合具体硬件。</p>
+<ol class="arabic simple" start="4">
+<li><p>使用register_framebuffer函数向内核注册fb_info结构体变量</p></li>
+</ol>
+<p>这一步也就可以理解为关联*fb.c和fbmem.c中的操作函数接口了。</p>
+<p>实际上ZYNQ中没用framebuffer框架，但鉴于framebuffer框架对于lcd来说还比较常用，所以这里就只简单的带过一下。当然ZYNQ也可以使用fb来实现lcd驱动，就拿我们的开发板来说，lcd屏幕的接口是连接到PL端的，只要把PL端的资源配置成相应的IO即可当然这也是我理论上的说法，没有实际试验过，有兴趣的朋友可以自己尝试。</p>
+</section>
+<section id="vdma">
+<h2>VDMA<a class="headerlink" href="#vdma" title="此标题的永久链接">#</a></h2>
+<p>VMDA是xilinx提供的一个Ip核，是ZYNQ设备上显示设备工作的关键。</p>
+<p>VDMA好处都有啥？VDMA可以方便的实现双缓冲或者多缓冲机制。双缓冲机制解决至少说是改善了画面闪烁、撕裂等不良效果。前面我们说了帧缓存，帧缓存中的内容会直接显示到屏幕上，当帧缓存中的数据没有准备好时，屏幕上的图像就会缺损，而双缓冲则是再帧缓存的基础上在家了一个后缓冲区back
+buffer。数据现在back
+buffer中准备好，再交换前后缓冲区的显示。也就是原先的前缓冲区变成的后缓冲区，准备下一个显示的数据，而后缓冲区则变成了前缓冲区，显示图像。</p>
+<p>硬件上VDMA通过AXI_HP接口访问DDR。本质上VDMA是一个搬运数据的IP，为数据今出DDR提供了便捷，VDMA数据接口分读写通道，我们可以通过通道将AXI-Stream数据流写入DDR，也可以将DDR中的数据以AXI-Stream数据流格式读出。数据进入DDR也就达到了我们需要将数据存入帧缓存的目的。VDMA可以控制32个帧缓存，所以能够亲送实现多缓冲。</p>
+<p>VDMA主要由控制和状态寄存器、数据搬运模块和行缓冲分构成。数据进出DDR要经过行缓冲，然后由数据搬运模块读写数据。VDMA的工作状态可以通过状态寄存器读取。</p>
+<p>VDMA有以下几种接口：</p>
+<p>AXI-lite： PS通过该接口来配置VDMA；</p>
+<p>AXI Memory Map write：映射到存储器写；</p>
+<p>AXI Memory Map read：映射到存储器读；</p>
+<p>AXI Stream Write(S2MM)：AXI Stream视频流写入图像；</p>
+<p>AXI Stream Read(MM2S)：AXI Stream视频流读出图像。</p>
+<p>VDMA也提供了寄存器操作，具体细节可以参考xilinx官方提供的说明。VDMA在vivado中的使用可以参考cause4中的触摸屏实验。</p>
+<p>在Linux中使用VDMA实际上xilinx已经实现好了，在文件/drivers/dma/xilinx/xilinx_dma.c中，实现了zynq支持的axidma、cdma以及vdma。我们可以直接使用这个驱动，使用方法我们来看一下设备树中这一段：</p>
+<img alt="../_images/image1282.png" src="../_images/image1282.png" />
+<p>这段设备树在couse4的触摸屏例程中截取，它的作用之后再说，先看到16行的dmas = &lt;&amp;axi_vdma_0 0&gt;，这显然是对axi_vdma_0这个节点的引用，那儿这个节点在哪里？在petalinux工程中搜索axi_vdma_0，可以找到一个pl.dtsi的设备树头文件，其中我们找到了如下节点：</p>
+<img alt="../_images/image2195.png" src="../_images/image2195.png" />
+<p>不过找到这个节点，除了能通过compatible属性找到vdma驱动的源码所在(/drivers/dma/xilinx/xilinx_dma.c)，对于我们使用来说没有什么意义，除非有兴趣分析vdma驱动实现的源码。</p>
+<p>回头再看看引用节点的这段设备树，先前我们说vdma是实现zynq显示的关键，那这段设备树对应的驱动，就应该是zynq上取代fb框架的实际lcd驱动了。</p>
+</section>
+<section id="drm">
+<h2>DRM框架<a class="headerlink" href="#drm" title="此标题的永久链接">#</a></h2>
+<p>通过上面截取的设备树compatible = “xlnx,drm”，不难发现ZYNQ上使用了drm框架来实现lcd显示。framebuffer框架无法处理基于GPU的3D加速需求，也无法处理多个程序协同访问视频卡的情况。DRM(Direct
+Rendering
+Manager)应运而生，DRM独占视屏卡的访问权限，由它来负责初始化并维护命令队列、视屏卡等硬件资源。要使用GPU的程序向DRM发送请求，DRM仲裁避免冲突。同时DRM也负责GPU
+切换的问题。</p>
+<p>通俗的讲DRM是Linux内核用来管理显示输出、buffer 分配的。DRM
+由两个部分组成：一是内核态的子系统，这个子系统对硬件操作进行了一层框架封装。二是提供了一个用户态libdrm库，应用程序可以直接操作库里的API如ioctl或者是用
+framebuffer 提供的接口进行显示相关操作。libdrm库的具体使用就不展开说了。</p>
+<p>DRM涵盖了很多以前需要在用户空间处理的问题，如图形执行管理器
+GEM、内核模式设置 KMS，这些都是属于 DRM 子系统。</p>
+<p>GEM(Graphic Execution Manager)，主要负责显存的分配。</p>
+<p>KMS(Kernel Mode
+Setting)，主要负责画面更新和设置显示参数(包括分辨率、刷新率等)。</p>
+<p>KMS特性中又包含这些块：Framebuffer、CRTC、Planes、Encoder、Connector。</p>
+<p>Framebuffer和前面fb框架中提到的其实是一个意思，驱动和应用都可以访问，使用前需要格式化，设置分辨率、色彩等选项。它只用于描述显存信息，不负责显存的分配，</p>
+<p>CRTC是RGB信号发生源，阴极射像管上下文，对内连接frame
+buffer，对外连接encoder。他会扫描fb中的内容并叠加上planes中的内容传送到encoder。每个CRTC至少要有一个plane。</p>
+<p>planes也是一段内存地址，和framebuffer的区别是，它给视屏提供了高速通道，可以叠加在framebuffer上下，并且planes可以存在多个。</p>
+<p>encoder也就是编码器，他的工作就是把像素数据转换为显示器所需要的信号，不同的显示设备需要不同的电信号，如DVID、VGA、MIPI等。</p>
+<p>connector通常对应硬件上的连接器如VGA、HDMI等，同时他还保存与连接器相连的显示设备的相关信息如连接状态、DPMS状态等。</p>
+<p>DRM驱动框架，也就是对上述这些特性的封装，这里只是简单过了一遍，DRM的具体实现可以说相当复杂不是这里三言两语能说清楚的。好在xilinx也为我们提供了一套完整的drm驱动实现，在/driver/gpu/drm/xilinx文件夹中，我们可以直接使用。使用的方法也就是在设备树中添加相应的节点，具体方法可以参考内何种文档\Documentation\devicetree\bindings\drm\xilinx\xilinx_drm.txt。</p>
+<p>我们再回头看上一节中节选的设备树代码，我们之前关注的axi_vdma_0这个节点，他是plane0这个节点下的属性，plane0是我们上面说到的视频通道，也就是说VDMA对应的缓存通道0对应到了plane0视频通道。</p>
+<p>节选设备树中的第11行设置编码器，这里为了对应我们的液晶屏修改成了我们定制的编码器驱动，这个几点在第三行，属性只有compatible，是驱动中的probe能够执行。定制的编码器驱动代码如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;drm/drm_atomic_helper.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;drm/drm_crtc_helper.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;drm/drm_probe_helper.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/clk.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/component.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/device.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/of_device.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/of_graph.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/phy/phy.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;video/videomode.h&gt;</span>
+
+<span class="cm">/* SDI register offsets */</span>
+<span class="cp">#define XSDI_TX_RST_CTRL               0x00</span>
+<span class="cp">#define XSDI_TX_MDL_CTRL               0x04</span>
+<span class="cp">#define XSDI_TX_GLBL_IER               0x0C</span>
+<span class="cp">#define XSDI_TX_ISR_STAT               0x10</span>
+<span class="cp">#define XSDI_TX_IER_STAT               0x14</span>
+<span class="cp">#define XSDI_TX_ST352_LINE             0x18</span>
+<span class="cp">#define XSDI_TX_ST352_DATA_CH0         0x1C</span>
+<span class="cp">#define XSDI_TX_VER                    0x3C</span>
+<span class="cp">#define XSDI_TX_SYS_CFG                        0x40</span>
+<span class="cp">#define XSDI_TX_STS_SB_TDATA           0x60</span>
+<span class="cp">#define XSDI_TX_AXI4S_STS1             0x68</span>
+<span class="cp">#define XSDI_TX_AXI4S_STS2             0x6C</span>
+<span class="cp">#define XSDI_TX_ST352_DATA_DS2         0x70</span>
+
+<span class="cm">/* MODULE_CTRL register masks */</span>
+<span class="cp">#define XSDI_TX_CTRL_M                 BIT(7)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_CRC           BIT(12)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_ST352         BIT(13)</span>
+<span class="cp">#define XSDI_TX_CTRL_OVR_ST352         BIT(14)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_SYNC_BIT      BIT(16)</span>
+<span class="cp">#define XSDI_TX_CTRL_USE_ANC_IN                BIT(18)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_LN            BIT(19)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_EDH           BIT(20)</span>
+<span class="cp">#define XSDI_TX_CTRL_MODE              0x7</span>
+<span class="cp">#define XSDI_TX_CTRL_MUX               0x7</span>
+<span class="cp">#define XSDI_TX_CTRL_MODE_SHIFT                4</span>
+<span class="cp">#define XSDI_TX_CTRL_M_SHIFT           7</span>
+<span class="cp">#define XSDI_TX_CTRL_MUX_SHIFT         8</span>
+<span class="cp">#define XSDI_TX_CTRL_ST352_F2_EN_SHIFT 15</span>
+<span class="cp">#define XSDI_TX_CTRL_420_BIT           BIT(21)</span>
+<span class="cp">#define XSDI_TX_CTRL_INS_ST352_CHROMA  BIT(23)</span>
+<span class="cp">#define XSDI_TX_CTRL_USE_DS2_3GA       BIT(24)</span>
+
+<span class="cm">/* TX_ST352_LINE register masks */</span>
+<span class="cp">#define XSDI_TX_ST352_LINE_MASK                GENMASK(10, 0)</span>
+<span class="cp">#define XSDI_TX_ST352_LINE_F2_SHIFT    16</span>
+
+<span class="cm">/* ISR STAT register masks */</span>
+<span class="cp">#define XSDI_GTTX_RSTDONE_INTR         BIT(0)</span>
+<span class="cp">#define XSDI_TX_CE_ALIGN_ERR_INTR      BIT(1)</span>
+<span class="cp">#define XSDI_AXI4S_VID_LOCK_INTR       BIT(8)</span>
+<span class="cp">#define XSDI_OVERFLOW_INTR             BIT(9)</span>
+<span class="cp">#define XSDI_UNDERFLOW_INTR            BIT(10)</span>
+<span class="cp">#define XSDI_IER_EN_MASK               (XSDI_GTTX_RSTDONE_INTR | \</span>
+<span class="cp">                                       XSDI_TX_CE_ALIGN_ERR_INTR | \</span>
+<span class="cp">                                       XSDI_OVERFLOW_INTR | \</span>
+<span class="cp">                                       XSDI_UNDERFLOW_INTR)</span>
+
+<span class="cm">/* RST_CTRL_OFFSET masks */</span>
+<span class="cp">#define XSDI_TX_CTRL_EN                        BIT(0)</span>
+<span class="cp">#define XSDI_TX_BRIDGE_CTRL_EN         BIT(8)</span>
+<span class="cp">#define XSDI_TX_AXI4S_CTRL_EN          BIT(9)</span>
+<span class="cm">/* STS_SB_TX_TDATA masks */</span>
+<span class="cp">#define XSDI_TX_TDATA_GT_RESETDONE     BIT(2)</span>
+
+<span class="cp">#define XSDI_TX_MUX_SD_HD_3GA          0</span>
+<span class="cp">#define        XSDI_TX_MUX_3GB                 1</span>
+<span class="cp">#define        XSDI_TX_MUX_8STREAM_6G_12G      2</span>
+<span class="cp">#define        XSDI_TX_MUX_4STREAM_6G          3</span>
+<span class="cp">#define        XSDI_TX_MUX_16STREAM_12G        4</span>
+
+<span class="cp">#define SDI_MAX_DATASTREAM             8</span>
+<span class="cp">#define PIXELS_PER_CLK                 2</span>
+<span class="cp">#define XSDI_CH_SHIFT                  29</span>
+<span class="cp">#define XST352_PROG_PIC                        BIT(6)</span>
+<span class="cp">#define XST352_PROG_TRANS              BIT(7)</span>
+<span class="cp">#define XST352_2048_SHIFT              BIT(6)</span>
+<span class="cp">#define XST352_YUV420_MASK             0x03</span>
+<span class="cp">#define ST352_BYTE3                    0x00</span>
+<span class="cp">#define ST352_BYTE4                    0x01</span>
+<span class="cp">#define GT_TIMEOUT                     50</span>
+<span class="cm">/* SDI modes */</span>
+<span class="cp">#define XSDI_MODE_HD                   0</span>
+<span class="cp">#define        XSDI_MODE_SD                    1</span>
+<span class="cp">#define        XSDI_MODE_3GA                   2</span>
+<span class="cp">#define        XSDI_MODE_3GB                   3</span>
+<span class="cp">#define        XSDI_MODE_6G                    4</span>
+<span class="cp">#define        XSDI_MODE_12G                   5</span>
+
+<span class="cp">#define SDI_TIMING_PARAMS_SIZE         48</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * enum payload_line_1 - Payload Ids Line 1 number</span>
+<span class="cm"> * @PAYLD_LN1_HD_3_6_12G:      line 1 HD,3G,6G or 12G mode value</span>
+<span class="cm"> * @PAYLD_LN1_SDPAL:           line 1 SD PAL mode value</span>
+<span class="cm"> * @PAYLD_LN1_SDNTSC:          line 1 SD NTSC mode value</span>
+<span class="cm"> */</span>
+<span class="k">enum</span><span class="w"> </span><span class="n">payload_line_1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">PAYLD_LN1_HD_3_6_12G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">       </span><span class="n">PAYLD_LN1_SDPAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
+<span class="w">       </span><span class="n">PAYLD_LN1_SDNTSC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * enum payload_line_2 - Payload Ids Line 2 number</span>
+<span class="cm"> * @PAYLD_LN2_HD_3_6_12G:      line 2 HD,3G,6G or 12G mode value</span>
+<span class="cm"> * @PAYLD_LN2_SDPAL:           line 2 SD PAL mode value</span>
+<span class="cm"> * @PAYLD_LN2_SDNTSC:          line 2 SD NTSC mode value</span>
+<span class="cm"> */</span>
+<span class="k">enum</span><span class="w"> </span><span class="n">payload_line_2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">PAYLD_LN2_HD_3_6_12G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">572</span><span class="p">,</span>
+<span class="w">       </span><span class="n">PAYLD_LN2_SDPAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">322</span><span class="p">,</span>
+<span class="w">       </span><span class="n">PAYLD_LN2_SDNTSC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">276</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * struct xlnx_sdi - Core configuration SDI Tx subsystem device structure</span>
+<span class="cm"> * @encoder: DRM encoder structure</span>
+<span class="cm"> * @connector: DRM connector structure</span>
+<span class="cm"> * @dev: device structure</span>
+<span class="cm"> * @base: Base address of SDI subsystem</span>
+<span class="cm"> * @mode_flags: SDI operation mode related flags</span>
+<span class="cm"> * @wait_event: wait event</span>
+<span class="cm"> * @event_received: wait event status</span>
+<span class="cm"> * @enable_st352_chroma: Able to send ST352 packets in Chroma stream.</span>
+<span class="cm"> * @enable_anc_data: Enable/Disable Ancillary Data insertion for Audio</span>
+<span class="cm"> * @sdi_mode: configurable SDI mode parameter, supported values are:</span>
+<span class="cm"> *             0 - HD</span>
+<span class="cm"> *             1 - SD</span>
+<span class="cm"> *             2 - 3GA</span>
+<span class="cm"> *             3 - 3GB</span>
+<span class="cm"> *             4 - 6G</span>
+<span class="cm"> *             5 - 12G</span>
+<span class="cm"> * @sdi_mod_prop_val: configurable SDI mode parameter value</span>
+<span class="cm"> * @sdi_data_strm: configurable SDI data stream parameter</span>
+<span class="cm"> * @sdi_data_strm_prop_val: configurable number of SDI data streams</span>
+<span class="cm"> *                         value currently supported are 2, 4 and 8</span>
+<span class="cm"> * @sdi_420_in: Specifying input bus color format parameter to SDI</span>
+<span class="cm"> * @sdi_420_in_val: 1 for yuv420 and 0 for yuv422</span>
+<span class="cm"> * @sdi_420_out: configurable SDI out color format parameter</span>
+<span class="cm"> * @sdi_420_out_val: 1 for yuv420 and 0 for yuv422</span>
+<span class="cm"> * @is_frac_prop: configurable SDI fractional fps parameter</span>
+<span class="cm"> * @is_frac_prop_val: configurable SDI fractional fps parameter value</span>
+<span class="cm"> * @bridge: bridge structure</span>
+<span class="cm"> * @height_out: configurable bridge output height parameter</span>
+<span class="cm"> * @height_out_prop_val: configurable bridge output height parameter value</span>
+<span class="cm"> * @width_out: configurable bridge output width parameter</span>
+<span class="cm"> * @width_out_prop_val: configurable bridge output width parameter value</span>
+<span class="cm"> * @in_fmt: configurable bridge input media format</span>
+<span class="cm"> * @in_fmt_prop_val: configurable media bus format value</span>
+<span class="cm"> * @out_fmt: configurable bridge output media format</span>
+<span class="cm"> * @out_fmt_prop_val: configurable media bus format value</span>
+<span class="cm"> * @en_st352_c_prop: configurable ST352 payload on Chroma stream parameter</span>
+<span class="cm"> * @en_st352_c_val: configurable ST352 payload on Chroma parameter value</span>
+<span class="cm"> * @use_ds2_3ga_prop: Use DS2 instead of DS3 in 3GA mode parameter</span>
+<span class="cm"> * @use_ds2_3ga_val: Use DS2 instead of DS3 in 3GA mode parameter value</span>
+<span class="cm"> * @video_mode: current display mode</span>
+<span class="cm"> * @axi_clk: AXI Lite interface clock</span>
+<span class="cm"> * @sditx_clk: SDI Tx Clock</span>
+<span class="cm"> * @vidin_clk: Video Clock</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="n">encoder</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="n">connector</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">void</span><span class="w"> </span><span class="n">__iomem</span><span class="w"> </span><span class="o">*</span><span class="n">base</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">mode_flags</span><span class="p">;</span>
+<span class="w">       </span><span class="n">wait_queue_head_t</span><span class="w"> </span><span class="n">wait_event</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">event_received</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">enable_st352_chroma</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">enable_anc_data</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">sdi_mode</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">sdi_mod_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">sdi_data_strm</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">sdi_data_strm_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">sdi_420_in</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">sdi_420_in_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">sdi_420_out</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">sdi_420_out_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">is_frac_prop</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_frac_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_bridge</span><span class="w"> </span><span class="o">*</span><span class="n">bridge</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">height_out</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">height_out_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">width_out</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">width_out_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">in_fmt</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">in_fmt_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">out_fmt</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">out_fmt_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">en_st352_c_prop</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">en_st352_c_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">use_ds2_3ga_prop</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">bool</span><span class="w"> </span><span class="n">use_ds2_3ga_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_display_mode</span><span class="w"> </span><span class="n">video_mode</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">clk</span><span class="w"> </span><span class="o">*</span><span class="n">axi_clk</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">clk</span><span class="w"> </span><span class="o">*</span><span class="n">sditx_clk</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">clk</span><span class="w"> </span><span class="o">*</span><span class="n">vidin_clk</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#define connector_to_sdi(c) container_of(c, struct xlnx_sdi, connector)</span>
+<span class="cp">#define encoder_to_sdi(e) container_of(e, struct xlnx_sdi, encoder)</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_display_mode</span><span class="w"> </span><span class="n">alinx_lcd_001_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">33260</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">hdisplay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">hsync_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">800</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">hsync_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">800</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">htotal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">800</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">128</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">88</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vdisplay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vsync_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">480</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vsync_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">480</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vtotal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">480</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DRM_MODE_FLAG_NHSYNC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">DRM_MODE_FLAG_NVSYNC</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;800x480&quot;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_atomic_set_property</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">,</span>
+<span class="w">                            </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector_state</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="p">,</span>
+<span class="w">                            </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">property</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connector_to_sdi</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mode</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mod_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt_prop_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="n">val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="w">               </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_atomic_get_property</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">,</span>
+<span class="w">                            </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector_state</span><span class="w"> </span><span class="o">*</span><span class="n">state</span><span class="p">,</span>
+<span class="w">                            </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_property</span><span class="w"> </span><span class="o">*</span><span class="n">property</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="o">*</span><span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connector_to_sdi</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mode</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mod_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt_prop_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">property</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="o">*</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_val</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="w">               </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span>
+
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_drm_add_modes</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_modes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_display_mode</span><span class="w"> </span><span class="o">*</span><span class="n">mode</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connector</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_mode_duplicate</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">alinx_lcd_001_mode</span><span class="p">);</span>
+<span class="w">    </span><span class="n">drm_mode_probed_add</span><span class="p">(</span><span class="n">connector</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">);</span>
+<span class="w">    </span><span class="n">num_modes</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">num_modes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">drm_connector_status</span><span class="w"> </span><span class="nf">xlnx_sdi_detect</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">force</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="n">connector_status_connected</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_connector_destroy</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="n">drm_connector_unregister</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+<span class="w">       </span><span class="n">drm_connector_cleanup</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+<span class="w">       </span><span class="n">connector</span><span class="o">-&gt;</span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector_funcs</span><span class="w"> </span><span class="n">xlnx_sdi_connector_funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">detect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_detect</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">fill_modes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_helper_probe_single_connector_modes</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_connector_destroy</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">atomic_duplicate_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_atomic_helper_connector_duplicate_state</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">atomic_destroy_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_atomic_helper_connector_destroy_state</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_atomic_helper_connector_reset</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">atomic_set_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_atomic_set_property</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">atomic_get_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_atomic_get_property</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span>
+<span class="n">xlnx_sdi_best_encoder</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="p">(</span><span class="n">connector_to_sdi</span><span class="p">(</span><span class="n">connector</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">encoder</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xlnx_sdi_get_modes</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="n">xlnx_sdi_drm_add_modes</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector_helper_funcs</span><span class="w"> </span><span class="n">xlnx_sdi_connector_helper_funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">get_modes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_get_modes</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">best_encoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_best_encoder</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_drm_connector_create_property</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">base_connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_connector</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">connector_to_sdi</span><span class="p">(</span><span class="n">base_connector</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_bool</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;is_frac&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="s">&quot;sdi_mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                      </span><span class="s">&quot;sdi_data_stream&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_bool</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sdi_420_in&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_bool</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sdi_420_out&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                   </span><span class="s">&quot;height_out&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                  </span><span class="s">&quot;width_out&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                               </span><span class="s">&quot;in_fmt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">16384</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_range</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                </span><span class="s">&quot;out_fmt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">16384</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">enable_st352_chroma</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_bool</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                               </span><span class="s">&quot;en_st352_c&quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_property_create_bool</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                                                                </span><span class="s">&quot;use_ds2_3ga&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_drm_connector_attach_property</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">base_connector</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">connector_to_sdi</span><span class="p">(</span><span class="n">base_connector</span><span class="p">);</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_mode_object</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">base_connector</span><span class="o">-&gt;</span><span class="n">base</span><span class="p">;</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mode</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_mode</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_data_strm</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sdi_420_out</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">is_frac_prop</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">height_out</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">width_out</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">in_fmt</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">out_fmt</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">en_st352_c_prop</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_prop</span><span class="p">)</span>
+<span class="w">               </span><span class="n">drm_object_attach_property</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">use_ds2_3ga_prop</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_create_connector</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span><span class="n">encoder</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder_to_sdi</span><span class="p">(</span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector</span><span class="w"> </span><span class="o">*</span><span class="n">connector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">connector</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">connector</span><span class="o">-&gt;</span><span class="n">interlace_allowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">       </span><span class="n">connector</span><span class="o">-&gt;</span><span class="n">doublescan_allowed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_connector_init</span><span class="p">(</span><span class="n">encoder</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">connector</span><span class="p">,</span>
+<span class="w">                                </span><span class="o">&amp;</span><span class="n">xlnx_sdi_connector_funcs</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">DRM_MODE_CONNECTOR_Unknown</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">dev_err</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to initialize connector with drm</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">       </span><span class="p">}</span>
+
+<span class="w">       </span><span class="n">drm_connector_helper_add</span><span class="p">(</span><span class="n">connector</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xlnx_sdi_connector_helper_funcs</span><span class="p">);</span>
+<span class="w">       </span><span class="n">drm_connector_register</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+<span class="w">       </span><span class="n">drm_connector_attach_encoder</span><span class="p">(</span><span class="n">connector</span><span class="p">,</span><span class="w"> </span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="n">xlnx_sdi_drm_connector_create_property</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+<span class="w">       </span><span class="n">xlnx_sdi_drm_connector_attach_property</span><span class="p">(</span><span class="n">connector</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_set_display_enable</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="p">)</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_encoder_atomic_mode_set</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span><span class="n">encoder</span><span class="p">,</span>
+<span class="w">                                            </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_crtc_state</span><span class="w"> </span><span class="o">*</span><span class="n">crtc_state</span><span class="p">,</span>
+<span class="w">                                 </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_connector_state</span><span class="w"> </span><span class="o">*</span><span class="n">connector_state</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder_to_sdi</span><span class="p">(</span><span class="n">encoder</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">video_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alinx_lcd_001_mode</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_commit</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span><span class="n">encoder</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder_to_sdi</span><span class="p">(</span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="kt">long</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">dev_dbg</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">__func__</span><span class="p">);</span>
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">event_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_disable</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span><span class="n">encoder</span><span class="p">)</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder_helper_funcs</span><span class="w"> </span><span class="n">xlnx_sdi_encoder_helper_funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">atomic_mode_set</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_encoder_atomic_mode_set</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">enable</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_commit</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">disable</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_disable</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder_funcs</span><span class="w"> </span><span class="n">xlnx_sdi_encoder_funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">destroy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">drm_encoder_cleanup</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_bind</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">master</span><span class="p">,</span>
+<span class="w">                        </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev_get_drvdata</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_encoder</span><span class="w"> </span><span class="o">*</span><span class="n">encoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">encoder</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_device</span><span class="w"> </span><span class="o">*</span><span class="n">drm_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">encoder</span><span class="o">-&gt;</span><span class="n">possible_crtcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">drm_encoder_init</span><span class="p">(</span><span class="n">drm_dev</span><span class="p">,</span><span class="w"> </span><span class="n">encoder</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xlnx_sdi_encoder_funcs</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">DRM_MODE_ENCODER_TMDS</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">drm_encoder_helper_add</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xlnx_sdi_encoder_helper_funcs</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_create_connector</span><span class="p">(</span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">dev_err</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;fail creating connector, ret = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">               </span><span class="n">drm_encoder_cleanup</span><span class="p">(</span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="p">}</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">xlnx_sdi_unbind</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">master</span><span class="p">,</span>
+<span class="w">                           </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev_get_drvdata</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">drm_encoder_cleanup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">encoder</span><span class="p">);</span>
+<span class="w">       </span><span class="n">drm_connector_cleanup</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">connector</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">component_ops</span><span class="w"> </span><span class="n">xlnx_sdi_component_ops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">bind</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_bind</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">unbind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_unbind</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_probe</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">platform_device</span><span class="w"> </span><span class="o">*</span><span class="n">pdev</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pdev</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">resource</span><span class="w"> </span><span class="o">*</span><span class="n">res</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">device_node</span><span class="w"> </span><span class="o">*</span><span class="n">vpss_node</span><span class="p">;</span>
+<span class="w">       </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="n">irq</span><span class="p">;</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">device_node</span><span class="w"> </span><span class="o">*</span><span class="n">ports</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">port</span><span class="p">;</span>
+<span class="w">       </span><span class="n">u32</span><span class="w"> </span><span class="n">nports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">portmask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">devm_kzalloc</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">sdi</span><span class="p">),</span><span class="w"> </span><span class="n">GFP_KERNEL</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sdi</span><span class="p">)</span>
+<span class="w">               </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">ENOMEM</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">platform_set_drvdata</span><span class="p">(</span><span class="n">pdev</span><span class="p">,</span><span class="w"> </span><span class="n">sdi</span><span class="p">);</span>
+
+
+<span class="w">       </span><span class="cm">/* in case all &quot;port&quot; nodes are grouped under a &quot;ports&quot; node */</span>
+<span class="w">       </span><span class="n">ports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">of_get_child_by_name</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">of_node</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ports&quot;</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ports</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">dev_dbg</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Searching for port nodes in device node.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">               </span><span class="n">ports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">of_node</span><span class="p">;</span>
+<span class="w">       </span><span class="p">}</span>
+
+<span class="w">       </span><span class="n">for_each_child_of_node</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="k">struct</span><span class="w"> </span><span class="nc">device_node</span><span class="w"> </span><span class="o">*</span><span class="n">endpoint</span><span class="p">;</span>
+<span class="w">               </span><span class="n">u32</span><span class="w"> </span><span class="n">index</span><span class="p">;</span>
+
+<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">port</span><span class="o">-&gt;</span><span class="n">name</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">of_node_cmp</span><span class="p">(</span><span class="n">port</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;port&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                       </span><span class="n">dev_dbg</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;port name is null or node name is not port!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">                       </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">               </span><span class="p">}</span>
+
+<span class="w">               </span><span class="n">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">of_get_next_child</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">endpoint</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                       </span><span class="n">dev_err</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No remote port at %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<span class="w">                       </span><span class="n">of_node_put</span><span class="p">(</span><span class="n">endpoint</span><span class="p">);</span>
+<span class="w">                       </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">EINVAL</span><span class="p">;</span>
+<span class="w">                       </span><span class="k">goto</span><span class="w"> </span><span class="n">err_disable_vidin_clk</span><span class="p">;</span>
+<span class="w">               </span><span class="p">}</span>
+
+<span class="w">               </span><span class="n">of_node_put</span><span class="p">(</span><span class="n">endpoint</span><span class="p">);</span>
+
+<span class="w">               </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">of_property_read_u32</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;reg&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">index</span><span class="p">);</span>
+<span class="w">               </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                       </span><span class="n">dev_err</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;reg property not present - %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">                       </span><span class="k">goto</span><span class="w"> </span><span class="n">err_disable_vidin_clk</span><span class="p">;</span>
+<span class="w">               </span><span class="p">}</span>
+
+<span class="w">               </span><span class="n">portmask</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+
+<span class="w">               </span><span class="n">nports</span><span class="o">++</span><span class="p">;</span>
+<span class="w">       </span><span class="p">}</span>
+
+
+<span class="w">       </span><span class="cm">/* initialize the wait queue for GT reset event */</span>
+<span class="w">       </span><span class="n">init_waitqueue_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">wait_event</span><span class="p">);</span>
+
+<span class="w">       </span><span class="cm">/* video mode properties needed by audio driver are shared to audio</span>
+<span class="cm">        * driver through a pointer in platform data. This will be used in</span>
+<span class="cm">        * audio driver. The solution may be needed to modify/extend to avoid</span>
+<span class="cm">        * probable error scenarios</span>
+<span class="cm">        */</span>
+
+<span class="w">       </span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">video_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alinx_lcd_001_mode</span><span class="p">;</span>
+
+
+<span class="w">       </span><span class="n">pdev</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">.</span><span class="n">platform_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">video_mode</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component_add</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xlnx_sdi_component_ops</span><span class="p">);</span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">               </span><span class="k">goto</span><span class="w"> </span><span class="n">err_disable_vidin_clk</span><span class="p">;</span>
+
+<span class="w">       </span><span class="n">dev_info</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alinx lcd probed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="nl">err_disable_vidin_clk</span><span class="p">:</span>
+
+<span class="nl">err_disable_sditx_clk</span><span class="p">:</span>
+
+<span class="nl">err_disable_axi_clk</span><span class="p">:</span>
+
+
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">xlnx_sdi_remove</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">platform_device</span><span class="w"> </span><span class="o">*</span><span class="n">pdev</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">       </span><span class="k">struct</span><span class="w"> </span><span class="nc">xlnx_sdi</span><span class="w"> </span><span class="o">*</span><span class="n">sdi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">platform_get_drvdata</span><span class="p">(</span><span class="n">pdev</span><span class="p">);</span>
+
+<span class="w">       </span><span class="n">component_del</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pdev</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">xlnx_sdi_component_ops</span><span class="p">);</span>
+<span class="w">       </span><span class="n">clk_disable_unprepare</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">vidin_clk</span><span class="p">);</span>
+<span class="w">       </span><span class="n">clk_disable_unprepare</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">sditx_clk</span><span class="p">);</span>
+<span class="w">       </span><span class="n">clk_disable_unprepare</span><span class="p">(</span><span class="n">sdi</span><span class="o">-&gt;</span><span class="n">axi_clk</span><span class="p">);</span>
+
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">of_device_id</span><span class="w"> </span><span class="n">xlnx_sdi_of_match</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="p">.</span><span class="n">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ax-drm-encoder&quot;</span><span class="p">},</span>
+<span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">MODULE_DEVICE_TABLE</span><span class="p">(</span><span class="n">of</span><span class="p">,</span><span class="w"> </span><span class="n">xlnx_sdi_of_match</span><span class="p">);</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">platform_driver</span><span class="w"> </span><span class="n">sdi_tx_driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="p">.</span><span class="n">probe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_probe</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">remove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_remove</span><span class="p">,</span>
+<span class="w">       </span><span class="p">.</span><span class="n">driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;alinx_lcd&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="p">.</span><span class="n">of_match_table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xlnx_sdi_of_match</span><span class="p">,</span>
+<span class="w">       </span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="n">module_platform_driver</span><span class="p">(</span><span class="n">sdi_tx_driver</span><span class="p">);</span>
+
+<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;alinx&quot;</span><span class="p">);</span>
+<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;alinx lcd&quot;</span><span class="p">);</span>
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL v2&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在上一章实验的基础上，把我们节选出来的那段设备树代码添加到system-user.dtsi中。编译上面这个驱动代码为一个ko模块，在系统中载入这个模块和上一章的触摸模块。运行crouse4中的QT程序(别忘了运行QT程序前需要配置环境)，点击上面的按钮，这样就是一套完整触摸屏的实验了。此外还可以尝试使用xilinx自带的encoder看看效果，或者更改我们解码器驱动程序中的参数再运行查看效果，加深对encoder的理解。</p>
+</section>
+<section id="id1">
+<h2>实验<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<section id="id2">
+<h3>运行测试<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<p>测试方法步骤如下：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>mount -t nfs -o nolock 192.168.1.107:/home/alinx/work /mnt</p>
+<p>cd /mnt</p>
+<p>mkdir /tmp/qt</p>
+<p>mount qt_lib.img /tmp/qt</p>
+<p>cd /tmp/qt</p>
+<p>source ./qt_env_set.sh</p>
+<p>cd /mnt</p>
+<p>insmod ./ax-touchscreen-drv.ko</p>
+<p>insmod ./ax-lcd-drv.ko</p>
+<p>./qt_test</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>在触摸屏和lcd的驱动成功加载后，控制台信息会显示在LCD屏上.</p>
+<img alt="../_images/image3169.png" src="../_images/image3169.png" />
+<img alt="../_images/image4141.png" src="../_images/image4141.png" />
+<p>运行Qt程序后，在LCD屏幕上会显示出几个按键，每个按键点击后，都会呈现出按下的效果，同时串口也会打印出对应的坐标信息。</p>
+<img alt="../_images/image5109.png" src="../_images/image5109.png" />
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">多点触摸屏驱动</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">版权说明</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#framebuffer">framebuffer框架</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vdma">VDMA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drm">DRM框架</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">运行测试</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

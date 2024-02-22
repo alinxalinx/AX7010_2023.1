@@ -1,0 +1,1043 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>块设备驱动 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S6_RSTdocument_CN/21_块设备驱动_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="网卡驱动" href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html" />
+    <link rel="prev" title="串口驱动" href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S6_RSTdocument_CN/21_块设备驱动_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>块设备驱动</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">块设备简介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">内核中的块设备访问</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">块设备框架</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gendisk">gendisk结构体</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#request-queue">request_queue</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">运行测试</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="id1">
+<h1>块设备驱动<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<p>Linux设备被分为字符设备、块设备、网络设备。前面介绍的框架都是和字符设备结合起来实验的，这章换换口味来说说块设备。</p>
+<section id="id2">
+<h2>块设备简介<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>块设备被区别于字符设备肯定是有他的特殊性。</p>
+<p>先回顾一下字符设备，在之前的字符设备实验中，字符设备框架部分几乎可以保证通用，少有区别的部分只有file_operations中操作函数的实现。既然能保证通用性，又为何要引入块设备的概念呢？</p>
+<p>块设备较于字符设备最突出的特征就是，他需要支持批量的数据读写操作。当然多次调用字符设备的读写也可以达成最终目的，但具体到硬件操作就会遇到几个问题：</p>
+<ol class="arabic simple">
+<li><p>一些块设备如flash在写之前需要先擦除当前扇区</p></li>
+<li><p>一些块设备的机械结构需要按地址顺序读写才能达到最高效率</p></li>
+</ol>
+<p>因此块设备的驱动中应该要有这些功能：</p>
+<ol class="arabic simple">
+<li><p>有读出扇区数据的buffer</p></li>
+<li><p>有读写操作队列，并能按地址优化排列读写顺序</p></li>
+</ol>
+<p>而块设备框架的引入正是应对了这些问题。</p>
+</section>
+<section id="id3">
+<h2>内核中的块设备访问<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>从应用层到硬件，块设备的访问过程如下：</p>
+<ol class="arabic simple">
+<li><p>应用程的app调用read等方法操作文件如txt等</p></li>
+<li><p>经由文件系统ext2、ext3等，把对文件的操作转化为对扇区的读写</p></li>
+<li><p>调用块设备驱动中对应的操作函数</p></li>
+<li><p>操作硬件</p></li>
+</ol>
+<p>与字符设备的差异在于中间多了一个文件系统。这一步中，有一个关键的函数ll_rw_block()，从这个函数开始，就进入设备层面了。</p>
+<p>ll_rw_block()函数，定义在文件fs/buffer.c中。如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ll_rw_block</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">op_flags</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nr</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">buffer_head</span><span class="w"> </span><span class="o">*</span><span class="n">bhs</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nr</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">buffer_head</span><span class="w"> </span><span class="o">*</span><span class="n">bh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bhs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">trylock_buffer</span><span class="p">(</span><span class="n">bh</span><span class="p">))</span>
+<span class="k">continue</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">WRITE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">test_clear_buffer_dirty</span><span class="p">(</span><span class="n">bh</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_end_io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end_buffer_write_sync</span><span class="p">;</span>
+<span class="n">get_bh</span><span class="p">(</span><span class="n">bh</span><span class="p">);</span>
+<span class="n">submit_bh</span><span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">op_flags</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="p">);</span>
+<span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">buffer_uptodate</span><span class="p">(</span><span class="n">bh</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_end_io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end_buffer_read_sync</span><span class="p">;</span>
+<span class="n">get_bh</span><span class="p">(</span><span class="n">bh</span><span class="p">);</span>
+<span class="n">submit_bh</span><span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">op_flags</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="p">);</span>
+<span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="n">unlock_buffer</span><span class="p">(</span><span class="n">bh</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>输入参数中的buffer_head结构体是缓冲区的描述符，存放缓冲区信息，定义如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">buffer_head</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b_state</span><span class="p">;</span><span class="w"> </span><span class="c1">//缓冲区状态</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">buffer_head</span><span class="w"> </span><span class="o">*</span><span class="n">b_this_page</span><span class="p">;</span><span class="w"> </span><span class="c1">//页缓冲区头</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">page</span><span class="w"> </span><span class="o">*</span><span class="n">b_page</span><span class="p">;</span><span class="w"> </span><span class="c1">//存储缓冲区所在页</span>
+<span class="n">sector_t</span><span class="w"> </span><span class="n">b_blocknr</span><span class="p">;</span><span class="w"> </span><span class="c1">//块号</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="n">b_size</span><span class="p">;</span><span class="w"> </span><span class="c1">//块大小</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">b_data</span><span class="p">;</span><span class="w"> </span><span class="c1">//页数据缓冲区</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">block_device</span><span class="w"> </span><span class="o">*</span><span class="n">b_bdev</span><span class="p">;</span><span class="w"> </span><span class="c1">//块设备</span>
+<span class="n">bh_end_io_t</span><span class="w"> </span><span class="o">*</span><span class="n">b_end_io</span><span class="p">;</span><span class="w"> </span><span class="c1">//I/O 完成后执行函数指针</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">b_private</span><span class="p">;</span><span class="w"> </span><span class="c1">//b_end_io 的输入参数</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">list_head</span><span class="w"> </span><span class="n">b_assoc_buffers</span><span class="p">;</span><span class="w"> </span><span class="c1">//映射链表</span>
+<span class="cm">/* mapping this buffer is associated with */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">address_space</span><span class="w"> </span><span class="o">*</span><span class="n">b_assoc_map</span><span class="p">;</span>
+<span class="n">atomic_t</span><span class="w"> </span><span class="n">b_count</span><span class="p">;</span><span class="w"> </span><span class="c1">//缓冲区计数</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>再看ll_rw_block()函数中14和21行最终做的操作submit_bh()函数。submit_bh()是对函数submit_bh_wbc()的简化封装，submit_bh_wbc()定义如下(省略原有注释)：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">submit_bh</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rw</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">buffer_head</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">bh</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">bio</span><span class="w"> </span><span class="o">*</span><span class="n">bio</span><span class="p">;</span><span class="w"> </span><span class="c1">//定义一个bio(block input output),也就是块设备 i/o</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="o">!</span><span class="n">buffer_locked</span><span class="p">(</span><span class="n">bh</span><span class="p">));</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="o">!</span><span class="n">buffer_mapped</span><span class="p">(</span><span class="n">bh</span><span class="p">));</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="o">!</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_end_io</span><span class="p">);</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="n">buffer_delay</span><span class="p">(</span><span class="n">bh</span><span class="p">));</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="n">buffer_unwritten</span><span class="p">(</span><span class="n">bh</span><span class="p">));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">test_set_buffer_req</span><span class="p">(</span><span class="n">bh</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">REQ_OP_WRITE</span><span class="p">))</span>
+<span class="n">clear_buffer_write_io_error</span><span class="p">(</span><span class="n">bh</span><span class="p">);</span>
+
+<span class="n">bio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bio_alloc</span><span class="p">(</span><span class="n">GFP_NOIO</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">//分配 bio</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wbc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">wbc_init_bio</span><span class="p">(</span><span class="n">wbc</span><span class="p">,</span><span class="w"> </span><span class="n">bio</span><span class="p">);</span>
+<span class="n">wbc_account_io</span><span class="p">(</span><span class="n">wbc</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_page</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_size</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* 构造 bio */</span>
+<span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_sector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_blocknr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_size</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"> </span><span class="c1">//存放逻辑块号</span>
+<span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_bdev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_bdev</span><span class="p">;</span><span class="w"> </span><span class="c1">//存放对应的块设备</span>
+
+<span class="n">bio_add_page</span><span class="p">(</span><span class="n">bio</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_page</span><span class="p">,</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_size</span><span class="p">,</span><span class="w"> </span><span class="n">bh_offset</span><span class="p">(</span><span class="n">bh</span><span class="p">));</span>
+<span class="n">BUG_ON</span><span class="p">(</span><span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_iter</span><span class="p">.</span><span class="n">bi_size</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_size</span><span class="p">);</span>
+
+<span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_end_io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end_bio_bh_io_sync</span><span class="p">;</span><span class="w"> </span><span class="c1">//设置 i/o 回调函数</span>
+<span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_private</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bh</span><span class="p">;</span><span class="w"> </span><span class="c1">//回调函数参数, 指向哪个缓冲区</span>
+<span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_flags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">bio_flags</span><span class="p">;</span>
+
+<span class="n">guard_bio_eod</span><span class="p">(</span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">bio</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buffer_meta</span><span class="p">(</span><span class="n">bh</span><span class="p">))</span>
+<span class="n">op_flags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">REQ_META</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">buffer_prio</span><span class="p">(</span><span class="n">bh</span><span class="p">))</span>
+<span class="n">op_flags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">REQ_PRIO</span><span class="p">;</span>
+<span class="n">bio_set_op_attrs</span><span class="p">(</span><span class="n">bio</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">op_flags</span><span class="p">);</span>
+
+<span class="n">submit_bio</span><span class="p">(</span><span class="n">bio</span><span class="p">);</span><span class="w"> </span><span class="c1">//提交 bio</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里的工作主要就是使用buffer_head来构造一个bio，bio即block
+input/output，块设备输入输出。最终调用submit_bio()函数提交bio到内核队列。</p>
+<p>再往下看，submit_bio()函数最终调用了generic_make_request()，再往下调用__generic_make_request()，再到__make_request()，在__make_request()函数中的elv_merge()函数是内核中的电梯算法(elevator
+merge)，所谓的电梯算法，也就是实现了我们上面说的按地址顺序优化读写顺序。</p>
+<p>我们担心的事情内核已经帮我们完成了，而快设备框架，则在此基础上展开。</p>
+</section>
+<section id="id4">
+<h2>块设备框架<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>字符设备框架可以参考内核中先用的字符设备驱动代码drivers\block\z2ram.c或其他。</p>
+<p>大致步骤如下：</p>
+<ol class="arabic simple">
+<li><p>分配一个gendisk结构体</p></li>
+<li><p>分配一个队列request_queue_t</p></li>
+<li><p>设置gendisk结构体的成员</p></li>
+<li><p>注册gendisk结构体</p></li>
+</ol>
+<p>分别来看。</p>
+<section id="gendisk">
+<h3>gendisk结构体<a class="headerlink" href="#gendisk" title="此标题的永久链接">#</a></h3>
+<p>gendisk结构体定义在genhd.h中，如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">gendisk</span><span class="w"> </span><span class="p">{</span>
+<span class="cm">/* major, first_minor and minors are input parameters only,</span>
+<span class="cm">* don&#39;t use directly. Use disk_devt() and disk_max_parts().</span>
+<span class="cm">*/</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">major</span><span class="p">;</span><span class="w"> </span><span class="cm">/* major number of driver */</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">first_minor</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">minors</span><span class="p">;</span><span class="w"> </span><span class="cm">/* maximum number of minors, =1 for</span>
+<span class="cm">* disks that can&#39;t be partitioned. */</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">disk_name</span><span class="p">[</span><span class="n">DISK_NAME_LEN</span><span class="p">];</span><span class="w"> </span><span class="cm">/* name of major driver */</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">devnode</span><span class="p">)(</span><span class="k">struct</span><span class="w"> </span><span class="nc">gendisk</span><span class="w"> </span><span class="o">*</span><span class="n">gd</span><span class="p">,</span><span class="w"> </span><span class="n">umode_t</span><span class="w"> </span><span class="o">*</span><span class="n">mode</span><span class="p">);</span>
+
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">events</span><span class="p">;</span><span class="w"> </span><span class="cm">/* supported events */</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">async_events</span><span class="p">;</span><span class="w"> </span><span class="cm">/* async events, subset of all */</span>
+
+<span class="cm">/* Array of pointers to partitions indexed by partno.</span>
+<span class="cm">* Protected with matching bdev lock but stat and other</span>
+<span class="cm">* non-critical accesses use RCU. Always access through</span>
+<span class="cm">* helpers.</span>
+<span class="cm">*/</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">disk_part_tbl</span><span class="w"> </span><span class="n">__rcu</span><span class="w"> </span><span class="o">*</span><span class="n">part_tbl</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">hd_struct</span><span class="w"> </span><span class="n">part0</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">block_device_operations</span><span class="w"> </span><span class="o">*</span><span class="n">fops</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">request_queue</span><span class="w"> </span><span class="o">*</span><span class="n">queue</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">private_data</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">kobject</span><span class="w"> </span><span class="o">*</span><span class="n">slave_dir</span><span class="p">;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">timer_rand_state</span><span class="w"> </span><span class="o">*</span><span class="n">random</span><span class="p">;</span>
+<span class="n">atomic_t</span><span class="w"> </span><span class="n">sync_io</span><span class="p">;</span><span class="w"> </span><span class="cm">/* RAID */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">disk_events</span><span class="w"> </span><span class="o">*</span><span class="n">ev</span><span class="p">;</span>
+<span class="cp">#ifdef CONFIG_BLK_DEV_INTEGRITY</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">kobject</span><span class="w"> </span><span class="n">integrity_kobj</span><span class="p">;</span>
+<span class="cp">#endif </span><span class="cm">/* CONFIG_BLK_DEV_INTEGRITY */</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">node_id</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">badblocks</span><span class="w"> </span><span class="o">*</span><span class="n">bb</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>部分成员介绍：</p>
+<ol class="arabic simple">
+<li><p>major为设备主设备号。</p></li>
+<li><p>first_minor起始次设备号。</p></li>
+<li><p>minors次设备号的数量，也称为分区数量，值为1表示无法分区。</p></li>
+<li><p>disk_name设备名称。</p></li>
+<li><p>part分区表的信息。</p></li>
+<li><p>fops块设备操作集合，块设备的操作函数与字符设备差别较大，碰到了再去研究。</p></li>
+<li><p>queue申请队列，用于管理该设备IO申请队列的指针。</p></li>
+<li><p>private_data私有数据。</p></li>
+<li><p>capacity扇区数。</p></li>
+</ol>
+<p>gendisk的操作大概如下：</p>
+<ol class="arabic simple">
+<li><p>在块设备驱动程序中，首先定义一个gendisk结构体变量，在入口函数中使用函数struct
+gendisk *alloc_disk(int minors)分配空间，minors是分区的数量。</p></li>
+<li><p>分配队列queue。</p></li>
+<li><p>使用register_blkdev函数向内核申请块设备的主设备号。</p></li>
+<li><p>使用函数set_capacity()设置扇区数。</p></li>
+<li><p>设置其他参数。</p></li>
+<li><p>使用函数add_disk()向内和注册gendisk。</p></li>
+<li><p>在出口函数中实现相反的操作：</p></li>
+</ol>
+<p>使用put_disk()和del_gendisk()来注销,释放gendisk结构体。
+使用kfree()释放磁盘扇区缓存。
+使用blk_cleanup_queue()清除内存中的申请队列。
+使用unregister_blkdev()卸载块设备。</p>
+</section>
+<section id="request-queue">
+<h3>request_queue<a class="headerlink" href="#request-queue" title="此标题的永久链接">#</a></h3>
+<p>首先定义一个request_queue结构体变量。使用下面函数来分配：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>struct request_queue *blk_init_queue(request_fn_proc *rfn,
+spinlock_t *lock)</p></td>
+</tr>
+</tbody>
+</table>
+<p>rfn是队列处理函数。</p>
+<p>lock是自旋锁。</p>
+<p>使用blk_init_queue函数获取到request_queue之后复制给ramblock_disk.queue即可。</p>
+<p>这里rfn函数的实现，也就是快设备中的重点了。</p>
+<p>快设备框架的使用，到实验例程中去讲解。</p>
+</section>
+</section>
+<section id="id5">
+<h2>实验<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>本章实验把内存模拟成块设备来操作，重在熟悉块设备的框架和块设备驱动编写流程。</p>
+<section id="id6">
+<h3>驱动程序<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>使用 petalinux新建名为”ax-block-drv”驱动程序，并执行 petalinux-config -c rootfs 命令选上新增的驱动程序。</p>
+<p>在ax-block-drv.c文件中输入下面的代码：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/module.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/errno.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/interrupt.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/mm.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/fs.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/kernel.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/timer.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/genhd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/hdreg.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/ioport.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/init.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/wait.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/blkdev.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/blkpg.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/delay.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/io.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/mach/map.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/uaccess.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/dma.h&gt;</span>
+
+<span class="cp">#define AX_BLOCK_SIZE   (1024*64)                   </span><span class="c1">//块设备大小</span>
+<span class="cp">#define SECTOR_SIZE     512                         </span><span class="c1">//扇区大小</span>
+<span class="cp">#define SECTORS_NUM     AX_BLOCK_SIZE / SECTOR_SIZE </span><span class="c1">//扇区数</span>
+
+<span class="cp">#define AX_BLOCK_NAME   &quot;ax_block&quot;                  </span><span class="c1">//设备节点名称</span>
+
+<span class="cp">#define AX_BLOCK_MAJOR  40</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">ax_block</span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">gendisk</span><span class="w">          </span><span class="o">*</span><span class="n">block_disk</span><span class="p">;</span><span class="w">    </span><span class="c1">//磁盘结构体</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">request_queue</span><span class="w">    </span><span class="o">*</span><span class="n">block_request</span><span class="p">;</span><span class="w"> </span><span class="c1">//申请队列</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">           </span><span class="o">*</span><span class="n">block_buf</span><span class="p">;</span><span class="w">     </span><span class="c1">//磁盘地址</span>
+<span class="p">};</span>
+<span class="cm">/* 声明设备结构体变量 */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">ax_block</span><span class="w"> </span><span class="n">ax_block_drv</span><span class="p">;</span>
+<span class="cm">/* 定义一个自旋锁 */</span>
+<span class="k">static</span><span class="w"> </span><span class="n">DEFINE_SPINLOCK</span><span class="p">(</span><span class="n">ax_block_lock</span><span class="p">);</span>
+
+<span class="cm">/* 块设备操作函数集, 即使没有操作函数, 也需要赋值 */</span>
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">block_device_operations</span><span class="w"> </span><span class="n">ax_block_fops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">owner</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="n">THIS_MODULE</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="cm">/* 队列处理函数 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ax_block_request</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">request_queue</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">request</span><span class="w"> </span><span class="o">*</span><span class="n">req</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* 轮询队列中的每个申请 */</span>
+<span class="w">    </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk_fetch_request</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bio_data</span><span class="p">(</span><span class="n">req</span><span class="o">-&gt;</span><span class="n">bio</span><span class="p">);</span>
+<span class="w">        </span><span class="cm">/* 获取首地址 */</span>
+<span class="w">        </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">blk_rq_pos</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SECTOR_SIZE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_buf</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/* 获取长度 */</span>
+<span class="w">        </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk_rq_cur_bytes</span><span class="p">(</span><span class="n">req</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">rq_data_dir</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">READ</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;ax_request read</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printk</span><span class="p">(</span><span class="s">&quot;ax_request write</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">memcpy</span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="cm">/* 处理完的申请出列 */</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">__blk_end_request_cur</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">                       </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk_fetch_request</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="nf">ax_block_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 分配块设备 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alloc_disk</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 分配申请队列, 提供队列处理函数 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk_init_queue</span><span class="p">(</span><span class="n">ax_block_request</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ax_block_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 设置申请队列 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="o">-&gt;</span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_request</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* 向内核注册块设备 */</span>
+<span class="w">    </span><span class="n">register_blkdev</span><span class="p">(</span><span class="n">AX_BLOCK_MAJOR</span><span class="p">,</span><span class="w"> </span><span class="n">AX_BLOCK_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 主设备号赋给块设备得主设备号字段 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="o">-&gt;</span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AX_BLOCK_MAJOR</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* 设置其他参数 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="o">-&gt;</span><span class="n">first_minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="o">-&gt;</span><span class="n">fops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ax_block_fops</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="o">-&gt;</span><span class="n">disk_name</span><span class="p">,</span><span class="w"> </span><span class="n">AX_BLOCK_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 设置扇区数 */</span>
+<span class="w">    </span><span class="n">set_capacity</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="p">,</span><span class="w"> </span><span class="n">SECTORS_NUM</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 获取缓存, 把内存模拟成块设备 */</span>
+<span class="w">    </span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kzalloc</span><span class="p">(</span><span class="n">AX_BLOCK_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">GFP_KERNEL</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 向内核注册gendisk结构体 */</span>
+<span class="w">    </span><span class="n">add_disk</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">__exit</span><span class="w"> </span><span class="nf">ax_block_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 注销gendisk结构体 */</span>
+<span class="w">    </span><span class="n">put_disk</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 释放gendisk结构体 */</span>
+<span class="w">    </span><span class="n">del_gendisk</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_disk</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 释放缓存 */</span>
+<span class="w">    </span><span class="n">kfree</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_buf</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 清空内存中的队列 */</span>
+<span class="w">    </span><span class="n">blk_cleanup_queue</span><span class="p">(</span><span class="n">ax_block_drv</span><span class="p">.</span><span class="n">block_request</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* 卸载快设备 */</span>
+<span class="w">    </span><span class="n">unregister_blkdev</span><span class="p">(</span><span class="n">AX_BLOCK_MAJOR</span><span class="p">,</span><span class="w"> </span><span class="n">AX_BLOCK_NAME</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">module_init</span><span class="p">(</span><span class="n">ax_block_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">ax_block_exit</span><span class="p">);</span>
+
+<span class="cm">/* 驱动描述信息 */</span>
+<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;Alinx&quot;</span><span class="p">);</span>
+<span class="n">MODULE_ALIAS</span><span class="p">(</span><span class="s">&quot;block test&quot;</span><span class="p">);</span>
+<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;BLOCK driver&quot;</span><span class="p">);</span>
+<span class="n">MODULE_VERSION</span><span class="p">(</span><span class="s">&quot;v1.0&quot;</span><span class="p">);</span>
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>先看块设备框架，入口函数出口函数以及操作函数三个部分的结构和字符设备框架无异。多了一个在76行开始的驱动入口函数中：</p>
+<p>79行先使用函数alloc_disk分配块设备。</p>
+<p>81行使用blk_init_queue函数分配申请队列，并提供队列处理函数ax_block_request。ax_block_request函数实现稍后再去看。</p>
+<p>83行把分配的队列设置到块设备结构体成员中。</p>
+<p>85行向内和注册块设备，需要附上设备号和设备名。87行设置住设备设备号，89行设置起始次设备号也是起始扇区号，90行设置操作函数集合，91行设置设备名称。</p>
+<p>93行设置扇区数，95行使用kalloc函数获取缓存来模拟块设备。</p>
+<p>97行使用add_disk函数向内和注册gendisk结构体。</p>
+<p>101行开始的驱动出口函数中做相反的注销操作。</p>
+<p>然后回头看44行队列处理函数中的内容。</p>
+<p>内容也不多，可以看到最终的处理就是63行和68行memcpy，把读的或者写的内容拷贝到buffer或者内存地址中。当然这里是应为使用内存所以可以直接使用memcpy方法，实际使用外设块设备，读写方法会复杂一些。</p>
+<p>在memcpy的前一步，就是判断本次操作是读还是写，调用函数rq_data_dir函数，如果申请是读，就会返回READ，函数参数是struct
+request类型的指针。注意我们的队列处理函数，输入参数是struct request_queue类型的指针，是申请的队列，使用函数blk_fetch_request函数可以从申请队列中获取队列最前的申请，如49行的操作。获取到的申请，就是我们后面处理的对象。</p>
+<p>memcpy的关键参数有三，数据来源，数据目标，和数据长度。这些都要通过申请结构体变量指针struct request *req来获取。54行通过bio_data(req-&gt;bio)获取数据目标地址。56行先使用blk_rq_pos(req)获取当前扇区，然后乘上扇区大小，再加上缓存的首地址，则是当前申请数据所在的首地址了。58行使用方法blk_rq_cur_bytes(req)获取当前申请的数据长度。</p>
+<p>在队列处理函数中，需要轮询队列中的每一个申请，方法就是使用函数blk_fetch_request(q)，如果有申请，则返回正值。最后处理完了使用blk_end_request_cur(req, 0)函数把处理完成的申请移出队列。</p>
+<p>另外在读和写之前加上printk来查看看效果。</p>
+</section>
+<section id="id7">
+<h3>运行测试<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>测试方法步骤如下：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>mount -t nfs -o nolock 192.168.1.107:/home/alinx/work /mnt</p>
+<p>cd /mnt</p>
+<p>mkdir /tmp/qt</p>
+<p>mount qt_lib.img /tmp/qt</p>
+<p>cd /tmp/qt</p>
+<p>source ./qt_env_set.sh</p>
+<p>cd /mnt</p>
+<p>insmod ./ax-block-drv.ko</p>
+<p>mkdosfs /dev/ax_block</p>
+<p>cd /</p>
+<p>mkdir test</p>
+<p>mount /dev/ax_block /test/</p>
+<p>cd /test/</p>
+<p>vi test.txt</p>
+<p>(编辑任意内容，这里我输入了test)</p>
+<p>cd /</p>
+<p>umount /test/</p>
+<p>cat /dev/ax_block &gt; /mnt/block_test.bin</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>IP 和路径根据实际情况调整。</p>
+<p>然后到ubuntu虚拟机中，验证block_test.bin，步骤如下：</p>
+<img alt="../_images/image1278.png" src="../_images/image1278.png" />
+<p>把block_test.bin挂载到/mnt目录下，发现mnt目录中就有了我们之前创建的test.txt文件，并且内容也是之前输入的内容。</p>
+<p>串口工具中的调试结果如下：</p>
+<img alt="../_images/image2191.png" src="../_images/image2191.png" />
+<img alt="../_images/image3165.png" src="../_images/image3165.png" />
+<img alt="../_images/image4138.png" src="../_images/image4138.png" />
+<p>通过串口打应的read和write信息，也可以看出块设备内电梯算法的结果，都每次申请的读和写不会交叉进行，提高了读写效率。</p>
+<p>另外块设备的读写是异步操作，要确保每次申请的操作都完成，可以使用sync命令来完成当前未完成的异步操作。</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">串口驱动</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">网卡驱动</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">块设备简介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">内核中的块设备访问</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">块设备框架</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gendisk">gendisk结构体</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#request-queue">request_queue</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">运行测试</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

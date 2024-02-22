@@ -1,0 +1,5 @@
+<annotationInfo>
+<annotationInfo>
+<item  id="14" filename="scalar_add/add.cpp" linenumber="9" name="c_assign" contextFuncName="add" moduleName="add" rtlName="c" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="39" fileDirectory="D:\test\overlay_tutorial_17_4\ip"></item>
+</annotationInfo>
+</annotationInfo>

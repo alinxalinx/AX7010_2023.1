@@ -1,0 +1,1 @@
+`define	VIDEO_800_480

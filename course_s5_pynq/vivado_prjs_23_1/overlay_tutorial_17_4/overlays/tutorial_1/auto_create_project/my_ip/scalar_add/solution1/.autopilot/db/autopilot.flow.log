@@ -1,0 +1,1120 @@
+INFO: [HLS 200-0] Workspace D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1 opened at Thu Aug 01 16:29:25 +0800 2019
+Command     open_solution returned 0; 0.034 sec.
+Execute     set_part xc7z020clg484-1 -tool vivado 
+Execute       add_library xilinx/zynq/zynq:xc7z020:clg484:-1 
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+Execute         license_isbetapart xc7z020 
+Command         license_isbetapart returned 1; 0.025 sec.
+Execute         open_platform DefaultPlatform 
+Command         open_platform returned 0; 0 sec.
+Execute         import_lib C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.lib 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/xilinx_interface.lib 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.lib 
+Command               ap_source returned 0; 0 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.lib 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.lib 
+Command               ap_source returned 0; 0 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.lib 
+Command               ap_source returned 0; 0 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.lib 
+Command               ap_source returned 0; 0.001 sec.
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.lib 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.lib 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.lib 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.lib 
+Command             ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.007 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_old.lib 
+Command           ap_source returned 0; 0.001 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_vivado.lib 
+Command           ap_source returned 0; 0.001 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.hlp 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/target_info.tcl 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.hlp 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.hlp 
+Command               ap_source returned 0; 0 sec.
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
+Command             ap_source returned 0; 0.002 sec.
+Command           ap_source returned 0; 0.005 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/dsp48e1.hlp 
+Command           ap_source returned 0; 0 sec.
+Execute           get_default_platform 
+Command           get_default_platform returned 0; 0 sec.
+Execute           config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+Command           config_chip_info returned 0; 0 sec.
+Execute           config_chip_info -quiet -speed medium 
+Command           config_chip_info returned 0; 0 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.hlp 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/target_info.tcl 
+Command             ap_source returned 0; 0.006 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.hlp 
+Command               ap_source returned 0; 0 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.hlp 
+Command               ap_source returned 0; 0 sec.
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.01 sec.
+Command         import_lib returned 0; 0.029 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command               ap_source returned 0; 0.002 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command               ap_source returned 0; 0.002 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command                 ap_source returned 0; 0.004 sec.
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command                 ap_source returned 0; 0.007 sec.
+Command               ap_source returned 0; 0.011 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command               ap_source returned 0; 0.011 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command               ap_source returned 0; 0.007 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command               ap_source returned 0; 0.085 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command               ap_source returned 0; 0.001 sec.
+Command             ap_source returned 0; 0.125 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command             ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.128 sec.
+Command         ap_source returned 0; 0.128 sec.
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+Execute         config_chip_info -quiet -resource  {SLICE 13300}  {LUT 53200}     {FF 106400} {DSP48E 220}   {BRAM 280}  
+Command         config_chip_info returned 0; 0 sec.
+Execute         config_chip_info -quiet -speed slow 
+Command         config_chip_info returned 0; 0 sec.
+Command       add_library returned 0; 0.194 sec.
+Execute       add_library xilinx/zynq/zynq_fpv6 
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+Execute         open_platform DefaultPlatform 
+Command         open_platform returned 0; 0 sec.
+Execute         import_lib C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv7.lib 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_hp.lib 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.005 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv.hlp 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.hlp 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/target_info.tcl 
+Command               ap_source returned 0; 0.006 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.hlp 
+Command                 ap_source returned 0; 0 sec.
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.hlp 
+Command                 ap_source returned 0; 0 sec.
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.hlp 
+Command               ap_source returned 0; 0.002 sec.
+Command             ap_source returned 0; 0.01 sec.
+Command           ap_source returned 0; 0.01 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_hp.hlp 
+Command           ap_source returned 0; 0.002 sec.
+Command         import_lib returned 0; 0.027 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command           ap_source returned 0; 0.002 sec.
+Command         ap_source returned 0; 0.003 sec.
+Command       add_library returned 0; 0.035 sec.
+INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
+Execute       get_default_platform 
+Command       get_default_platform returned 0; 0 sec.
+Command     set_part returned 0; 0.266 sec.
+Execute     create_clock -period 10 -name default 
+Execute       config_clock -quiet -name default -period 10 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+Command       config_clock returned 0; 0 sec.
+Command     create_clock returned 0; 0.005 sec.
+Execute     csynth_design 
+Execute       elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -lm=0 -skip_cdt=0 -skip_transform=0 -VP9_rom_infer_simplify=0 -ng=0 -g=0 -opt_fp=0 -enable_clang39=0 
+INFO: [HLS 200-10] Analyzing design file 'scalar_add/add.cpp' ...
+INFO: [HLS 200-0] Compiling one TU...
+Execute         is_m_axi_addr64 
+Command         is_m_axi_addr64 returned 0; 0 sec.
+INFO: [HLS 200-0] Handling scalar_add/add.cpp as C++
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+Execute         is_encrypted scalar_add/add.cpp 
+Command         is_encrypted returned 0; 0 sec.
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+INFO: [HLS 200-0] Source preprocessing
+Execute         clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2017.4/msys" -hls  -fno-exceptions  -D__llvm__  -E "scalar_add/add.cpp"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot" -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E1__  -o "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp" 
+INFO: [HLS 200-0] exec clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2017.4/msys -hls -fno-exceptions -D__llvm__ -E scalar_add/add.cpp -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp
+Command         clang returned 0; 0.564 sec.
+INFO: [HLS 200-0] Syntax Checking before pre-processing...
+Execute         clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2017.4/msys" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot" -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E1__  "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp"  -o "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/useless.bc"  
+INFO: [HLS 200-0] exec clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2017.4/msys -hls -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/useless.bc
+Command         clang returned 0; 0.565 sec.
+INFO: [HLS 200-0] GCC PP time: 1 seconds per iteration
+Execute         list_core -type functional_unit 
+Command         list_core returned 0; 0 sec.
+INFO: [HLS 200-0] CDT Preprocessing...
+INFO: [HLS 200-0] Marker-Pragma convertor: D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp.ap-line.cpp D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp.ap-line.cpp.CXX 1
+INFO: [HLS 200-0] Converting Markers to Pragmas...
+Execute         cdt  "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp.ap-line.cpp"  -m "add" -o "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp.ap-cdt.cpp" --pp --directive D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/solution1.directive --source D:/test/overlay_tutorial_17_4/ip/scalar_add/add.cpp --error D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db --funcunit "AddSub AddSub_DSP AddSubnS DAddSub_fulldsp DAddSub_nodsp DDiv DExp_fulldsp DExp_meddsp DExp_nodsp DLog_fulldsp DLog_meddsp DLog_nodsp DMul_fulldsp DMul_maxdsp DMul_meddsp DMul_nodsp DRSqrt DRecip DSP_Double_Pump_Mac16 DSP_Double_Pump_Mac8 DSP_Macro DSqrt DivnS FAddSub_fulldsp FAddSub_nodsp FDiv FExp_fulldsp FExp_meddsp FExp_nodsp FLog_fulldsp FLog_meddsp FLog_nodsp FMul_fulldsp FMul_maxdsp FMul_meddsp FMul_nodsp FRSqrt_fulldsp FRSqrt_nodsp FRecip_fulldsp FRecip_nodsp FSqrt HAddSub_fulldsp HAddSub_meddsp HAddSub_nodsp HDiv HMul_fulldsp HMul_maxdsp HMul_nodsp HSqrt Mul Mul2S Mul3S Mul4S Mul5S Mul6S Mul_LUT MulnS MuxnS" --ve --vetcl D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db --ca --es --gf --pd --p2d D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db --sd --scff D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/.systemc_flag --ad 
+Command         cdt returned 0; 0.695 sec.
+INFO: [HLS 200-0] Marker-Pragma convertor: D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pp.0.cpp.ap-cdt.cpp D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.0.cpp D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.0.cpp.ap-line.CXX 0
+INFO: [HLS 200-0] Converting Pragmas to Markers...
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/pragma.status.tcl 
+Command         ap_source returned 0; 0.001 sec.
+INFO: [HLS 200-0] Pragma Handling...
+INFO: [HLS 200-0] Source preprocessing
+Execute         clang  -fno-limit-debug-info -gcc-toolchain "C:/Xilinx/Vivado/2017.4/msys" -hls  -fno-exceptions  -D__llvm__  -E "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.1.cpp"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit  -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot" -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E1__  -o "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.2.cpp" 
+INFO: [HLS 200-0] exec clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2017.4/msys -hls -fno-exceptions -D__llvm__ -E D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.1.cpp -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -fno-threadsafe-statics -fno-use-cxa-atexit -D__CLANG_3_1__ -D__cdecl= -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.2.cpp
+Command         clang returned 0; 0.556 sec.
+Execute         get_default_platform 
+Command         get_default_platform returned 0; 0 sec.
+INFO: [HLS 200-0] Processing labels
+Execute         clang  -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2017.4/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.2.cpp"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -fno-threadsafe-statics  -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot" -I "C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -g -o "D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.g.bc" 
+INFO: [HLS 200-0] exec clang -fno-limit-debug-info -gcc-toolchain C:/Xilinx/Vivado/2017.4/msys -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions -D__llvm__ -w D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.pragma.2.cpp -fno-math-errno -c -emit-llvm -O0 -mllvm -disable-llvm-optzns -fno-threadsafe-statics -fno-use-cxa-atexit -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot -I C:/Xilinx/Vivado/2017.4/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -g -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.g.bc
+Command         clang returned 0; 0.568 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/ve_warning.tcl 
+Command         ap_source returned 0; 0 sec.
+INFO: [HLS 200-10] Validating synthesis directives ...
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/pragma.status.tcl 
+Command         ap_source returned 0; 0.001 sec.
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:04 . Memory (MB): peak = 99.191 ; gain = 43.875
+INFO: [HLS 200-0] Linking Release ...
+Execute         llvm-ld D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.bc -hls-opt -except-internalize add -LC:/Xilinx/Vivado/2017.4/win64/lib -lm_basic -lhlsmc++ -lhlsm -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o 
+Command         llvm-ld returned 0; 0.419 sec.
+Execute         disassemble D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o 
+Execute           is_encrypted D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.bc 
+Command           is_encrypted returned 0; 0 sec.
+Command         disassemble returned 0; 0.383 sec.
+INFO: [HLS 200-0] Disassemble time: 0 seconds per iteration
+INFO: [HLS 200-0] Linking Debug ...
+Execute         llvm-ld D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.g.bc -hls-opt -except-internalize add -LC:/Xilinx/Vivado/2017.4/win64/lib -lm_basic -lhlsmc++ -lhlsm -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g 
+Command         llvm-ld returned 0; 0.405 sec.
+INFO: [HLS 200-0] Disassemble time: 0 seconds per iteration
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 99.223 ; gain = 43.906
+Execute         ::config_rtl 
+Command         config_rtl returned 0; 0.001 sec.
+Execute         opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 -enable_clang39=0 -VP9_rom_infer_simplify=0 
+Execute           cleanup_all_models 
+Command           cleanup_all_models returned 0; 0 sec.
+INFO: [HLS 200-10] Starting code transformations ...
+Execute           transform -promote-dbg-pointer D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.pp.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.pp.0.bc -f 
+Command           transform returned 0; 0.023 sec.
+Execute           llvm-ld D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.pp.0.bc -disable-opt -LC:/Xilinx/Vivado/2017.4/win64/lib -lfloatconversion -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.0 
+Command           llvm-ld returned 0; 0.284 sec.
+INFO: [HLS 200-0] Running Standard Transforms...
+Execute           transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -prune-eh -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top add -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.0.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+Command           transform returned 0; 0.009 sec.
+Execute           disassemble D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1 D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1 
+Execute             is_encrypted D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1.bc 
+Command             is_encrypted returned 0; 0 sec.
+Command           disassemble returned 0; 0.366 sec.
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 99.902 ; gain = 44.586
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-0] Checking Synthesizability 1/2..
+Execute           transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -array-normalize -instcombine -dce -warn-fifo-pointer -array-seg-normalize -instcombine -dce -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+Command           transform returned 0; 0.015 sec.
+INFO: [HLS 200-0] Checking Synthesizability 2/2..
+Execute           transform -syn-check D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.2.prechk.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+Command           transform returned 0; 0.006 sec.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 100.121 ; gain = 44.805
+INFO: [HLS 200-0] Compiler optimizing ...
+INFO: [HLS 200-0] Share syncheck's 1.bc for syn flow: copy D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.g.1.bc to D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.1.bc
+INFO: [HLS 200-0] Presyn 1...
+Execute           transform -hls -tmp D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db -interface-port-rename -type-info -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -auto-rom-infer -dce -function-uniquify -resource-proc -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -clib-intrinsic-prepare -dce -func-buffer -dce -array-normalize -func-legal -instcombine -gvn -constprop -dce -ptrArgReplace -mem2reg -instcombine -dce -array-seg-normalize -deadargelim -instcombine -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -simplifycfg -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -auto-par -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -instcombine -dce -global-constprop -deadargelim -mem2reg -instcombine -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -mem-intrinsic-preproc -dce -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -instcombine -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -inst-simplify -dce -norm-name -function-inline -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -deadargelim -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.1.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+Command           transform returned 0; 0.051 sec.
+INFO: [HLS 200-0] Presyn 2...
+Execute           transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -norm-name D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.1.tmp.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+Command           transform returned 0; 0.031 sec.
+Execute           disassemble D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.2 D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.2 
+Execute             is_encrypted D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.2.bc 
+Command             is_encrypted returned 0; 0.001 sec.
+Command           disassemble returned 0; 0.385 sec.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 121.289 ; gain = 65.973
+INFO: [HLS 200-0] Building ssdm...
+Execute           transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -instcombine -dce -reset-lda -loop-simplify -indvars -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -axi4-lower -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -interface-preproc -directive-preproc -interface-gen -deadargelim -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -bitop-lower -loop-rewind -pointer-simplify -dce -cfgopt -read-loop-dep -dce -bitwidth -loop-dep -check-stream -norm-name -legalize -validate-dataflow -cdfg-build D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.2.bc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+Command           transform returned 0; 0.038 sec.
+Execute           disassemble D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.3 D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.3 
+Execute             is_encrypted D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.o.3.bc 
+Command             is_encrypted returned 0; 0.001 sec.
+Command           disassemble returned 0; 0.37 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 121.289 ; gain = 65.973
+INFO: [HLS 200-0] Finish building internal data model.
+Command         opt_and_import_c returned 0; 1.71 sec.
+Command       elaborate returned 0; 6.139 sec.
+Execute       autosyn 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-0] Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'add' ...
+Execute         ap_set_top_model add 
+Command         ap_set_top_model returned 0; 0 sec.
+Execute         get_model_list add -filter all-wo-channel -topdown 
+Command         get_model_list returned 0; 0 sec.
+Execute         preproc_iomode -model add 
+Command         preproc_iomode returned 0; 0 sec.
+Execute         get_model_list add -filter all-wo-channel 
+Command         get_model_list returned 0; 0 sec.
+INFO: [HLS 200-0] Model list for configure: add
+INFO: [HLS 200-0] Configuring Module : add ...
+Execute         set_default_model add 
+Command         set_default_model returned 0; 0 sec.
+Execute         apply_spec_resource_limit add 
+Command         apply_spec_resource_limit returned 0; 0 sec.
+INFO: [HLS 200-0] Model list for preprocess: add
+INFO: [HLS 200-0] Preprocessing Module: add ...
+Execute         set_default_model add 
+Command         set_default_model returned 0; 0 sec.
+Execute         cdfg_preprocess -model add 
+Command         cdfg_preprocess returned 0; 0 sec.
+Execute         rtl_gen_preprocess add 
+Command         rtl_gen_preprocess returned 0; 0 sec.
+INFO: [HLS 200-0] Model list for synthesis: add
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'add'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         set_default_model add 
+Command         set_default_model returned 0; 0 sec.
+Execute         schedule -model add 
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+Command         schedule returned 0; 0.021 sec.
+INFO: [HLS 200-111]  Elapsed time: 7.514 seconds; current allocated memory: 72.653 MB.
+Execute         report -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.verbose.sched.rpt -verbose -f 
+Command         report returned 0; 0.012 sec.
+Execute         db_write -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.sched.adb -f 
+Command         db_write returned 0; 0.013 sec.
+INFO: [HLS 200-0] Finish scheduling add.
+Execute         set_default_model add 
+Command         set_default_model returned 0; 0 sec.
+Execute         bind -model add 
+INFO: [BIND 205-110] clear=
+INFO: [BIND 205-110] debug=
+INFO: [BIND 205-110] drf=
+INFO: [BIND 205-110] effort=
+INFO: [BIND 205-110] fast_refine=
+INFO: [BIND 205-110] fu_weight=[ 0.0 -- 1.0 ]
+INFO: [BIND 205-110] global_opt=
+INFO: [BIND 205-110] gsearch=
+INFO: [BIND 205-110] help=
+INFO: [BIND 205-110] help-hidden=
+INFO: [BIND 205-110] min_mem_port=
+INFO: [BIND 205-110] min_op=
+INFO: [BIND 205-110] minreg=
+INFO: [BIND 205-110] ml=
+INFO: [BIND 205-110] model=add
+INFO: [BIND 205-110] no_false_path=
+INFO: [BIND 205-110] no_min_op=
+INFO: [BIND 205-110] normalize=
+INFO: [BIND 205-110] quiet=
+INFO: [BIND 205-110] refine=
+INFO: [BIND 205-110] reg_weight=[ 0.0 -- 1.0 ]
+INFO: [BIND 205-110] search=
+INFO: [BIND 205-110] tight_delay=
+INFO: [BIND 205-110] verbose=
+INFO: [BIND 205-110] wFF=
+INFO: [BIND 205-110] wFU=
+INFO: [BIND 205-110] wMUX=
+INFO: [BIND 205-110] wNET=
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command         bind returned 0; 0.026 sec.
+INFO: [HLS 200-111]  Elapsed time: 0.071 seconds; current allocated memory: 72.735 MB.
+Execute         report -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.verbose.bind.rpt -verbose -f 
+Command         report returned 0; 0.013 sec.
+Execute         db_write -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.bind.adb -f 
+Command         db_write returned 0; 0.015 sec.
+INFO: [HLS 200-0] Finish binding add.
+Execute         get_model_list add -filter all-wo-channel 
+Command         get_model_list returned 0; 0 sec.
+INFO: [HLS 200-0] Preprocessing for RTLGen ...
+Execute         rtl_gen_preprocess add 
+Command         rtl_gen_preprocess returned 0; 0 sec.
+INFO: [HLS 200-0] Model list for RTL generation: add
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'add'
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute         create_rtl_model add -vendor xilinx -mg_file D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+INFO: [RTGEN 206-500] Setting interface mode on port 'add/a' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'add/b' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'add/c' to 's_axilite & ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'add' to 'ap_ctrl_none'.
+INFO: [RTGEN 206-100] Bundling port 'a', 'b' and 'c' to AXI-Lite port AXILiteS.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'add'.
+Command         create_rtl_model returned 0; 0.032 sec.
+INFO: [HLS 200-111]  Elapsed time: 0.084 seconds; current allocated memory: 72.901 MB.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         gen_rtl add -istop -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/syn/systemc/add -synmodules add 
+Command         gen_rtl returned 0; 0.008 sec.
+Execute         gen_rtl add -istop -style xilinx -f -lang vhdl -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/syn/vhdl/add 
+Command         gen_rtl returned 0; 0.007 sec.
+Execute         gen_rtl add -istop -style xilinx -f -lang vlog -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/syn/verilog/add 
+Command         gen_rtl returned 0; 0.006 sec.
+Execute         export_constraint_db -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl -f -tool general 
+Command         export_constraint_db returned 0; 0.003 sec.
+Execute         report -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.design.xml -verbose -f -dv 
+Command         report returned 0; 0.008 sec.
+Execute         report -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.sdaccel.xml -verbose -f -sdaccel 
+Command         report returned 0; 0.006 sec.
+Execute         gen_tb_info add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add -p D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db 
+Command         gen_tb_info returned 0; 0.022 sec.
+Execute         report -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/syn/report/add_csynth.rpt -f 
+Command         report returned 0; 0.006 sec.
+Execute         report -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/syn/report/add_csynth.xml -f -x 
+Command         report returned 0; 0.006 sec.
+Execute         report -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.verbose.rpt -verbose -f 
+Command         report returned 0; 0.012 sec.
+Execute         db_write -model add -o D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.adb -f 
+Command         db_write returned 0; 0.02 sec.
+Execute         sc_get_clocks add 
+Command         sc_get_clocks returned 0; 0 sec.
+Execute         sc_get_portdomain add 
+Command         sc_get_portdomain returned 0; 0 sec.
+INFO: [HLS 200-0] Model list for RTL component generation: add
+INFO: [HLS 200-0] Handling components in module [add] ... 
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+INFO: [HLS 200-0] Found component add_AXILiteS_s_axi.
+INFO: [HLS 200-0] Append model add_AXILiteS_s_axi
+Command         ap_source returned 0; 0.007 sec.
+INFO: [HLS 200-0] Append model add
+INFO: [HLS 200-0] Generating RTL model list ...
+INFO: [HLS 200-0] All models in this session: add_AXILiteS_s_axi add
+INFO: [HLS 200-0] To file: write model add_AXILiteS_s_axi
+INFO: [HLS 200-0] To file: write model add
+INFO: [HLS 200-0] Finished generating RTL model list.
+
+
+INFO: [HLS 200-0] RTL Generation done.
+INFO: [HLS 200-0] CAS Generation done.
+INFO: [HLS 200-0] CBC Generation done.
+Execute         export_ssdm D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/a.export.ll 
+Command         export_ssdm returned 0; 0.005 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.002 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command         ap_source returned 0; 0 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command               ap_source returned 0; 0.002 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command                 ap_source returned 0; 0.004 sec.
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command                 ap_source returned 0; 0.007 sec.
+Command               ap_source returned 0; 0.011 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command               ap_source returned 0; 0.01 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command               ap_source returned 0; 0.008 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command               ap_source returned 0; 0.083 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command               ap_source returned 0; 0.001 sec.
+Command             ap_source returned 0; 0.123 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command             ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.126 sec.
+Command         ap_source returned 0; 0.127 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command           ap_source returned 0; 0.002 sec.
+Command         ap_source returned 0; 0.002 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Execute           source ./AXILiteS.slave.tcl 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.087 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.002 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command               ap_source returned 0; 0.001 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command               ap_source returned 0; 0.002 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command                 ap_source returned 0; 0.004 sec.
+Execute                 source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command                 ap_source returned 0; 0.007 sec.
+Command               ap_source returned 0; 0.012 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command               ap_source returned 0; 0.01 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command               ap_source returned 0; 0.009 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command               ap_source returned 0; 0 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command               ap_source returned 0; 0.084 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command               ap_source returned 0; 0.001 sec.
+Command             ap_source returned 0; 0.125 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command             ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.128 sec.
+Command         ap_source returned 0; 0.128 sec.
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command           ap_source returned 0; 0.002 sec.
+Command         ap_source returned 0; 0.002 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command         ap_source returned 0; 0 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.002 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command         ap_source returned 0; 0.001 sec.
+Execute         source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command         ap_source returned 0; 0.001 sec.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 121.289 ; gain = 65.973
+INFO: [SYSC 207-301] Generating SystemC RTL for add.
+INFO: [VHDL 208-304] Generating VHDL RTL for add.
+INFO: [VLOG 209-307] Generating Verilog RTL for add.
+Command       autosyn returned 0; 1.185 sec.
+Command     csynth_design returned 0; 7.325 sec.
+Execute     export_design -format ip_catalog 
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.023 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.008 sec.
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.015 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.004 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.095 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.141 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.144 sec.
+Command       ap_source returned 0; 0.145 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.005 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.006 sec.
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.013 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.007 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.004 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.083 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.125 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.128 sec.
+Command       ap_source returned 0; 0.128 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command       ap_source returned 0; 0.005 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.rtl_wrap.cfg.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.tbgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.011 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.005 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.007 sec.
+Command             ap_source returned 0; 0.012 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.012 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.009 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.003 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.082 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.125 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.128 sec.
+Command       ap_source returned 0; 0.129 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.02 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.004 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.007 sec.
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.004 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.082 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.122 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.124 sec.
+Command       ap_source returned 0; 0.125 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.006 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.007 sec.
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.004 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.081 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.12 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.122 sec.
+Command       ap_source returned 0; 0.123 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.011 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.007 sec.
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.003 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.08 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0 sec.
+Command           ap_source returned 0; 0.119 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.122 sec.
+Command       ap_source returned 0; 0.124 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+WARNING: [IMPL 213-201] IO timing constraints are not applied without adding IO buffers.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.031 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.003 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.007 sec.
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.003 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.082 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.12 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.123 sec.
+Command       ap_source returned 0; 0.124 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.004 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.004 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.006 sec.
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.003 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.08 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.118 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0.001 sec.
+Command         ap_source returned 0; 0.121 sec.
+Command       ap_source returned 0; 0.121 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.compgen.tcl 
+Command       ap_source returned 0; 0 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/add.constraint.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.02 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/APCoreGen.gen 
+Command         ap_source returned 0; 0.001 sec.
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/op_simcore.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/generic/autopilot/interface.gen 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/virtex.gen 
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx.gen 
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/plb46.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/fsl.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/axi4.gen 
+Command             ap_source returned 0; 0.002 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/saxilite.gen 
+Command               ap_source returned 0; 0.004 sec.
+Execute               source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/maxi.gen 
+Command               ap_source returned 0; 0.006 sec.
+Command             ap_source returned 0; 0.01 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Command             ap_source returned 0; 0.011 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Command             ap_source returned 0; 0.008 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/dds_compiler.gen 
+Command             ap_source returned 0; 0.003 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/util.gen 
+Command             ap_source returned 0; 0.001 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfft.gen 
+Command             ap_source returned 0; 0.083 sec.
+Execute             source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/ip/xfir.gen 
+Command             ap_source returned 0; 0.001 sec.
+Command           ap_source returned 0; 0.123 sec.
+Execute           source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/dsp48.gen 
+Command           ap_source returned 0; 0 sec.
+Command         ap_source returned 0; 0.125 sec.
+Command       ap_source returned 0; 0.125 sec.
+Execute       source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/zynq/zynq_fpv6.gen 
+Execute         source C:/Xilinx/Vivado/2017.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+Command         ap_source returned 0; 0.002 sec.
+Command       ap_source returned 0; 0.002 sec.
+WARNING: [IMPL 213-201] IO timing constraints are not applied without adding IO buffers.
+Execute       source D:/test/overlay_tutorial_17_4/ip/scalar_add/solution1/.autopilot/db/global.setting.tcl 
+Command       ap_source returned 0; 0.001 sec.
+Command     export_design returned 0; 27.851 sec.
+Execute     cleanup_all 
+Command     cleanup_all returned 0; 0.003 sec.

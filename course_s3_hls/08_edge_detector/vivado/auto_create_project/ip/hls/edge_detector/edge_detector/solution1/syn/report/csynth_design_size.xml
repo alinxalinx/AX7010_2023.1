@@ -1,0 +1,81 @@
+<design_size title="Design Size Report">
+    <item name="Instructions per Function for each Compilation Phase">
+        <hiertable>
+            <header size="6" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Performance/Pipeline" col5="Optimizations"/>
+            <rows>
+                <row id="0" col0="edge_detector" col1="edge_detector.cpp:150" col2="29887" col3="1871" col4="735" col5="888">
+                    <row id="20" col0="Mat" col1="xf_structs.hpp:652" col2="287" col2_disp="   287 (7 calls)" col3="" col4="" col5="">
+                        <row id="18" col0="init" col1="xf_structs.hpp:605" col2="196" col2_disp="   196 (7 calls)" col3="" col4="" col5="">
+                            <row id="11" col0="alloc_data&lt;2, nullptr&gt;" col1="xf_structs.hpp:493" col2="7" col2_disp="     7 (7 calls)" col3="" col4="" col5=""/>
+                        </row>
+                    </row>
+                    <row id="4" col0="AXIvideo2xfMat&lt;24, 16, 1080, 1920, 1, 2&gt;" col1="xf_infra.hpp:100" col2="574" col3="181" col4="110" col5="157">
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="8" col3="3" col4="" col5=""/>
+                    </row>
+                    <row id="2" col0="xfrgb2gray&lt;1080, 1920&gt;" col1="edge_detector.cpp:57" col2="313" col3="79" col4="42" col5="55">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="18" col3="3" col4="" col5=""/>
+                        <row id="14" col0="ExtractPixel" col1="edge_detector.cpp:3" col2="77" col3="16" col4="" col5=""/>
+                        <row id="15" col0="CalculateGRAY" col1="xf_cvt_color_utils.hpp:882" col2="24" col3="" col4="" col5="">
+                            <row id="19" col0="saturate_cast" col1="xf_cvt_color_utils.hpp:757" col2="14" col3="" col4="" col5=""/>
+                        </row>
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="8" col3="3" col4="" col5=""/>
+                        <row id="19" col0="saturate_cast" col1="xf_cvt_color_utils.hpp:757" col2="" col3="13" col4="" col5=""/>
+                    </row>
+                    <row id="8" col0="xFSobelFilter3x3&lt;0, 0, 1080, 1920, 1, 0, 0, 1, 2, 2, 2, 1, 1, 1920, false&gt;" col1="xf_sobel.hpp:306" col2="24036" col3="809" col4="378" col5="390">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="18" col3="6" col3_disp="    6 (2 calls)" col4="" col5=""/>
+                        <row id="21" col0="ProcessSobel3x3&lt;0, 0, 1080, 1920, 1, 0, 0, 1, 2, 2, 2, 1, 1, 1920&gt;" col1="xf_sobel.hpp:194" col2="10708" col3="" col4="" col5="">
+                            <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="18" col3="" col4="" col5=""/>
+                            <row id="10" col0="xFSobel3x3&lt;1, 1, 0, 0&gt;" col1="xf_sobel.hpp:134" col2="7378" col3="" col4="" col5="">
+                                <row id="1" col0="xFGradientX3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:44" col2="325" col3="" col4="" col5=""/>
+                                <row id="7" col0="xFGradientY3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:92" col2="325" col3="" col4="" col5=""/>
+                            </row>
+                            <row id="13" col0="xfPackPixels&lt;1, 1, 0&gt;" col1="xf_utility.hpp:318" col2="2130" col2_disp=" 2,130 (6 calls)" col3="" col4="" col5=""/>
+                            <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="16" col2_disp="    16 (2 calls)" col3="" col4="" col5=""/>
+                        </row>
+                        <row id="1" col0="xFGradientX3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:44" col2="650" col2_disp="   650 (2 calls)" col3="58" col4="50" col5="51"/>
+                        <row id="7" col0="xFGradientY3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:92" col2="650" col2_disp="   650 (2 calls)" col3="58" col4="50" col5="51"/>
+                        <row id="13" col0="xfPackPixels&lt;1, 1, 0&gt;" col1="xf_utility.hpp:318" col2="710" col2_disp="   710 (2 calls)" col3="" col4="" col5=""/>
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="16" col2_disp="    16 (2 calls)" col3="12" col3_disp="   12 (4 calls)" col4="" col5=""/>
+                        <row id="10" col0="xFSobel3x3&lt;1, 1, 0, 0&gt;" col1="xf_sobel.hpp:134" col2="" col3="192" col4="121" col5="120">
+                            <row id="1" col0="xFGradientX3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:44" col2="" col3="58" col4="50" col5="51"/>
+                            <row id="7" col0="xFGradientY3x3&lt;0, 0&gt;" col1="xf_sobel.hpp:92" col2="" col3="58" col4="50" col5="51"/>
+                        </row>
+                    </row>
+                    <row id="5" col0="AddWeightedKernel&lt;1080, 1920&gt;" col1="edge_detector.cpp:80" col2="3606" col3="486" col4="53" col5="66">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="36" col2_disp="    36 (2 calls)" col3="6" col3_disp="    6 (2 calls)" col4="" col5=""/>
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="8" col3="3" col4="" col5=""/>
+                    </row>
+                    <row id="3" col0="thresholding&lt;1080, 1920&gt;" col1="edge_detector.cpp:14" col2="253" col3="63" col4="31" col5="54">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="36" col2_disp="    36 (2 calls)" col3="6" col3_disp="    6 (2 calls)" col4="" col5=""/>
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="16" col2_disp="    16 (2 calls)" col3="6" col3_disp="    6 (2 calls)" col4="" col5=""/>
+                    </row>
+                    <row id="6" col0="xfgray2rgb&lt;1080, 1920&gt;" col1="edge_detector.cpp:129" col2="328" col3="35" col4="15" col5="26">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="18" col3="3" col4="" col5=""/>
+                        <row id="12" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="8" col3="3" col4="" col5=""/>
+                    </row>
+                    <row id="9" col0="xfMat2AXIvideo&lt;24, 16, 1080, 1920, 1, 2&gt;" col1="xf_infra.hpp:180" col2="383" col3="94" col4="62" col5="69">
+                        <row id="17" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="18" col3="3" col4="" col5=""/>
+                    </row>
+                    <row id="16" col0="~Mat" col1="xf_structs.hpp:865" col2="7" col2_disp="     7 (7 calls)" col3="" col4="" col5=""/>
+                </row>
+            </rows>
+            <notes/>
+        </hiertable>
+    </item>
+    <item name="Description of Compilation Phases">
+        <table>
+            <keys size="2">Compilation Phase, Description</keys>
+            <column name="Compile/Link">All functions are compiled and linked into a single design</column>
+            <column name="Unroll/Inline">After user unroll and inline pragmas are applied</column>
+            <column name="Performance/Pipeline">After performance and pipeline pragmas are applied</column>
+            <column name="Optimizations">After high level synthesis optimizations</column>
+        </table>
+    </item>
+    <item name="Design Size Message Settings">
+        <table>
+            <keys size="3">Message Setting, Value, Description</keys>
+            <column name="config_compile -design_size_maximum_warning">100000, Show a warning when total design instructions exceeds this value</column>
+        </table>
+    </item>
+</design_size>
+

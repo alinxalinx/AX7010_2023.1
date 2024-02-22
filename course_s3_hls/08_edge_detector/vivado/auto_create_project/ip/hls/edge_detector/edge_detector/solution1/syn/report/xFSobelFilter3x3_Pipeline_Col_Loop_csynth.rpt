@@ -1,0 +1,246 @@
+
+
+================================================================
+== Vitis HLS Report for 'xFSobelFilter3x3_Pipeline_Col_Loop'
+================================================================
+* Date:           Tue Jan  9 16:03:19 2024
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        edge_detector
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg484-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.051 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     1926|     1926|  19.260 us|  19.260 us|  1926|  1926|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------+----------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                                 |                      |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |             Instance            |        Module        |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +---------------------------------+----------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_xFSobel3x3_1_1_0_0_s_fu_308  |xFSobel3x3_1_1_0_0_s  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        +---------------------------------+----------------------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Col_Loop  |     1924|     1924|         6|          1|          1|  1920|       yes|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     42|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|      44|    244|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|    195|    -|
+|Register         |        -|    -|     246|     64|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|     290|    545|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|      1|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------+----------------------+---------+----+----+-----+-----+
+    |             Instance            |        Module        | BRAM_18K| DSP| FF | LUT | URAM|
+    +---------------------------------+----------------------+---------+----+----+-----+-----+
+    |mux_3_2_8_1_1_U80                |mux_3_2_8_1_1         |        0|   0|   0|   13|    0|
+    |mux_3_2_8_1_1_U81                |mux_3_2_8_1_1         |        0|   0|   0|   13|    0|
+    |mux_3_2_8_1_1_U82                |mux_3_2_8_1_1         |        0|   0|   0|   13|    0|
+    |grp_xFSobel3x3_1_1_0_0_s_fu_308  |xFSobel3x3_1_1_0_0_s  |        0|   0|  44|  205|    0|
+    +---------------------------------+----------------------+---------+----+----+-----+-----+
+    |Total                            |                      |        0|   0|  44|  244|    0|
+    +---------------------------------+----------------------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |add_ln225_fu_364_p2               |         +|   0|  0|  11|          11|           1|
+    |ap_block_state2_pp0_stage0_iter1  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_465                  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_471                  |       and|   0|  0|   1|           1|           1|
+    |ap_condition_475                  |       and|   0|  0|   1|           1|           1|
+    |ap_predicate_op58_read_state2     |       and|   0|  0|   1|           1|           1|
+    |icmp_ln225_fu_358_p2              |      icmp|   0|  0|  11|          11|           9|
+    |icmp_ln250_fu_384_p2              |      icmp|   0|  0|  11|          11|           1|
+    |ap_block_pp0_stage0_01001         |        or|   0|  0|   1|           1|           1|
+    |ap_block_state6_pp0_stage0_iter5  |        or|   0|  0|   1|           1|           1|
+    |ap_enable_pp0                     |       xor|   0|  0|   2|           1|           2|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|  42|          41|          20|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter5  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_col_1   |   9|          2|   11|         22|
+    |buf_1_address1           |  13|          3|   11|         33|
+    |buf_1_d1                 |  13|          3|    8|         24|
+    |buf_2_address1           |  13|          3|   11|         33|
+    |buf_2_d1                 |  13|          3|    8|         24|
+    |buf_r_address1           |  13|          3|   11|         33|
+    |buf_r_d1                 |  13|          3|    8|         24|
+    |col_fu_90                |   9|          2|   11|         22|
+    |grayImg_data_blk_n       |   9|          2|    1|          2|
+    |sobelImg_x_data_blk_n    |   9|          2|    1|          2|
+    |sobelImg_y_data_blk_n    |   9|          2|    1|          2|
+    |src_buf1_1_fu_110        |   9|          2|    8|         16|
+    |src_buf1_fu_94           |   9|          2|    8|         16|
+    |src_buf2_1_fu_106        |   9|          2|    8|         16|
+    |src_buf2_fu_98           |   9|          2|    8|         16|
+    |src_buf3_1_fu_102        |   9|          2|    8|         16|
+    |src_buf3_fu_114          |   9|          2|    8|         16|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 195|         44|  132|        321|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg  |   1|   0|    1|          0|
+    |col_1_reg_571                     |  11|   0|   11|          0|
+    |col_fu_90                         |  11|   0|   11|          0|
+    |icmp_ln225_reg_577                |   1|   0|    1|          0|
+    |icmp_ln250_reg_588                |   1|   0|    1|          0|
+    |src_buf1_1_fu_110                 |   8|   0|    8|          0|
+    |src_buf1_2_reg_607                |   8|   0|    8|          0|
+    |src_buf1_fu_94                    |   8|   0|    8|          0|
+    |src_buf2_1_fu_106                 |   8|   0|    8|          0|
+    |src_buf2_2_reg_613                |   8|   0|    8|          0|
+    |src_buf2_fu_98                    |   8|   0|    8|          0|
+    |src_buf3_1_fu_102                 |   8|   0|    8|          0|
+    |src_buf3_2_reg_619                |   8|   0|    8|          0|
+    |src_buf3_fu_114                   |   8|   0|    8|          0|
+    |zext_ln225_reg_581                |  11|   0|   64|         53|
+    |icmp_ln225_reg_577                |  64|  32|    1|          0|
+    |icmp_ln250_reg_588                |  64|  32|    1|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 246|  64|  173|         53|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+|            RTL Ports           | Dir | Bits|  Protocol  |            Source Object           |    C Type    |
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+|ap_clk                          |   in|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|ap_rst                          |   in|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|ap_start                        |   in|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|ap_done                         |  out|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|ap_idle                         |  out|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|ap_ready                        |  out|    1|  ap_ctrl_hs|  xFSobelFilter3x3_Pipeline_Col_Loop|  return value|
+|grayImg_data_dout               |   in|    8|     ap_fifo|                        grayImg_data|       pointer|
+|grayImg_data_num_data_valid     |   in|    2|     ap_fifo|                        grayImg_data|       pointer|
+|grayImg_data_fifo_cap           |   in|    2|     ap_fifo|                        grayImg_data|       pointer|
+|grayImg_data_empty_n            |   in|    1|     ap_fifo|                        grayImg_data|       pointer|
+|grayImg_data_read               |  out|    1|     ap_fifo|                        grayImg_data|       pointer|
+|sobelImg_x_data_din             |  out|    8|     ap_fifo|                     sobelImg_x_data|       pointer|
+|sobelImg_x_data_num_data_valid  |   in|    2|     ap_fifo|                     sobelImg_x_data|       pointer|
+|sobelImg_x_data_fifo_cap        |   in|    2|     ap_fifo|                     sobelImg_x_data|       pointer|
+|sobelImg_x_data_full_n          |   in|    1|     ap_fifo|                     sobelImg_x_data|       pointer|
+|sobelImg_x_data_write           |  out|    1|     ap_fifo|                     sobelImg_x_data|       pointer|
+|sobelImg_y_data_din             |  out|    8|     ap_fifo|                     sobelImg_y_data|       pointer|
+|sobelImg_y_data_num_data_valid  |   in|    2|     ap_fifo|                     sobelImg_y_data|       pointer|
+|sobelImg_y_data_fifo_cap        |   in|    2|     ap_fifo|                     sobelImg_y_data|       pointer|
+|sobelImg_y_data_full_n          |   in|    1|     ap_fifo|                     sobelImg_y_data|       pointer|
+|sobelImg_y_data_write           |  out|    1|     ap_fifo|                     sobelImg_y_data|       pointer|
+|buf_r_address0                  |  out|   11|   ap_memory|                               buf_r|         array|
+|buf_r_ce0                       |  out|    1|   ap_memory|                               buf_r|         array|
+|buf_r_q0                        |   in|    8|   ap_memory|                               buf_r|         array|
+|buf_r_address1                  |  out|   11|   ap_memory|                               buf_r|         array|
+|buf_r_ce1                       |  out|    1|   ap_memory|                               buf_r|         array|
+|buf_r_we1                       |  out|    1|   ap_memory|                               buf_r|         array|
+|buf_r_d1                        |  out|    8|   ap_memory|                               buf_r|         array|
+|buf_1_address0                  |  out|   11|   ap_memory|                               buf_1|         array|
+|buf_1_ce0                       |  out|    1|   ap_memory|                               buf_1|         array|
+|buf_1_q0                        |   in|    8|   ap_memory|                               buf_1|         array|
+|buf_1_address1                  |  out|   11|   ap_memory|                               buf_1|         array|
+|buf_1_ce1                       |  out|    1|   ap_memory|                               buf_1|         array|
+|buf_1_we1                       |  out|    1|   ap_memory|                               buf_1|         array|
+|buf_1_d1                        |  out|    8|   ap_memory|                               buf_1|         array|
+|buf_2_address0                  |  out|   11|   ap_memory|                               buf_2|         array|
+|buf_2_ce0                       |  out|    1|   ap_memory|                               buf_2|         array|
+|buf_2_q0                        |   in|    8|   ap_memory|                               buf_2|         array|
+|buf_2_address1                  |  out|   11|   ap_memory|                               buf_2|         array|
+|buf_2_ce1                       |  out|    1|   ap_memory|                               buf_2|         array|
+|buf_2_we1                       |  out|    1|   ap_memory|                               buf_2|         array|
+|buf_2_d1                        |  out|    8|   ap_memory|                               buf_2|         array|
+|tp_1                            |   in|    2|     ap_none|                                tp_1|        scalar|
+|mid_1                           |   in|    2|     ap_none|                               mid_1|        scalar|
+|bottom_1                        |   in|    2|     ap_none|                            bottom_1|        scalar|
+|trunc_ln                        |   in|    2|     ap_none|                            trunc_ln|        scalar|
+|cmp_i_i603_i                    |   in|    1|     ap_none|                        cmp_i_i603_i|        scalar|
+|src_buf3_1_out                  |  out|    8|      ap_vld|                      src_buf3_1_out|       pointer|
+|src_buf3_1_out_ap_vld           |  out|    1|      ap_vld|                      src_buf3_1_out|       pointer|
+|src_buf2_out                    |  out|    8|      ap_vld|                        src_buf2_out|       pointer|
+|src_buf2_out_ap_vld             |  out|    1|      ap_vld|                        src_buf2_out|       pointer|
+|src_buf3_out                    |  out|    8|      ap_vld|                        src_buf3_out|       pointer|
+|src_buf3_out_ap_vld             |  out|    1|      ap_vld|                        src_buf3_out|       pointer|
+|src_buf1_1_out                  |  out|    8|      ap_vld|                      src_buf1_1_out|       pointer|
+|src_buf1_1_out_ap_vld           |  out|    1|      ap_vld|                      src_buf1_1_out|       pointer|
+|src_buf1_out                    |  out|    8|      ap_vld|                        src_buf1_out|       pointer|
+|src_buf1_out_ap_vld             |  out|    1|      ap_vld|                        src_buf1_out|       pointer|
++--------------------------------+-----+-----+------------+------------------------------------+--------------+
+

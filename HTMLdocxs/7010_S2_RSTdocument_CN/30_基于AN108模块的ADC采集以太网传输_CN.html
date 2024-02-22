@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>基于AN108模块的ADC采集以太网传输 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S2_RSTdocument_CN/30_基于AN108模块的ADC采集以太网传输_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="基于AN9238模块的ADC采集之以太网传输" href="31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html" />
+    <link rel="prev" title="7寸触摸屏的GUI及触摸控制" href="29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S2_RSTdocument_CN/30_基于AN108模块的ADC采集以太网传输_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>基于AN108模块的ADC采集以太网传输</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">制定传输协议</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">硬件环境搭建</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vitis">Vitis程序开发</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC采集部分</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lwip">LWIP控制部分</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">板上验证</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">上位机软件使用说明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">数据保存演示</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="an108adc">
+<h1>基于AN108模块的ADC采集以太网传输<a class="headerlink" href="#an108adc" title="此标题的永久链接">#</a></h1>
+<p><strong>实验Vivado工程为“ad9280_lwip”。</strong></p>
+<p>本章以AN108模块为例，介绍将ADC采集的数据通过以太网传输到上位机。</p>
+<section id="id1">
+<h2>制定传输协议<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>为了体现上位机的灵活性，基于UDP传输，制定了以下通讯协议，此协议包含在UDP数据包中。</p>
+<p>一、获取板卡信息</p>
+<p>（1）询问命令（共5字节，由上位机通过以太网发送）</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>字节数</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>命令信息</p></td>
+<td><p>Header</p></td>
+<td><p>0x00000000 或0x00010001</p></td>
+</tr>
+</tbody>
+</table>
+<p>（2）应答命令（共27字节，由开发板通过以太网发送）</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>字节数</p></th>
+<th class="head"><p>命令信息</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Header|0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0x00010001</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>板卡MAC地址</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>板卡IP地址</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>符号位
+0x00:无符号数0x01有符号数此功能无效，上位机要求为有符号数</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>ADC有效数据长度，比如AD9226为12位，即12</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>采集一次
+ADC的字节数，此功能无效，上位机要求ADC数据位宽为两个字节</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>采样通道（此功能上位机未实现）</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>采样率，即采样的频率，程序中设为65M</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>缓存的ADC数据长度，单位为字节</p></td>
+</tr>
+</tbody>
+</table>
+<p>二、获取数据</p>
+<p>（1）控制命令（由上位机发送数据请求）</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>字节数</p></th>
+<th class="head"><p>命令信息</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Header</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0x00010002</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>板卡MAC地址，确认是本地的MAC地址</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>采样通道（此功能未实现）</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>采样次数（采集数据为16位，采样次数为缓存数据长度的一半）</p></td>
+</tr>
+</tbody>
+</table>
+<p>（2）应答命令（由开发板发送）</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>字节数</p></th>
+<th class="head"><p>命令信息</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Header|0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0x00010002</p></td>
+</tr>
+<tr class="row-even"><td><p>1024</p></td>
+<td><p>ADC数据</p></td>
+</tr>
+</tbody>
+</table>
+<p>每个UDP包都包含有Header，在第一个字节，其格式如下：</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>比特位</p></th>
+<th class="head"><p>值（0）</p></th>
+<th class="head"><p>值（1）</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bit 0</p></td>
+<td><p>查询或控制</p></td>
+<td><p>应答</p></td>
+</tr>
+<tr class="row-odd"><td><p>bit1~bit7</p></td>
+<td><p>随机数据</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注：当应答时，高7位随机数据保持不变，bit0设置为1</p>
+<p>工作流程为：</p>
+<ol class="arabic simple">
+<li><p>上位机发送询问命令</p></li>
+<li><p>开发板应答询问</p></li>
+<li><p>上位机发送控制命令请求数据</p></li>
+<li><p>开发板发送数据</p></li>
+<li><p>步骤3和4循环</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>硬件环境搭建<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>基于AN108 SG DMA的工程，将显示部分的的模块都删除，注意要把Ethernet0打开，使能MDIO</p>
+<img alt="../_images/image1164.png" src="../_images/image1164.png" />
+<img alt="../_images/image2139.png" src="../_images/image2139.png" />
+<p>AX7015和AX7021开发板需要使能Ethernet PHY Reset并连接到MIO7，AX7020和AX7010开发板不需要使能Ethernet PHY Reset，具体参考提供的例程。</p>
+<img alt="../_images/image3122.png" src="../_images/image3122.png" />
+<p>最终连接结果如下：</p>
+<img alt="../_images/image489.png" src="../_images/image489.png" />
+<p>只保留AD9280的引脚绑定</p>
+<img alt="../_images/image572.png" src="../_images/image572.png" />
+<p>重新生成下载文件，导出硬件信息。</p>
+</section>
+<section id="vitis">
+<h2>Vitis程序开发<a class="headerlink" href="#vitis" title="此标题的永久链接">#</a></h2>
+<section id="adc">
+<h3>ADC采集部分<a class="headerlink" href="#adc" title="此标题的永久链接">#</a></h3>
+<ol class="arabic simple">
+<li><p>ADC的采集在前面已经讲过，在本章的Vitis中加入dma_bd和adc_dma.h</p></li>
+</ol>
+<img alt="../_images/image664.png" src="../_images/image664.png" />
+<ol class="arabic simple" start="2">
+<li><p>在main.c文件的main函数中，中断初始化，进行DMA的初始化，中断连接，建立BD链表</p></li>
+</ol>
+<img alt="../_images/image760.png" src="../_images/image760.png" />
+</section>
+<section id="lwip">
+<h3>LWIP控制部分<a class="headerlink" href="#lwip" title="此标题的永久链接">#</a></h3>
+<ol class="arabic simple">
+<li><p>在本实验中需要使能lwip库，在Board Support Package Setting里设置</p></li>
+</ol>
+<img alt="../_images/image81.jpeg" src="../_images/image81.jpeg" />
+<ol class="arabic simple" start="2">
+<li><p>进行DHCP，pbuf的设置</p></li>
+</ol>
+<img alt="../_images/image949.png" src="../_images/image949.png" />
+<ol class="arabic simple" start="3">
+<li><p>在lwip_app.c文件中，start_udp用于udp初始化，前面已经讲过。</p></li>
+</ol>
+<img alt="../_images/image1045.png" src="../_images/image1045.png" />
+<ol class="arabic simple" start="4">
+<li><p>udp_receive函数为接收回调函数，在此函数中判断上位机发来的命令，格式请参考前面制定的传输协议。</p></li>
+</ol>
+<img alt="../_images/image1165.png" src="../_images/image1165.png" />
+<ol class="arabic simple" start="5">
+<li><p>transfer_data函数用于回答上位机的命令，在udp_receive</p></li>
+</ol>
+<img alt="../_images/image1246.png" src="../_images/image1246.png" />
+<ol class="arabic simple" start="6">
+<li><p>send_adc_data函数用于发送ADC数据到上位机，最前面的5个字节为TargetHeader，可参考传输协议。</p></li>
+</ol>
+<img alt="../_images/image1344.png" src="../_images/image1344.png" />
+<ol class="arabic simple" start="7">
+<li><p>在lwip_loop函数中，启动UDP传输，由于上位机只能显示一个通道的ADC数据，因此本实验中只打开CH1的通道。在while循环中，判断ADC数据是否采集完成，之后进行分包发送</p></li>
+</ol>
+<img alt="../_images/image1438.png" src="../_images/image1438.png" />
+<ol class="arabic simple" start="8">
+<li><p>需要注意的是上位机设置的缓存大小为1MB，由于上位机固定为数据位宽为两个字节，且为无符号位，因此在adc_dma.h中将AD9280的采集数设置为1024*512，ADC_BYTE设为2</p></li>
+</ol>
+<img alt="../_images/image1535.png" src="../_images/image1535.png" />
+<p>并将数据转换为两个字节，有符号数。在lwip_app.c的while循环中实现。</p>
+<img alt="../_images/image1633.png" src="../_images/image1633.png" />
+</section>
+</section>
+<section id="id3">
+<h2>板上验证<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>连接开发板如下所示，需要保证PC网卡为千兆网卡，否则会因为网络速度过低，导致无法显示。将AN108模块插到扩展口，连接专用屏蔽线到波形发生器，为了方便观察显示效果，波形发生器采样频率设置范围为1KHz~1MHz，电压幅度最大为10V</p></li>
+</ol>
+<img alt="../_images/image1732.png" src="../_images/image1732.png" />
+<p>AX7015硬件连接图</p>
+<img alt="../_images/image1831.png" src="../_images/image1831.png" />
+<p>AX7021硬件连接图（J15扩展口）</p>
+<img alt="../_images/image1930.png" src="../_images/image1930.png" />
+<p>AX7020/AX7010硬件连接图(J11扩展口)</p>
+<img alt="../_images/image2026.png" src="../_images/image2026.png" />
+<p>AX7Z035/AX7Z100硬件连接图</p>
+<p>2. 如果有DHCP服务器，会自动分配IP给开发板；如果没有DHCP服务器，默认开发板IP地址为192.168.1.11，需要将PC的IP地址设为同一网段，如下图所示。同时要确保网络里没有192.168.1.11的IP地址，否则会造成IP冲突，导致无法显示。可以在板子未上电前在CMD里输入ping
+192.168.1.11查看是否能ping通，如果ping通，说明网络中有此IP地址，就无法验证。没有问题之后打开putty软件。</p>
+<img alt="../_images/image2140.png" src="../_images/image2140.png" />
+<ol class="arabic simple">
+<li><p>下载程序到开发板，在putty中可以看到打印信息如下</p></li>
+</ol>
+<img alt="../_images/image2232.png" src="../_images/image2232.png" />
+<ol class="arabic simple" start="4">
+<li><p>在工程目录下，打开示波器.exe</p></li>
+</ol>
+<img alt="../_images/image2330.png" src="../_images/image2330.png" />
+<ol class="arabic simple" start="5">
+<li><p>显示结果如下</p></li>
+</ol>
+<img alt="../_images/image2427.png" src="../_images/image2427.png" />
+<p>上位机软件使用方法，请参考AN108以太网传输的上位机软件使用说明一节。</p>
+</section>
+<section id="id4">
+<h2>上位机软件使用说明<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<img alt="../_images/image2524.png" src="../_images/image2524.png" />
+<p>黄色框显示发送板卡的MAC和IP地址。若背景变成红色，说明网络连接断开或数据丢包。</p>
+<p>红色框中为控制按钮，功能如下：</p>
+<p><strong>复位</strong>：点击复位可使波形显示到初始状态，如下图</p>
+<img alt="../_images/image2622.png" src="../_images/image2622.png" />
+<p><strong>自动</strong>：没有用处</p>
+<p><strong>垂直</strong>：“垂直“与“水平”切换，点击此按钮可进行水平垂直方向缩放的切换，在垂直状态下，滚动鼠标滚轴可进行垂直方向的缩放，水平状态下，进行水平方向的缩放。</p>
+<p><strong>暂停</strong>：“暂停“与”继续“切换，点击暂停波形，可再点击“继续”显示波形。</p>
+<p><strong>保存</strong>：保存ADC数据为TXT文档，保存路径在“路径”按钮处设置，默认为软件所在路径。</p>
+<p><strong>数值</strong>：“数值”与“电压”切换，Y方向坐标单位为原始值，即接收到的原始数据值，点击“电压”则显示电压值。</p>
+<p><strong>路径</strong>：选择保存路径</p>
+<p><strong>打开</strong>：打开已保存的TXT波形文件</p>
+</section>
+<section id="id5">
+<h2>数据保存演示<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>点击保存按扭后，在设置的保存路径中会出现一个TXT文件</p>
+<img alt="../_images/image2719.png" src="../_images/image2719.png" />
+<p>打开文件后即可看到原始ADC数据</p>
+<img alt="../_images/image2816.png" src="../_images/image2816.png" />
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">7寸触摸屏的GUI及触摸控制</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">基于AN9238模块的ADC采集之以太网传输</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">制定传输协议</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">硬件环境搭建</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vitis">Vitis程序开发</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC采集部分</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lwip">LWIP控制部分</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">板上验证</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">上位机软件使用说明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">数据保存演示</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

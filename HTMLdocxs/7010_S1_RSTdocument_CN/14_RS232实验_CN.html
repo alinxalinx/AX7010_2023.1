@@ -1,0 +1,989 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>RS232实验 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S1_RSTdocument_CN/14_RS232实验_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="RS422实验" href="15_RS422%E5%AE%9E%E9%AA%8C_CN.html" />
+    <link rel="prev" title="I2C接口EEPROM实验" href="13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S1_RSTdocument_CN/14_RS232实验_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>RS232实验</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">模块介绍</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模块参数说明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模块功能说明</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">程序设计</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">异步串口通信协议</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">波特率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">接收模块设计</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">发送模块设计</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">波特率的产生</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">测试程序</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">仿真</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">实验测试</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="rs232">
+<h1>RS232实验<a class="headerlink" href="#rs232" title="此标题的永久链接">#</a></h1>
+<p><strong>实验Vivado工程为“rs232_test”。</strong></p>
+<p>本章采用AN3485模块的RS232电路实现UART数据传输。</p>
+<section id="id1">
+<h2>模块介绍<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>黑金AN3845模块专门为工业现场应用设计的RS232/485/422通信模块。它包含一路RS232接口，2路RS485和2路RS422通信接口。配合开发板实现RS232、485和422的数据远程传输和通信。RS232、485和422接口分别采用MAX3232、MAX3485和MAX3490芯片作为电平转换芯片。模块留有一个40针的排母用于连接开发板，RS232接口为一个标准的DB9串口公座，通过串口线直接连接电脑或者其他设备；
+RS485和RS422接口采用接线端子跟外部连接，超远距离传输可达上千米，另外RS485和RS422接口部分带有正负15KV的ESD防护功能。</p>
+<p>AN3845模块实物照片如下：</p>
+<img alt="../_images/image139.png" src="../_images/image139.png" />
+<p>AN3845通信模块正面图</p>
+<section id="id2">
+<h3>模块参数说明<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<p>以下为AN3485通信模块的详细参数:</p>
+<ul class="simple">
+<li><p><strong>RS232接口</strong></p>
+<ul>
+<li><p>一路标准的DB9公座串行接口；</p></li>
+<li><p>使用MAX3232作为RS232和 TTL电平的转换；</p></li>
+<li><p>传输率高达120Kbps数据通讯速率</p></li>
+</ul>
+</li>
+<li><p><strong>RS485接口</strong></p>
+<ul>
+<li><p>两路RS485接口，采用3线的接线端子；</p></li>
+<li><p>使用MAX3485作为RS485和TTL的电平转换;</p></li>
+<li><p>工业级设计，抗干扰能力超强，同时采用有效的防雷设计;</p></li>
+<li><p>具有120欧匹配电阻，插上跳线帽即可使能匹配电阻，长距离传输时建议短接。</p></li>
+<li><p>支持多机通讯，允许接在最多128个设备的总线上</p></li>
+<li><p>传输率高达500Kbps数据通讯速率。</p></li>
+</ul>
+</li>
+<li><p><strong>RS422接口</strong></p>
+<ul>
+<li><p>两路RS422接口，采用5线的接线端子；</p></li>
+<li><p>使用MAX3490作为RS422和TTL的电平转换;</p></li>
+<li><p>工业级设计，抗干扰能力超强，同时采用有效的防雷设计;</p></li>
+<li><p>具有120欧匹配电阻，插上跳线帽即可使能匹配电阻，长距离传输时建议短接。</p></li>
+<li><p>支持多机通讯，允许接在最多128个设备的总线上</p></li>
+<li><p>传输率高达500Kbps数据通讯速率。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h3>模块功能说明<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<p>AN3485模块的RS232接口采用MAX3232芯片实现RS232和+3.3V TTL电平的转换。TTL电平的串口接收和发送信号（RXD, TXD）连接到40针的连接器上跟外面的FPGA芯片或者ARM芯片实现串口通信。RS232串口通信的最高速度为120kbps，RS232接口的原理设计图如下图所示。</p>
+<img alt="../_images/image227.png" src="../_images/image227.png" />
+</section>
+</section>
+<section id="id4">
+<h2>程序设计<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>本文所述的串口指异步串行通信，异步串行是指UART（Universal Asynchronous Receiver/Transmitter），通用异步接收/发送。本实验程序设计为每秒钟向串口发送”
+HELLO ALINX”，如果收到RXD接收的数据，再把接收的数据发送出去，实现回环的功能。</p>
+<img alt="../_images/image325.png" src="../_images/image325.png" />
+<section id="id5">
+<h3>异步串口通信协议<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>消息帧从一个低位起始位开始，后面是7个或8个数据位，一个可用的奇偶位和一个或几个高位停止位。接收器发现开始位时它就知道数据准备发送，并尝试与发送器时钟频率同步。如果选择了奇偶校验，UART就在数据位后面加上奇偶位。奇偶位可用来帮助错误校验。在接收过程中，UART从消息帧中去掉起始位和结束位，对进来的字节进行奇偶校验，并将数据字节从串行转换成并行。UART
+传输时序如下图所示：</p>
+<img alt="../_images/image424.png" src="../_images/image424.png" />
+<p>从波形上可以看出起始位是低电平，停止位和空闲位都是高电平，也就是说没有数据传输时是高电平，利用这个特点我们可以准确接收数据，当一个下降沿事件发生时，我们认为将进行一次数据传输。</p>
+</section>
+<section id="id6">
+<h3>波特率<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>常见的串口通信波特率有2400 、9600、115200等，发送和接收波特率必须保持一致才能正确通信。波特率是指1秒最大传输的数据位数，包括起始位、数据位、校验位、停止位。假如通信波特率设定为9600，那么一个数据位的时间长度是1/9600秒，本实验中的波特率由50MHz时钟产生。</p>
+</section>
+<section id="id7">
+<h3>接收模块设计<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>串口接收模块uart_rx是个参数化可配置模块，参数“CLK_FRE”定义接收模块的系统时钟频率，单位是Mhz，参数“BAUD_RATE”是波特率。接收状态机状态转换图如下：</p>
+<img alt="../_images/image519.png" src="../_images/image519.png" />
+<p>“S_IDLE”状态为空闲状态，上电后进入“S_IDLE”，如果信号“rx_pin”有下降沿，我们认为是串口的起始位，进入状态“S_START”,等一个BIT时间起始位结束后进入数据位接收状态“S_REC_BYTE”,本实验中数据位设计是8位，接收完成以后进入“S_STOP”状态，在“S_STOP”没有等待一个BIT周期，<strong>只等待了半个BIT时间</strong>，这是因为如果等待了一个周期，有可能会错过下一个数据的起始位判断，最后进入“S_DATA”状态，将接收到的数据送到其他模块。在这个模块我们提一点：为了满足采样定理，在接受数据时每个数据都在波特率计数器的时间中点进行采样，以避免数据出错的情况：</p>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">//receive serial data bit data</span>
+<span class="k">always</span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">rst_n</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">rst_n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">)</span>
+<span class="w">               </span><span class="n">rx_bits</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">S_REC_BYTE</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cycle_cnt</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CYCLE</span><span class="o">/</span><span class="mh">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mh">1</span><span class="p">)</span>
+<span class="w">               </span><span class="n">rx_bits</span><span class="p">[</span><span class="n">bit_cnt</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">rx_pin</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="w">               </span><span class="n">rx_bits</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">rx_bits</span><span class="p">;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>注意：<strong>本实验没有设计奇偶校验位</strong>。</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>信号名称</p></th>
+<th class="head"><p>方向</p></th>
+<th class="head"><p>宽度
+(bit)</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clk</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>系统时钟</p></td>
+</tr>
+<tr class="row-odd"><td><p>rst_n</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>异步复位，低电平复位</p></td>
+</tr>
+<tr class="row-even"><td><p>rx_data</p></td>
+<td><p>o
+u
+t</p></td>
+<td><p>8</p></td>
+<td><p>接收到的串口数据（8位数据）</p></td>
+</tr>
+<tr class="row-odd"><td><p>rx_data_valid</p></td>
+<td><p>o
+u
+t</p></td>
+<td><p>1</p></td>
+<td><p>接收到的串口数据有效（高有效）</p></td>
+</tr>
+<tr class="row-even"><td><p>rx_data_ready</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>表示用户可以从接收模块接收数据，
+当rx_data_ready和rx_data_valid都为高时数据送出</p></td>
+</tr>
+<tr class="row-odd"><td><p>rx_pin</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>串口接收数据输入</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>串口接收模块uart_rx端口</strong></p>
+</section>
+<section id="id8">
+<h3>发送模块设计<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>发送模块uart_tx设计和接收模块相似，也是使用状态机，状态转换图如下：</p>
+<img alt="../_images/image617.png" src="../_images/image617.png" />
+<p>上电后进入“S_IDLE”空闲状态，如果有发送请求，进入发送起始位状态“S_START”,起始位发送完成后进入发送数据位状态“S_SEND_BYTE”,数据位发送完成后进入发送停止位状态“S_STOP”,停止位发送完成后又进入空闲状态。在数据发送模块中，从顶层模块写入的数据直接传递给寄存器‘tx_reg’，并通过‘tx_reg’寄存器模拟串口传输协议在状态机的条件转换下进行数据传送：</p>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="k">always</span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">rst_n</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">rst_n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">)</span>
+<span class="w">               </span><span class="n">tx_reg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="w">               </span><span class="k">case</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+<span class="w">                       </span><span class="n">S_IDLE</span><span class="p">,</span><span class="nl">S_STOP:</span>
+<span class="w">                               </span><span class="n">tx_reg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="w">                       </span><span class="nl">S_START:</span>
+<span class="w">                               </span><span class="n">tx_reg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+<span class="w">                       </span><span class="nl">S_SEND_BYTE:</span>
+<span class="w">                               </span><span class="n">tx_reg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tx_data_latch</span><span class="p">[</span><span class="n">bit_cnt</span><span class="p">];</span>
+<span class="w">                       </span><span class="k">default</span><span class="o">:</span>
+<span class="w">                               </span><span class="n">tx_reg</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="w">               </span><span class="k">endcase</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>信号
+名称</p></th>
+<th class="head"><p>方向</p></th>
+<th class="head"><p>宽度
+(bit)</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clk</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>系统时钟</p></td>
+</tr>
+<tr class="row-odd"><td><p>rst_n</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>异步复位，低电平复位</p></td>
+</tr>
+<tr class="row-even"><td><p>tx_data</p></td>
+<td><p>i
+n</p></td>
+<td><p>8</p></td>
+<td><p>要发送的串口数据(8位数据）</p></td>
+</tr>
+<tr class="row-odd"><td><p>tx_data_valid</p></td>
+<td><p>i
+n</p></td>
+<td><p>1</p></td>
+<td><p>发送的串口数据有效（高有效）</p></td>
+</tr>
+<tr class="row-even"><td><p>tx_data_ready</p></td>
+<td><p>o
+u
+t</p></td>
+<td><p>1</p></td>
+<td><p>发送模块已准备好发送数
+据，用户可将tx_data_valid信号拉高发送数据给发送模块
+。当tx_data_ready和tx_data_valid都为高时数据被发送</p></td>
+</tr>
+<tr class="row-odd"><td><p>tx_pin</p></td>
+<td><p>o
+u
+t</p></td>
+<td><p>1</p></td>
+<td><p>串口发送数据发送</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>串口发送模块uart_tx端口</strong></p>
+</section>
+<section id="id9">
+<h3>波特率的产生<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<p>在发送和接收模块中，声明了参数CYCLE，也就是UART一个周期的计数值，当然计数是在50MHz时钟下进行的。用户只要设定好CLK_FRE和BAUD_RATE这两个参数即可。</p>
+<img alt="../_images/image716.png" src="../_images/image716.png" />
+</section>
+<section id="id10">
+<h3>测试程序<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<p>测试程序设计FPGA为1秒向串口发送一次“HELLO ALINX\r\n”,不发送期间，如果接受到串口数据，直接把接收到的数据送到发送模块再返回。“\r\n”,在这里和C语言中表示一致，都是回车换行。</p>
+<p>测试程序分别例化了发送模块和接收模块，同时将参数传递进去，波特率设置为115200。</p>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="k">always</span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">sys_clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">rst_n</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="n">rst_n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">)</span>
+<span class="w">       </span><span class="k">begin</span>
+<span class="w">               </span><span class="n">wait_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">               </span><span class="n">tx_data</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">               </span><span class="n">state</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">IDLE</span><span class="p">;</span>
+<span class="w">               </span><span class="n">tx_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">               </span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">       </span><span class="k">else</span>
+<span class="w">       </span><span class="k">case</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+<span class="w">               </span><span class="nl">IDLE:</span>
+<span class="w">                       </span><span class="n">state</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">SEND</span><span class="p">;</span>
+<span class="w">               </span><span class="nl">SEND:</span>
+<span class="w">               </span><span class="k">begin</span>
+<span class="w">                       </span><span class="n">wait_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">                       </span><span class="n">tx_data</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tx_str</span><span class="p">;</span>
+
+<span class="w">                       </span><span class="k">if</span><span class="p">(</span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx_data_ready</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx_cnt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d12</span><span class="p">)</span><span class="c1">//Send 12 bytes data</span>
+<span class="w">                       </span><span class="k">begin</span>
+<span class="w">                               </span><span class="n">tx_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tx_cnt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d1</span><span class="p">;</span><span class="w"> </span><span class="c1">//Send data counter</span>
+<span class="w">                       </span><span class="k">end</span>
+<span class="w">                       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx_data_ready</span><span class="p">)</span><span class="c1">//last byte sent is complete</span>
+<span class="w">                       </span><span class="k">begin</span>
+<span class="w">                               </span><span class="n">tx_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">                               </span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+<span class="w">                               </span><span class="n">state</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">WAIT</span><span class="p">;</span>
+<span class="w">                       </span><span class="k">end</span>
+<span class="w">                       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="o">~</span><span class="n">tx_data_valid</span><span class="p">)</span>
+<span class="w">                       </span><span class="k">begin</span>
+<span class="w">                               </span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="w">                       </span><span class="k">end</span>
+<span class="w">               </span><span class="k">end</span>
+<span class="w">               </span><span class="nl">WAIT:</span>
+<span class="w">               </span><span class="k">begin</span>
+<span class="w">                       </span><span class="n">wait_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">wait_cnt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d1</span><span class="p">;</span>
+
+<span class="w">                       </span><span class="k">if</span><span class="p">(</span><span class="n">rx_data_valid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">)</span>
+<span class="w">                       </span><span class="k">begin</span>
+<span class="w">                               </span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+<span class="w">                               </span><span class="n">tx_data</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">rx_data</span><span class="p">;</span><span class="w">   </span><span class="c1">// send uart received data</span>
+<span class="w">                       </span><span class="k">end</span>
+<span class="w">                       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tx_data_ready</span><span class="p">)</span>
+<span class="w">                       </span><span class="k">begin</span>
+<span class="w">                               </span><span class="n">tx_data_valid</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+<span class="w">                       </span><span class="k">end</span>
+<span class="w">                       </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">wait_cnt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">CLK_FRE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mh">1000000</span><span class="p">)</span><span class="w"> </span><span class="c1">// wait for 1 second</span>
+<span class="w">                               </span><span class="n">state</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">SEND</span><span class="p">;</span>
+<span class="w">               </span><span class="k">end</span>
+<span class="w">               </span><span class="k">default</span><span class="o">:</span>
+<span class="w">                       </span><span class="n">state</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">IDLE</span><span class="p">;</span>
+<span class="w">       </span><span class="k">endcase</span>
+<span class="k">end</span>
+
+<span class="c1">//combinational logic</span>
+<span class="c1">//Send &quot;HELLO ALINX\r\n&quot;</span>
+<span class="k">always</span><span class="p">@(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">       </span><span class="k">case</span><span class="p">(</span><span class="n">tx_cnt</span><span class="p">)</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d1</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d2</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;L&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d3</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;L&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d4</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;O&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d5</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d6</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d7</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;L&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d8</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;I&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d9</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d10</span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;X&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d11</span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="mh">8</span><span class="mi">&#39;d12</span><span class="o">:</span><span class="w">  </span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">               </span><span class="k">default</span><span class="o">:</span><span class="n">tx_str</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">8</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">       </span><span class="k">endcase</span>
+<span class="k">end</span>
+<span class="n">uart_rx</span><span class="p">#</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="p">.</span><span class="n">CLK_FRE</span><span class="p">(</span><span class="n">CLK_FRE</span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BAUD_RATE</span><span class="p">(</span><span class="mh">115200</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">uart_rx_inst</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="p">.</span><span class="n">clk</span><span class="w">                        </span><span class="p">(</span><span class="n">sys_clk</span><span class="w">                  </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rst_n</span><span class="w">                      </span><span class="p">(</span><span class="n">rst_n</span><span class="w">                    </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rx_data</span><span class="w">                    </span><span class="p">(</span><span class="n">rx_data</span><span class="w">                  </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rx_data_valid</span><span class="w">              </span><span class="p">(</span><span class="n">rx_data_valid</span><span class="w">            </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rx_data_ready</span><span class="w">              </span><span class="p">(</span><span class="n">rx_data_ready</span><span class="w">            </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rx_pin</span><span class="w">                     </span><span class="p">(</span><span class="n">uart_rx</span><span class="w">                  </span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="n">uart_tx</span><span class="p">#</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="p">.</span><span class="n">CLK_FRE</span><span class="p">(</span><span class="n">CLK_FRE</span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BAUD_RATE</span><span class="p">(</span><span class="mh">115200</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">uart_tx_inst</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="p">.</span><span class="n">clk</span><span class="w">                        </span><span class="p">(</span><span class="n">sys_clk</span><span class="w">                  </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rst_n</span><span class="w">                      </span><span class="p">(</span><span class="n">rst_n</span><span class="w">                    </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">tx_data</span><span class="w">                    </span><span class="p">(</span><span class="n">tx_data</span><span class="w">                  </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">tx_data_valid</span><span class="w">              </span><span class="p">(</span><span class="n">tx_data_valid</span><span class="w">            </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">tx_data_ready</span><span class="w">              </span><span class="p">(</span><span class="n">tx_data_ready</span><span class="w">            </span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">tx_pin</span><span class="w">                     </span><span class="p">(</span><span class="n">uart_tx</span><span class="w">                  </span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2>仿真<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
+<p>这里我们添加了一个串口接收的激励程序vtf_uart_test.v文件，用来仿真uart串口接收。这里向串口模块的uart_rx发送0xa3的数据,每位的数据按115200的波特率发送，1位起始位，8位数据位和1位停止位。</p>
+<img alt="../_images/image813.png" src="../_images/image813.png" />
+<p>仿真的结果如下，当程序接收到8位数据的时候，rx_data_valid有效，rx_data[7:0]的数据位a3。</p>
+<img alt="../_images/image99.png" src="../_images/image99.png" />
+</section>
+<section id="id12">
+<h2>实验测试<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h2>
+<p>将AN3485模块插到J11扩展口上，这里使用了USB转RS232/RS485/RS422的设备，由于很多电脑都没有9针的串行接口，我们通过串口线与USB转串口设备连接，再通过USB连接到电脑上。如果电脑有串口的话，可以直接连接串口。</p>
+<img alt="../_images/image108.png" src="../_images/image108.png" />
+<p>在设备管理器中找到串口号”COM5”</p>
+<img alt="../_images/image1112.png" src="../_images/image1112.png" />
+<p>打开串口调试，端口选择“COM5”（根据自己情况选择），波特率设置115200，检验位选None，数据位选8，停止位选1，然后点击“打开串口”。此软件在例程文件夹下。</p>
+<img alt="../_images/image1210.png" src="../_images/image1210.png" />
+<p>打开串口以后，每秒可收到“HELLO ALINX”，在发送区输入框输入要发送的文字，点击“手动发送”，可以看到接收到自己发送的字符。</p>
+<img alt="../_images/image1310.png" src="../_images/image1310.png" />
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">I2C接口EEPROM实验</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="15_RS422%E5%AE%9E%E9%AA%8C_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">RS422实验</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">模块介绍</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模块参数说明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模块功能说明</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">程序设计</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">异步串口通信协议</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">波特率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">接收模块设计</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">发送模块设计</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">波特率的产生</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">测试程序</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">仿真</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">实验测试</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

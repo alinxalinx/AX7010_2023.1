@@ -1,0 +1,5 @@
+<annotationInfo>
+<annotationInfo>
+<item  id="45" filename="mult_constant/mult_constant.cpp" linenumber="11" name="out_data_data_V_tmp" contextFuncName="mult_constant" moduleName="mult_constant" rtlName="out_data_data_V_tmp_fu_135_p2" latency="0" BRAM="-1" DSP="3" FF="0" LUT="20" fileDirectory="D:\test\overlay_tutorial_17_4\ip"></item>
+</annotationInfo>
+</annotationInfo>

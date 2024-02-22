@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Tue Jan  9 15:54:15 2024
+# Process ID: 336445
+# Current directory: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/stream2mem/stream2mem/solution1/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/stream2mem/stream2mem/solution1/impl/ip/vivado.log
+# Journal file: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/stream2mem/stream2mem/solution1/impl/ip/vivado.jou
+# Running On: alinx-System-Product-Name, OS: Linux, CPU Frequency: 2994.042 MHz, CPU Physical cores: 32, Host memory: 134221 MB
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace

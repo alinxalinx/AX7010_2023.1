@@ -1,0 +1,146 @@
+
+
+================================================================
+== Vitis HLS Report for 'AXIvideo2xfMat_24_16_1080_1920_1_2_Pipeline_loop_start_hunt'
+================================================================
+* Date:           Tue Jan  9 15:54:11 2024
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        stream2mem
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg484-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  2.596 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        3|  20.000 ns|  30.000 ns|    2|    3|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- loop_start_hunt  |        0|        1|         1|          1|          1|  0 ~ 1|       yes|
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      1|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     40|    -|
+|Register         |        -|    -|       4|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|       4|     41|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |ap_block_state1_pp0_stage0_iter0  |        or|   0|  0|   1|           1|           1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+    |Total                             |          |   0|  0|   1|           1|           1|
+    +----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |ap_done_int                    |   9|          2|    1|          2|
+    |ap_phi_mux_start_phi_fu_88_p4  |   9|          2|    1|          2|
+    |axi_data_out                   |  13|          3|   24|         72|
+    |vstream_TDATA_blk_n            |   9|          2|    1|          2|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          |  40|          9|   27|         78|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------+---+----+-----+-----------+
+    |      Name      | FF| LUT| Bits| Const Bits|
+    +----------------+---+----+-----+-----------+
+    |ap_CS_fsm       |  1|   0|    1|          0|
+    |ap_done_reg     |  1|   0|    1|          0|
+    |axi_last_fu_56  |  1|   0|    1|          0|
+    |start_reg_85    |  1|   0|    1|          0|
+    +----------------+---+----+-----+-----------+
+    |Total           |  4|   0|    4|          0|
+    +----------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+-------------------------------------------------------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |                           Source Object                           |    C Type    |
++---------------------+-----+-----+------------+-------------------------------------------------------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  AXIvideo2xfMat<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_start_hunt|  return value|
+|vstream_TVALID       |   in|    1|        axis|                                                   vstream_V_data_V|       pointer|
+|vstream_TDATA        |   in|   24|        axis|                                                   vstream_V_data_V|       pointer|
+|vstream_TREADY       |  out|    1|        axis|                                                   vstream_V_dest_V|       pointer|
+|vstream_TDEST        |   in|    1|        axis|                                                   vstream_V_dest_V|       pointer|
+|vstream_TKEEP        |   in|    3|        axis|                                                   vstream_V_keep_V|       pointer|
+|vstream_TSTRB        |   in|    3|        axis|                                                   vstream_V_strb_V|       pointer|
+|vstream_TUSER        |   in|    1|        axis|                                                   vstream_V_user_V|       pointer|
+|vstream_TLAST        |   in|    1|        axis|                                                   vstream_V_last_V|       pointer|
+|vstream_TID          |   in|    1|        axis|                                                     vstream_V_id_V|       pointer|
+|axi_last_out         |  out|    1|      ap_vld|                                                       axi_last_out|       pointer|
+|axi_last_out_ap_vld  |  out|    1|      ap_vld|                                                       axi_last_out|       pointer|
+|axi_data_out         |  out|   24|      ap_vld|                                                       axi_data_out|       pointer|
+|axi_data_out_ap_vld  |  out|    1|      ap_vld|                                                       axi_data_out|       pointer|
++---------------------+-----+-----+------------+-------------------------------------------------------------------+--------------+
+

@@ -1,0 +1,28 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="mult_constant"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xc7z020:clg484:-1"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
+        <library value="xilinx/zynq/zynq_fpv6" name="DefaultPlatform"/>
+    </libraryList>
+    <downStreamTool>
+        <DownStreamTool name="vivado"/>
+    </downStreamTool>
+    <clockList>
+        <clock name="default" period="10" default="false"/>
+    </clockList>
+    <config>
+        <schedule model="mult_constant"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="Multiply the stream by a user-programmable constant" vendor="Xilinx" library="" ipname="" version="1.0" driver_input_dir="" display_name="Constant Multiply" taxonomy=""/>
+    </ExportDesign>
+</AutoPilot:solution>
+

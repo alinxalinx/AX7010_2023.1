@@ -1,0 +1,1329 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>字符设备 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S6_RSTdocument_CN/01_字符设备_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="字符设备的新写法" href="02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html" />
+    <link rel="prev" title="ADC采集并显示波形" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S6_RSTdocument_CN/01_字符设备_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>字符设备</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux驱动程序概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Linux应用程序与驱动程序的关系</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Linux驱动程序的分类</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">字符设备的开发步骤</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">实现系统调用</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">驱动模块的加载与卸载</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">字符设备的注册与注销</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Linux设备号</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">实现设备操作函数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">添加驱动描述信息</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">字符设备驱动开发实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">查看硬件原理图以及数据手册</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">编写字符设备驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#petalinux">1.3.3 在Petalinux定制系统中添加新的驱动</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubuntuqtapp">使用Ubuntu虚拟机中的QT编写测试APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">运行测试</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="id1">
+<h1>字符设备<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<section id="linux">
+<h2>Linux驱动程序概述<a class="headerlink" href="#linux" title="此标题的永久链接">#</a></h2>
+<p>在动手写程序之前，先了解一下基本的Linux设备及驱动程序相关的知识。</p>
+<section id="id2">
+<h3>Linux应用程序与驱动程序的关系<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<p>Linux应用程序调用驱动程序的步骤大致如下：</p>
+<ol class="arabic simple">
+<li><p>应用程序调用库函数提供的open()函数打开某个设备文件；</p></li>
+<li><p>库根据open()函数的输入参数引起CPU异常，进入内核；</p></li>
+<li><p>内核的异常处理函数根据输入参数找到相应的驱动程序，返回文件句柄给库，库函数再返回给应用程序；</p></li>
+<li><p>应用程序再使用得到的文件句柄调用write()、read()等函数发出控制指令；</p></li>
+<li><p>库根据write()、read()等函数的输入参数引起CPU异常，进入内核；</p></li>
+<li><p>内核的异常处理函数根据输入参数调用相应的驱动程序执行相应的操作。</p></li>
+</ol>
+<p>步骤一中open()函数打开的设备文件，是在驱动加载成功后再目录”/dev”中生成的相关文件，是应用程序调用对应硬件的入口。</p>
+<p>在这个过程中应用程序涉及到的open()、read()、write()等由库提供的接口函数成为系统调用，他们通过执行某条指令引发异常进入内核，是应用程序操作硬件沟通的途径。应用程序执行系统调用后，最终会使用驱动函数中对应的函数，而驱动函数中的open()、read()、write()等函数则需要驱动开发人员去实现。</p>
+<p>应用程序运行于用户空间，驱动程序运行于内核空间。Linux系统可以通过MMU限制应用程序运行在某个内存块中，以避免这个应用程序出错导致整个系统崩溃。而运行于内核空间的驱动程序是系统的一部分，驱动程序出错有可能牵连整个系统，因此在实现驱动时要格外小心。</p>
+</section>
+<section id="id3">
+<h3>Linux驱动程序的分类<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<p>驱动可分为三类：字符设备驱动、块设备驱动、网络设备驱动。</p>
+<p>字符设备即是按字节访问的设备。比如以一个字节的收发数据的串口，就是典型的字符设备。还有较为简单简单的我们接下来会讲的LED灯驱动，相对复杂的如音频都属于字符设备，字符设备在Linux外设中占比最大。</p>
+<p>块设备的特点是他们是按一定格式存取数据，具体的格式有文件系统决定。他们通常以存储设备为主如EMMC、FLASH、SD卡、EEPROM等。存储设备的特点是以存储块为基础，因此得名为块设备。</p>
+<p>对于应用程序来说，块设备和字符设备访问方式基本无差，即驱动程序实现系统调用，应用程序通过设备文件（比如/dev/mtd0、/dev/i2c-0等）来调用对应的库函数。当然这需要驱动程序开发者来保证，即再实现块设备驱动时将数据按一定格式组织成块后再进行读写。另外，块设备还需要向内核其他部件提供一些接口，使得块设备上可以存放文件系统挂接块设备。因此块设备驱动的实现相比字符设备驱动要复杂得多。</p>
+<p>网络设备比较特殊，应用程序和网络设备驱动间的通信与上面两种设备完全不同，由库和内核提供的一套数据包传输函数替代了open()、read()、write()等函数。但是网络设备也很好理解和辨认，WIFI或者有线接口都属于网络设备。</p>
+<p>设备驱动中还会出现一个驱动包含多种设备驱动的情况，如SPI（字符设备）连接的FLASH（块设备）、USB接口（字符设备）的WIFI（网络设备）。接下来我们会循序渐进的学习各种设备的驱动，由浅入深，先从最简单的字符设备开始。</p>
+</section>
+</section>
+<section id="id4">
+<h2>字符设备的开发步骤<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Linux驱动程序是有框架的，现有框架方便的我们增加新的驱动程序，熟悉现有框架之后，在现有驱动程序上稍微修改就能得到新设备的驱动，而学习现有框架就是我们的目标之一。</p>
+<ol class="arabic simple">
+<li><p>熟悉框架之后，实现设备驱动的步骤大致如下：</p></li>
+<li><p>查看原理图以及数据手册了解设备操作方法；</p></li>
+<li><p>修改设备树文件；</p></li>
+<li><p>套用与设备相近的框架，或找到内核中相似设备的驱动代码直接修改，实现驱动程序的初始化以及操作函数；</p></li>
+<li><p>将驱动编译进内核或单独编译加载驱动；</p></li>
+<li><p>编写应用程序测试驱动程序。</p></li>
+</ol>
+<p>不难看出上述步骤中重点以及难点是步骤③，下面我们细说字符设备驱动中步骤③中需要实现的内容。</p>
+<section id="id5">
+<h3>实现系统调用<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>系统调用即设备操作函数，是字符设备驱动的核心。在内核文件include/linux/fs.h中定义了数据结构file_operations，涵括了所有内核驱动操作函数，内容如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">file_operations</span> <span class="p">{</span>
+<span class="n">struct</span> <span class="n">module</span> <span class="o">*</span><span class="n">owner</span><span class="p">;</span>
+<span class="n">loff_t</span> <span class="p">(</span><span class="o">*</span><span class="n">llseek</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="nb">int</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">read</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">char</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">loff_t</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">write</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">const</span> <span class="n">char</span> <span class="n">__user</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">loff_t</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">read_iter</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">kiocb</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">iov_iter</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">write_iter</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">kiocb</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">iov_iter</span> <span class="o">*</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">iterate</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">dir_context</span> <span class="o">*</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">iterate_shared</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">dir_context</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">unsigned</span> <span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">poll</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">poll_table_struct</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">long</span> <span class="p">(</span><span class="o">*</span><span class="n">unlocked_ioctl</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsigned</span> <span class="nb">int</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">);</span>
+<span class="n">long</span> <span class="p">(</span><span class="o">*</span><span class="n">compat_ioctl</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsigned</span> <span class="nb">int</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">mmap</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">vm_area_struct</span> <span class="o">*</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="nb">open</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">inode</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">flush</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">fl_owner_t</span> <span class="nb">id</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">release</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">inode</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fsync</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="nb">int</span> <span class="n">datasync</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fasync</span><span class="p">)</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="nb">int</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">lock</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file_lock</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">sendpage</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">page</span> <span class="o">*</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">loff_t</span> <span class="o">*</span><span class="p">,</span> <span class="nb">int</span><span class="p">);</span>
+<span class="n">unsigned</span> <span class="n">long</span> <span class="p">(</span><span class="o">*</span><span class="n">get_unmapped_area</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">,</span> <span class="n">unsigned</span> <span class="n">long</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">check_flags</span><span class="p">)(</span><span class="nb">int</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">flock</span><span class="p">)</span> <span class="p">(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file_lock</span> <span class="o">*</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">splice_write</span><span class="p">)(</span><span class="n">struct</span> <span class="n">pipe_inode_info</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">unsigned</span> <span class="nb">int</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">splice_read</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span> <span class="o">*</span><span class="p">,</span> <span class="n">struct</span> <span class="n">pipe_inode_info</span> <span class="o">*</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">unsigned</span> <span class="nb">int</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">setlease</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file_lock</span> <span class="o">**</span><span class="p">,</span> <span class="n">void</span> <span class="o">**</span><span class="p">);</span>
+<span class="n">long</span> <span class="p">(</span><span class="o">*</span><span class="n">fallocate</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="nb">int</span> <span class="n">mode</span><span class="p">,</span> <span class="n">loff_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">loff_t</span> <span class="nb">len</span><span class="p">);</span>
+<span class="n">void</span> <span class="p">(</span><span class="o">*</span><span class="n">show_fdinfo</span><span class="p">)(</span><span class="n">struct</span> <span class="n">seq_file</span> <span class="o">*</span><span class="n">m</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="n">f</span><span class="p">);</span>
+<span class="c1">#ifndef CONFIG_MMU</span>
+<span class="n">unsigned</span> <span class="p">(</span><span class="o">*</span><span class="n">mmap_capabilities</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">);</span>
+<span class="c1">#endif</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">copy_file_range</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="n">size_t</span><span class="p">,</span> <span class="n">unsigned</span> <span class="nb">int</span><span class="p">);</span>
+<span class="nb">int</span> <span class="p">(</span><span class="o">*</span><span class="n">clone_file_range</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">loff_t</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
+<span class="n">ssize_t</span> <span class="p">(</span><span class="o">*</span><span class="n">dedupe_file_range</span><span class="p">)(</span><span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">u64</span><span class="p">,</span> <span class="n">struct</span> <span class="n">file</span> <span class="o">*</span><span class="p">,</span> <span class="n">u64</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>简单介绍一下接下来的实验中会用到的成员和函数：</p>
+<ol class="arabic simple">
+<li><p>成员变量<strong>owner</strong>一般设置为THIS_MODULE。</p></li>
+<li><p><strong>open()</strong>函数已经提到多次，用于打开设备文件。</p></li>
+<li><p><strong>write()</strong>函数用于向设备写入或发送数据。</p></li>
+<li><p><strong>read()</strong>函数用于从设备读取数据。</p></li>
+<li><p><strong>release()</strong>函数用于关闭设备文件，与应用程序中的close()函数相对应。</p></li>
+</ol>
+</section>
+<section id="id6">
+<h3>驱动模块的加载与卸载<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>驱动程序完成后，可以选择编译进内核，或单独编译后使用命令insmod加载到系统中。后者对于驱动开发而言方便很多。驱动程序单独编译后，会得到后缀为.ko的驱动模块文件，比如加载名为led.ko的驱动模块，就使用命令insmod
+led.ko即可。当然有加载就有卸载，卸载命令为rmmod，卸载驱动预加载驱动稍有区别，不是rmmod
+led.ko了。可以先使用lsmod命令来查看现已加载的驱动，再使用rmmod命令加空格再加上lsmod命令罗列出的你想卸载的驱动名称即可。</p>
+<p>在实现驱动时，需要注册这两个操作函数，注册函数为：</p>
+<p><strong>module_init(xxx_init);</strong> //注册模块加载函数</p>
+<p><strong>module_exit(xxx_exit);</strong> //注册模块卸载函数</p>
+<p>xxx_init是驱动入口函数，xxx_exit是驱动出口函数。当执行insmod命令时，xxx_init函数就会被调用。xxx_exit函数同理。这两个函数原型也很简单，到后面编码时再说。</p>
+</section>
+<section id="id7">
+<h3>字符设备的注册与注销<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>驱动入口函数是驱动加载时执行的第一个函数，我们需要抓住这个机会在入口函数中实现驱动的初始化即注册字符设备。注册和注销字符设备的函数分别为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>int register_chrdev(unsigned int major, const char *name, const
+struct file_operations *fops);</p>
+<p>void unregister_chrdev(unsigned int major, const char *name);</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>两个函数总共涉及到三个输入参数：</p>
+<p><strong>major</strong>：主设备号，linux系统下每个设备都有一个设备号，主设备下还有子设备号minor；</p>
+<p><strong>name</strong>：设备名；</p>
+<p><strong>fops</strong>：file_operations型指针，设备操作函数合集变量。</p>
+</section>
+<section id="id8">
+<h3>Linux设备号<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>每个设备文件都有主次设备号major，主设备号是唯一的，每个主设备下有次设备号minor，次设备号在这个主设备下也是唯一的。在Linux系统下输入cat
+/proc/devices命令可以查看已被注册的主设备号。</p>
+</section>
+<section id="id9">
+<h3>实现设备操作函数<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<p>在接下来的点亮led实验中，会用到那些设备操作函数呢，先看一下点亮led
+的步骤。</p>
+<p>首先我们要初始化led所连接的IO，使能时钟、设置IO为输出等，open()函数是应用程序关联设备文件的开始，设备的初始化可以放在open()函数中。实现了open()函数必然就要实现对应的release()函数。IO初始化完成后，我们需要点亮led，实际上就是往IO对应的寄存器内写入对应的值，写入自然就是实现write()函数了。相应的，也可以实现read()函数来读取IO当前的状态。</p>
+</section>
+<section id="id10">
+<h3>添加驱动描述信息<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<p>在驱动代码中我们需要添加LICENSE信息和作者信息等驱动描述信息，其中LICENSE是必须添加的，方法如下：</p>
+<p>MODULE_LICENSE(“GPL”);</p>
+<p>现在我们已经知道了注册驱动入口和出口函数、注册和注销字符设备、需要实现的设备操作函数，大致可以写出如下的框架：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/* 驱动名称 */
+#define DEVICE_NAME &quot;gpio_leds&quot;
+/* 驱动主设备号 */
+#define GPIO_LED_MAJOR 200
+/* open 函数实现, 对应到 Linux 系统调用函数的 open 函数 */
+static int gpio_leds_open(struct inode *inode_p, struct file *file_p)
+{
+return 0;
+ }
+
+ /* write 函数实现, 对应到 Linux 系统调用函数的 write 函数 */
+ static ssize_t gpio_leds_write(struct file *file_p, const char __user *buf, size_t len, loff_t *loff_t_p)
+ {
+ return 0;
+ }
+
+ /* release 函数实现, 对应到 Linux 系统调用函数的 close 函数 */
+ static int gpio_leds_release(struct inode *inode_p, struct file *file_p)
+ {
+ return 0;
+ }
+
+ /* file_operations 结构体声明, 是上面 open、write 实现函数与系统调用函数对应的关键 */
+ static struct file_operations gpio_leds_fops = {
+ .owner = THIS_MODULE,
+ .open = gpio_leds_open,
+ .write = gpio_leds_write,
+ .release = gpio_leds_release,
+ };
+
+ /* 模块加载时会调用的函数 */
+ static int __init gpio_led_init(void)
+ {
+ int ret;
+
+ /* 通过模块主设备号、名称、模块带有的功能函数(及 file_operations 结构体)来注册模块 */
+ ret = register_chrdev(GPIO_LED_MAJOR, DEVICE_NAME, &amp;gpio_leds_fops);
+ if (ret &lt; 0)
+ {
+ return ret;
+ }
+ else
+ {
+
+ }
+ return 0;
+ }
+
+ /* 卸载模块 */
+ static void __exit gpio_led_exit(void)
+ {
+ /* 注销模块, 释放模块对这个设备号和名称的占用 */
+ unregister_chrdev(GPIO_LED_MAJOR, DEVICE_NAME);
+ }
+
+ /* 注册模块入口和出口函数 */
+ module_init(gpio_led_init);
+ module_exit(gpio_led_exit);
+
+ /* 添加 LICENSE 信息 */
+ MODULE_LICENSE(&quot;GPL&quot;);
+</pre></div>
+</div>
+<p>这里我把驱动命名为”gpio_leds”。设备号设置为200，我这里200号设备号没有被占用，实际实验要根据自身实际情况更改。</p>
+</section>
+</section>
+<section id="id11">
+<h2>字符设备驱动开发实验<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h2>
+<p>现在我们已经大致了解了字符设备的实现方法，接下来就一步一步的去实现。我们的目标是编写开发板上”PS
+LED3”这个led的设备驱动，通过驱动程序能点亮、熄灭这个led。</p>
+<section id="id12">
+<h3>查看硬件原理图以及数据手册<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
+<p>打开AX7020开发板原理图，查看PS LED3的连接方式。</p>
+<img alt="../_images/image1208.png" src="../_images/image1208.png" />
+<img alt="../_images/image2173.png" src="../_images/image2173.png" />
+<p>可知目标led连接在开发板PS端的MIO0引脚上。</p>
+<p>再打开数据手册《ug585-Zynq-7000-TRM.pdf》。根据关键词MIO我们能找到一张MIO对应表，led的操作对应的引脚功能为GPIO，MIO0对应GIPO0。我们再到寄存器设置”
+Appendix B: Register Details”章节中找到GPIO的寄存器设置。</p>
+<img alt="../_images/image3152.png" src="../_images/image3152.png" />
+<p>GPIO寄存器的基地址为0xE000A000，对于GPIO的设置，需要使能、设置方向以及控制，对应找到使能寄存器0xE000A208、方向寄存器0xE000A204、控制（数据）寄存器0xE000A040。另外还需要使能GPIO时钟，找到AMBA外设时钟使能寄存器0xF800012C。</p>
+</section>
+<section id="id13">
+<h3>编写字符设备驱动程序<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h3>
+<p>上面我们已经得到了led驱动的大体框架，接下来要做的实际就是晚上设备操作函数中的内容，也是再对应的函数中设置相关的寄存器。在open()函数中实现led初始化，在write()函数中实现led的控制，在release()函数中完成led的使能。最终的代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/fs.h&gt;
+#include &lt;linux/init.h&gt;
+#include &lt;linux/ide.h&gt;
+#include &lt;linux/types.h&gt;
+
+/* 驱动名称 */
+#define DEVICE_NAME &quot;gpio_leds&quot;
+/* 驱动主设备号 */
+#define GPIO_LED_MAJOR 200
+
+/* gpio 寄存器虚拟地址 */
+static unsigned int gpio_add_minor;
+/* gpio 寄存器物理基地址 */
+#define GPIO_BASE 0xE000A000
+/* gpio 寄存器所占空间大小 */
+#define GPIO_SIZE 0x1000
+/* gpio 方向寄存器 */
+#define GPIO_DIRM_0 (unsigned int *)(0xE000A204 - GPIO_BASE + gpio_add_minor)
+/* gpio 使能寄存器 */
+#define GPIO_OEN_0 (unsigned int *)(0xE000A208 - GPIO_BASE + gpio_add_minor)
+/* gpio 控制寄存器 */
+#define GPIO_DATA_0 (unsigned int *)(0xE000A040 - GPIO_BASE + gpio_add_minor)
+
+/* 时钟使能寄存器虚拟地址 */
+static unsigned int clk_add_minor;
+/* 时钟使能寄存器物理基地址 */
+#define CLK_BASE 0xF8000000
+/* 时钟使能寄存器所占空间大小 */
+#define CLK_SIZE 0x1000
+/* AMBA 外设时钟使能寄存器 */
+#define APER_CLK_CTRL (unsigned int *)(0xF800012C - CLK_BASE + clk_add_minor)
+
+/* open 函数实现, 对应到 Linux 系统调用函数的 open 函数 */
+static int gpio_leds_open(struct inode *inode_p, struct file *file_p)
+{
+/* 把需要修改的物理地址映射到虚拟地址 */
+gpio_add_minor = (unsigned int)ioremap(GPIO_BASE, GPIO_SIZE);
+clk_add_minor = (unsigned int)ioremap(CLK_BASE, CLK_SIZE);
+
+/* MIO_0 时钟使能 */
+*APER_CLK_CTRL |= 0x00400000;
+/* MIO_0 设置成输出 */
+*GPIO_DIRM_0 |= 0x00000001;
+/* MIO_0 使能 */
+*GPIO_OEN_0 |= 0x00000001;
+
+printk(&quot;gpio_test module open\n&quot;);
+
+return 0;
+}
+
+
+/* write 函数实现, 对应到 Linux 系统调用函数的 write 函数 */
+static ssize_t gpio_leds_write(struct file *file_p, const char __user *buf, size_t len, loff_t *loff_t_p)
+{
+int rst;
+char writeBuf[5] = {0};
+
+printk(&quot;gpio_test module write\n&quot;);
+
+rst = copy_from_user(writeBuf, buf, len);
+if(0 != rst)
+{
+return -1;
+}
+
+if(1 != len)
+{
+printk(&quot;gpio_test len err\n&quot;);
+return -2;
+}
+if(1 == writeBuf[0])
+{
+*GPIO_DATA_0 &amp;= 0xFFFFFFFE;
+printk(&quot;gpio_test ON\n&quot;);
+}
+else if(0 == writeBuf[0])
+{
+*GPIO_DATA_0 |= 0x00000001;
+printk(&quot;gpio_test OFF\n&quot;);
+}
+else
+{
+printk(&quot;gpio_test para err\n&quot;);
+return -3;
+}
+
+return 0;
+}
+
+/* release 函数实现, 对应到 Linux 系统调用函数的 close 函数 */
+static int gpio_leds_release(struct inode *inode_p, struct file *file_p)
+{
+printk(&quot;gpio_test module release\n&quot;);
+return 0;
+}
+
+/* file_operations 结构体声明, 是上面 open、write 实现函数与系统调用函数对应的关键 */
+static struct file_operations gpio_leds_fops = {
+.owner = THIS_MODULE,
+.open = gpio_leds_open,
+.write = gpio_leds_write,
+.release = gpio_leds_release,
+};
+
+/* 模块加载时会调用的函数 */
+static int __init gpio_led_init(void)
+{
+int ret;
+
+/* 通过模块主设备号、名称、模块带有的功能函数(及 file_operations 结构体)来注册模块 */
+ret = register_chrdev(GPIO_LED_MAJOR, DEVICE_NAME, &amp;gpio_leds_fops);
+if (ret &lt; 0)
+{
+printk(&quot;gpio_led_dev_init_ng\n&quot;);
+return ret;
+}
+else
+{
+/* 注册成功 */
+printk(&quot;gpio_led_dev_init_ok\n&quot;);
+}
+return 0;
+}
+
+/* 卸载模块 */
+static void __exit gpio_led_exit(void)
+{
+/* 释放对虚拟地址的占用 */
+iounmap((unsigned int *)gpio_add_minor);
+iounmap((unsigned int *)clk_add_minor);
+/* 注销模块, 释放模块对这个设备号和名称的占用 */
+unregister_chrdev(GPIO_LED_MAJOR, DEVICE_NAME);
+
+printk(&quot;gpio_led_dev_exit_ok\n&quot;);
+}
+
+/* 标记加载、卸载函数 */
+module_init(gpio_led_init);
+module_exit(gpio_led_exit);
+
+/* 驱动描述信息 */
+MODULE_AUTHOR(&quot;Alinx&quot;);
+MODULE_ALIAS(&quot;gpio_led&quot;);
+MODULE_DESCRIPTION(&quot;GPIO LED driver&quot;);
+MODULE_VERSION(&quot;v1.0&quot;);
+MODULE_LICENSE(&quot;GPL&quot;);
+</pre></div>
+</div>
+<p><strong>49</strong>行出现的printk()函数，是内核态输出字符串到控制台的函数，这里用于调试，相当于应用程序中的printf()。printk()函数存在消息级别，定义在头文件include/linux/kern_levels.h中，如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define KERN_EMERG KERN_SOH &quot;&quot; /* system is unusable */</span>
+<span class="c1">#define KERN_ALERT KERN_SOH &quot;&quot; /* action must be taken immediately */</span>
+<span class="c1">#define KERN_CRIT KERN_SOH &quot;&quot; /* critical conditions */</span>
+<span class="c1">#define KERN_ERR KERN_SOH &quot;&quot; /* error conditions */</span>
+<span class="c1">#define KERN_WARNING KERN_SOH &quot;&quot; /* warning conditions */</span>
+<span class="c1">#define KERN_NOTICE KERN_SOH &quot;&quot; /* normal but significant condition */</span>
+<span class="c1">#define KERN_INFO KERN_SOH &quot;&quot; /* informational */</span>
+<span class="c1">#define KERN_DEBUG KERN_SOH &quot;&quot; /* debug-level messages */</span>
+</pre></div>
+</div>
+<p>其中 0 的优先级最高， 7 的优先级最低。如果要设置消息级别，可设置如下:</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>printk(KERN_INFO”gpio_test module open\n”);</p></td>
+</tr>
+</tbody>
+</table>
+<p>如果不设置消息级别，那么printk()会采用默认级别MESSAGE_LOGLEVEL_DEFAULT。只有消息级别高于头文件include/linux/printk.h中定义的宏
+CONSOLE_LOGLEVEL_DEFAULT，消息才会被打印。</p>
+<p><strong>39</strong>行出现的函数ioremap(),用于把物理地址映射到虚拟地址。在Linux中由于MMU内存映射的关系，我们无法直接操作物理地址，而需要吧物理地址映射到虚拟地址上再操作对应的虚拟地址。ioremap()定义在头文件arch/arm/include/asm/io.h
+中，如下：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>#define ioremap(cookie,size) __arm_ioremap((cookie),
+(size),MT_DEVICE)</p></td>
+</tr>
+</tbody>
+</table>
+<p>cookie指代物理地址，size为需要映射的地址长度。<strong>39</strong>行的代码即是把GPIO寄存器基地址及范围映射到虚拟地址并赋值给全局变量gpio_add_minor，之后可以直接对变量gpio_add_minor进行读写操作。</p>
+<p><strong>97</strong>行的iounmap()函数是与ioremap()相对的释放虚拟地址函数。输入参数为ioremap()函数返回得到的虚拟地址首地址，比如这里的gpio_add_minor。</p>
+<p>剩下的就是寄存器操作了。对于虚拟地址的操作，我们这么里都是直接通过指针访问的，但是Linux有推荐的读写方法，而不是使用指针，如下：</p>
+<p>读函数：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>u8 readb(const volatile void __iomem *addr);</p>
+<p>u16 readw(const volatile void __iomem *addr);</p>
+<p>u32 readl(const volatile void __iomem *addr);</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>写函数：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void writeb(u8 value, volatile void __iomem *addr);</p>
+<p>void writew(u16 value, volatile void __iomem *addr);</p>
+<p>void writel(u32 value, volatile void __iomem *addr);</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>value为需要写入的值，addr为需要操作的地址。</p>
+<p><strong>56</strong>行的write()函数中通过判断用户输入的__buf值为0还是1相应的执行点灯和灭灯的操作。</p>
+</section>
+<section id="petalinux">
+<h3>1.3.3 在Petalinux定制系统中添加新的驱动<a class="headerlink" href="#petalinux" title="此标题的永久链接">#</a></h3>
+<p>petalinux定制Linux系统的方法可以参考S4教程。在得到定制系统后，打开终端，进入定制系统的根目录，如下图：</p>
+<img alt="../_images/image4127.png" src="../_images/image4127.png" />
+<p>ax_peta是我用petalinux定制得到的系统工程根目录。</p>
+<ol class="arabic simple">
+<li><p>先在终端中输入下面的命令设置petalinux环境变量：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>source /opt/pkg/petalinux/settings.sh</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>再输入下面的命令添加新的驱动：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>petalinux-create -t modules –name ax-led-drv</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p>查看目录…/ax_peta/project-spec/meta-user/recipes-modules，下面有了名为ax-led-drv文件夹，再进入目录…/ax_peta/project-spec/meta-user/recipes-modules/ax-led-drv/files，目录下名为ax-led-drv.c的文件就是petalinux帮我们新建的驱动文件。</p></li>
+</ol>
+<img alt="../_images/image5100.png" src="../_images/image5100.png" />
+<img alt="../_images/image692.png" src="../_images/image692.png" />
+<ol class="arabic simple" start="4">
+<li><p>打开这个c文件，把我们先前实现的led驱动代码粘贴进去保存退出,可以将资料中提供的的驱动源代码直接复制到该文件中。打开终端到先前的ax_peta目录下，输入命令petalinux-config
+-c rootfs，之后会弹出交互界面如下图：</p></li>
+</ol>
+<img alt="../_images/image785.png" src="../_images/image785.png" />
+<ol class="arabic simple" start="5">
+<li><p>按上下方向键移动到module选项，按空格键进入新的界面如下：</p></li>
+</ol>
+<img alt="../_images/image878.png" src="../_images/image878.png" />
+<p>选项中的ax-led-drv就是我们新加的驱动，按空格选择他，前面的方括号中会出现星号[*]。按左右方向键移动选项到&lt;Save&gt;，按回车保存设置，之后选择&lt;Exit&gt;退出界面。之后在编译petalinux工程时，这个驱动就会被编译。</p>
+<ol class="arabic simple" start="6">
+<li><p>退出交互界面后，在终端输入命令：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>petalinux-build</p></td>
+</tr>
+</tbody>
+</table>
+<p>编译petalinux工程，编译完成后在ax_peta目录下搜索”
+ax-led-drv.ko”，就是需要的驱动模块文件，保存好，稍后我们会在系统中加载这个驱动模块。</p>
+<img alt="../_images/image969.png" src="../_images/image969.png" />
+</section>
+<section id="ubuntuqtapp">
+<h3>使用Ubuntu虚拟机中的QT编写测试APP<a class="headerlink" href="#ubuntuqtapp" title="此标题的永久链接">#</a></h3>
+<p>驱动代码完成之后，需要测试他的功能。为了方便测试，这里我们使用Ubuntu虚拟机中的QT来编写测试程序。QT在ubuntu虚拟机中的应用方法可参考s4教程中的Qt章节。</p>
+<ol class="arabic simple">
+<li><p>打开QT，点击New Project按钮，创建新的空工程如下图：</p></li>
+</ol>
+<img alt="../_images/image1063.png" src="../_images/image1063.png" />
+<ol class="arabic simple" start="2">
+<li><p>这里我把测试工程命名为”axleddev_test”。</p></li>
+</ol>
+<img alt="../_images/image11102.png" src="../_images/image11102.png" />
+<ol class="arabic simple">
+<li><p>选择ZYNQ，如果你这里没有这个选项，请先参考s4教程中的Qt章节来设置QT的交叉编工具链。</p></li>
+</ol>
+<img alt="../_images/image1261.png" src="../_images/image1261.png" />
+<ol class="arabic simple" start="4">
+<li><p>打开新建的工程，在工程目录上右击，点击Add New选项。</p></li>
+</ol>
+<img alt="../_images/image1357.png" src="../_images/image1357.png" />
+<ol class="arabic simple" start="5">
+<li><p>添加C++ Source File，命名为main.c。</p></li>
+</ol>
+<img alt="../_images/image1451.png" src="../_images/image1451.png" />
+<p>6) 打开main.c，输入下面的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+
+int main(int argc, char **argv)
+{
+int fd;
+char buf;
+
+if(3 != argc)
+{
+printf(&quot;none para\n&quot;);
+return -1;
+}
+
+fd = open(argv[1], O_RDWR);
+if(fd &lt; 0)
+{
+printf(&quot;Can&#39;t open file %s\r\n&quot;, argv[1]);
+return -1;
+}
+
+if(!strcmp(&quot;on&quot;,argv[2]))
+{
+printf(&quot;ps_led1 on\n&quot;);
+buf = 1;
+write(fd, &amp;buf, 1);
+}
+else if(!strcmp(&quot;off&quot;,argv[2]))
+{
+printf(&quot;ps_led1 off\n&quot;);
+buf = 0;
+write(fd, &amp;buf, 1);
+}
+else
+{
+printf(&quot;wrong para\n&quot;);
+return -2;
+}
+
+close(fd);
+return 0;
+}
+</pre></div>
+</div>
+<p>应用程序中的系统调用函数，与内核驱动中的函数格式稍有区别。
+17行的open()函数原型为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>int open (const char *__file, int __oflag, …);</p></td>
+</tr>
+</tbody>
+</table>
+<p>参数说明如下：</p>
+<p><strong>__file</strong>：设备文件。我们通过运行程序时的第二个参数来输入设备文件名。</p>
+<p><strong>__oflag</strong>：为文件打开模式，有三项必选其一：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>#define O_RDONLY 00 //只读</p>
+<p>#define O_WRONLY 01 //只写</p>
+<p>#define O_RDWR 02 //读写</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值</strong>：如果文件打开成功，则返回文件句柄。</p>
+<p><strong>28</strong>行的write()函数原型为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>ssize_t write (int __fd, const void *__buf, size_t __n);</p></td>
+</tr>
+</tbody>
+</table>
+<p>参数说明如下：</p>
+<p><strong>__fd</strong>：open()函数返回的文件句柄。</p>
+<p><strong>__buf</strong>：需要写入的数据首地址。</p>
+<p><strong>__n</strong>：需要写入的数据长度。</p>
+<p>这里write()函数的调用方式与先前驱动中的实现相对应，仅输入0或者1两个值，来通知驱动做电灯还是灭灯。</p>
+<p><strong>42</strong>行在驱动文件使用完之后调用close()函数释放文件句柄，输入参数即文件句柄。执行close()函数后，最终驱动中实现的relesae()函数会被执行。</p>
+<ol class="arabic simple">
+<li><p>测试代码完成后，点击QT左下角的小锤子编译工程，如下图：</p></li>
+</ol>
+<img alt="../_images/image1545.png" src="../_images/image1545.png" />
+<ol class="arabic simple" start="8">
+<li><p>编译完成后，在和这个QT工程同级及目录下找到编译生成的文件夹，里面的axleddev_test是我们开发板可运行的可执行文件。这个程序想要达成的目标是输入on时点灯，输入off灭灯。</p></li>
+</ol>
+<img alt="../_images/image1643.png" src="../_images/image1643.png" />
+</section>
+<section id="id14">
+<h3>运行测试<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h3>
+<p>现在驱动模块和测试程序都有了，可以开始测试了。</p>
+<p>注意此时开发板中应该运行的是与我们创建驱动相同的petalinux工程编译出来的linux系统。</p>
+<ol class="arabic simple">
+<li><p>打开串口工具，开发板上电，登陆linux系统。</p></li>
+</ol>
+<img alt="../_images/image1742.png" src="../_images/image1742.png" />
+<ol class="arabic simple" start="2">
+<li><p>输入下列命令，用NFS服务挂载ubuntu的工作路径到开发板的/mnt路径下。关于NFS服务的使用可参考s4教程中的nfs章节内容。</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>mount -t nfs -o nolock 192.168.1.107:/home/alinx/work /mnt</p>
+<p>cd /mnt</p>
+<p>mkdir /tmp/qt</p>
+<p>mount qt_lib.img /tmp/qt</p>
+<p>cd /tmp/qt</p>
+<p>source ./qt_env_set.sh</p>
+<p>cd /mnt</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>其中192.168.1.107是我ubuntu虚拟机的ip，/home/alinx/work是我ubuntu的工作路径。这两个需要根据实际情况修改调整。</p>
+<ol class="arabic simple" start="3">
+<li><p>把先前得到的驱动模块ax-led-drv.ko和可执行文件axleddev_test放到工作路径中，也就是我这里的/home/alinx/work。</p></li>
+<li><p>加载驱动模块Insmod
+ax-led-drv.ko。控制台打印出gpio_led_dev_init_ok，加载成功。</p></li>
+</ol>
+<img alt="../_images/image1841.png" src="../_images/image1841.png" />
+<ol class="arabic simple" start="5">
+<li><p>之前我们提到过使用命令cat
+/proc/devices来查看已被使用的设备号，现在我们的设备驱动加载成功了，同样可以用这个命令查看有没有成功注册到设备号。确实已经存在了。</p></li>
+</ol>
+<img alt="../_images/image1940.png" src="../_images/image1940.png" />
+<ol class="arabic simple" start="6">
+<li><p>至此我们还缺少设备文件，创建设备文件的命令为:</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>mknod /dev/xxx type major minor</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>/dev/xxx</strong>：xxx为设备文件名称，统一放在/dev路径下，这里要和我们应用程序中的文件名保持一致即为/dev/alinx-led。</p>
+<p><strong>type</strong>：设备类型，字符设备为c。</p>
+<p><strong>major</strong>：主设备号，要与我们调用的驱动一直，应用程序通过open()函数来关联设备文件，设备文件通过主设备号来关联驱动程序，最终实现应用程序和驱动相互关联。所以这里这里主设备号为200。</p>
+<p><strong>minor</strong>：次设备号，一般从零开始，这里填0即可。</p>
+<p>输入命令：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>mknod /dev/alinx-led c 200 0</p></td>
+</tr>
+</tbody>
+</table>
+<p>再执行命令ls /dev，就能查到我们需要的设备文件了。</p>
+<ol class="arabic simple" start="7">
+<li><p>设备文件也准备好了，接下来就可以运行测试程序了，点亮命令如下：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>./build-axleddev_test-ZYNQ-Debug/axleddev_test /dev/alinx-led on</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image2034.png" src="../_images/image2034.png" />
+<p>Led被点亮，调试使用的打印信息也输出成功。</p>
+<ol class="arabic simple" start="8">
+<li><p>熄灭led：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>./build-axleddev_test-ZYNQ-Debug/axleddev_test /dev/alinx-led off</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="9">
+<li><p>卸载驱动模块也测试一下：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>rmmod ax_led_drv</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image2174.png" src="../_images/image2174.png" />
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">ADC采集并显示波形</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">字符设备的新写法</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux驱动程序概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Linux应用程序与驱动程序的关系</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Linux驱动程序的分类</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">字符设备的开发步骤</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">实现系统调用</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">驱动模块的加载与卸载</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">字符设备的注册与注销</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Linux设备号</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">实现设备操作函数</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">添加驱动描述信息</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">字符设备驱动开发实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">查看硬件原理图以及数据手册</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">编写字符设备驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#petalinux">1.3.3 在Petalinux定制系统中添加新的驱动</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubuntuqtapp">使用Ubuntu虚拟机中的QT编写测试APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">运行测试</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

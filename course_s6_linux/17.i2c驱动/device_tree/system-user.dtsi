@@ -1,0 +1,160 @@
+/include/ "system-conf.dtsi"
+
+/ {
+	model = "Zynq ALINX Development Board";
+	compatible = "alinx,zynq", "xlnx,zynq-7000";
+	aliases {
+		ethernet0 = "&gem0";
+		serial0 = "&uart1";
+	};
+
+	usb_phy0: usb_phy@0 {
+		compatible = "ulpi-phy";
+		#phy-cells = <0>;
+		reg = <0xe0002000 0x1000>;
+		view-port = <0x0170>;
+		drv-vbus;
+	};
+	
+    amba {
+        slcr@f8000000 {
+            pinctrl@700 {
+                pinctrl_led_default: led-default {  
+                    mux {  
+                        groups = "gpio0_0_grp";  
+                        function = "gpio0";  
+                    };  
+
+                    conf {  
+                        pins = "MIO0"; 
+                        io-standard = <1>; 
+                        bias-disable;  
+                        slew-rate = <0>;  
+                    };      
+                }; 
+                pinctrl_key_default: key-default {
+                    mux {
+                        groups = "gpio0_50_grp";
+                        function = "gpio0";
+                    };
+
+                    conf {
+                        pins = "MIO50";
+                        io-standard = <1>;
+                        bias-high-impedance;
+                        slew-rate = <0>;
+                    };
+                };
+            };
+        };
+    };
+
+    alinxled {
+        compatible = "alinx-led";
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_led_default>;
+        alinxled-gpios = <&gpio0 0 0>;
+    };
+
+    alinxkey {
+        compatible = "alinx-key";
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_key_default>;
+        alinxkey-gpios = <&gpio0 50 0>;
+    };
+    alinxpwm {
+        compatible = "alinx-pwm";
+        reg-freq = <0x43C20000 1>;
+        reg-duty = <0x43C20004 1>;
+    };    
+};
+
+&i2c0 {
+	clock-frequency = <100000>;
+    	ax-e2p1@50 {
+        	compatible = "ax-e2p1";
+        	reg = <0x50>;
+    	};	
+};
+
+
+&usb0 {
+	dr_mode = "host";	
+	usb-phy = <&usb_phy0>;
+};
+
+&sdhci0 {
+	u-boot,dm-pre-reloc;
+};
+
+&uart1 {
+	u-boot,dm-pre-reloc;
+};
+
+
+&flash0 {
+	compatible = "micron,m25p80", "w25q256", "spi-flash";
+};
+
+
+&gem0 {
+	phy-handle = <&ethernet_phy>;
+	ethernet_phy: ethernet-phy@1 {
+		reg = <1>;
+		device_type = "ethernet-phy";
+	};
+};
+
+
+
+&amba_pl {
+
+	digilent_hdmi {
+		compatible = "digilent,hdmi";
+
+		clocks = <&axi_dynclk_0>;
+		clock-names = "clk";
+
+		digilent,edid-i2c = <&i2c0>;
+		digilent,fmax = <150000>;
+		
+		port@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			hdmi_ep: endpoint {
+				remote-endpoint = <&pl_disp_ep>;
+			};
+		};
+	};
+	
+	xlnx_pl_disp {
+		compatible = "xlnx,pl-disp";
+		dmas = <&axi_vdma_0 0>;
+		dma-names = "dma0";
+
+		xlnx,vformat = "RG24";
+		xlnx,bridge = <&v_tc_0>;
+
+		port@0 {
+			reg = <0>;
+			pl_disp_ep: endpoint {
+				remote-endpoint = <&hdmi_ep>;
+			};
+		};
+	};
+
+
+	
+};
+&axi_dynclk_0 {
+	compatible = "dglnt,axi-dynclk";
+	#clock-cells = <0>;
+	clocks = <&clkc 15>;
+};
+&v_tc_0 {
+	compatible = "xlnx,bridge-v-tc-6.1";
+	xlnx,pixels-per-clock = <1>;
+};
+
+

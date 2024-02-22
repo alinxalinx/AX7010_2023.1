@@ -1,0 +1,68 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Instructions per Function for each Compilation Phase
++-------------------------------------+----------------------------+------------------+-----------------+----------------------+---------------+
+| Function                            | Location                   | Compile/Link     | Unroll/Inline   | Performance/Pipeline | Optimizations |
++-------------------------------------+----------------------------+------------------+-----------------+----------------------+---------------+
+| + sobel_focus                       | sobel_focus.cpp:122        | 29,489           | 1,827           | 720                  | 861           |
+|  + Mat                              | xf_structs.hpp:652         |    287 (7 calls) |                 |                      |               |
+|   + init                            | xf_structs.hpp:605         |    196 (7 calls) |                 |                      |               |
+|      alloc_data<2, nullptr>         | xf_structs.hpp:493         |      7 (7 calls) |                 |                      |               |
+|  + AXIvideo2xfMat<24, 16, 1080,...  | xf_infra.hpp:100           |    574           |   181           | 110                  | 157           |
+|     write<2, nullptr>               | xf_structs.hpp:552         |      8           |     3           |                      |               |
+|  + duplicate<1080, 1920>            | sobel_focus.cpp:105        |     86           |    35           |  14                  |  27           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     18           |     3           |                      |               |
+|     write<2, nullptr>               | xf_structs.hpp:552         |     16 (2 calls) |     6 (2 calls) |                      |               |
+|  + xfrgb2gray<1080, 1920>           | sobel_focus.cpp:34         |    313           |    78           |  43                  |  55           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     18           |     3           |                      |               |
+|     ExtractPixel                    | sobel_focus.cpp:3          |     77           |    15           |  10                  |  11           |
+|   + CalculateGRAY                   | xf_cvt_color_utils.hpp:882 |     24           |                 |                      |               |
+|      saturate_cast                  | xf_cvt_color_utils.hpp:757 |     14           |                 |                      |               |
+|     write<2, nullptr>               | xf_structs.hpp:552         |      8           |     3           |                      |               |
+|     saturate_cast                   | xf_cvt_color_utils.hpp:757 |                  |    13           |                      |               |
+|  + xFSobelFilter3x3<0, 0, 1080,...  | xf_sobel.hpp:306           | 24,036           |   809           | 378                  | 390           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     18           |     6 (2 calls) |                      |               |
+|   + ProcessSobel3x3<0, 0, 1080, ... | xf_sobel.hpp:194           | 10,708           |                 |                      |               |
+|      read<2, nullptr>               | xf_structs.hpp:541         |     18           |                 |                      |               |
+|    + xFSobel3x3<1, 1, 0, 0>         | xf_sobel.hpp:134           |  7,378           |                 |                      |               |
+|       xFGradientX3x3<0, 0>          | xf_sobel.hpp:44            |    325           |                 |                      |               |
+|       xFGradientY3x3<0, 0>          | xf_sobel.hpp:92            |    325           |                 |                      |               |
+|      xfPackPixels<1, 1, 0>          | xf_utility.hpp:318         |  2,130 (6 calls) |                 |                      |               |
+|      write<2, nullptr>              | xf_structs.hpp:552         |     16 (2 calls) |                 |                      |               |
+|     xFGradientX3x3<0, 0>            | xf_sobel.hpp:44            |    650 (2 calls) |    58           |  50                  |  51           |
+|     xFGradientY3x3<0, 0>            | xf_sobel.hpp:92            |    650 (2 calls) |    58           |  50                  |  51           |
+|     xfPackPixels<1, 1, 0>           | xf_utility.hpp:318         |    710 (2 calls) |                 |                      |               |
+|     write<2, nullptr>               | xf_structs.hpp:552         |     16 (2 calls) |    12 (4 calls) |                      |               |
+|   + xFSobel3x3<1, 1, 0, 0>          | xf_sobel.hpp:134           |                  |   192           | 121                  | 120           |
+|      xFGradientX3x3<0, 0>           | xf_sobel.hpp:44            |                  |    58           |  50                  |  51           |
+|      xFGradientY3x3<0, 0>           | xf_sobel.hpp:92            |                  |    58           |  50                  |  51           |
+|  + AddWeightedKernel<1080, 1920...  | sobel_focus.cpp:56         |  3,606           |   486           |  53                  |  66           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     36 (2 calls) |     6 (2 calls) |                      |               |
+|     write<2, nullptr>               | xf_structs.hpp:552         |      8           |     3           |                      |               |
+|  + sum_of_stream<1080, 1920>        | sobel_focus.cpp:16         |    109           |    33           |  19                  |  28           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     18           |     3           |                      |               |
+|  + xfMat2AXIvideo<24, 16, 1080,...  | xf_infra.hpp:180           |    383           |    94           |  62                  |  69           |
+|     read<2, nullptr>                | xf_structs.hpp:541         |     18           |     3           |                      |               |
+|    ~Mat                             | xf_structs.hpp:865         |      7 (7 calls) |                 |                      |               |
++-------------------------------------+----------------------------+------------------+-----------------+----------------------+---------------+
+
+* Description of Compilation Phases
++----------------------+------------------------------------------------------------+
+| Compilation Phase    | Description                                                |
++----------------------+------------------------------------------------------------+
+| Compile/Link         | All functions are compiled and linked into a single design |
+| Unroll/Inline        | After user unroll and inline pragmas are applied           |
+| Performance/Pipeline | After performance and pipeline pragmas are applied         |
+| Optimizations        | After high level synthesis optimizations                   |
++----------------------+------------------------------------------------------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+

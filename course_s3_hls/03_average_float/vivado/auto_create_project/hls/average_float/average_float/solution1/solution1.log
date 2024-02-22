@@ -1,0 +1,60 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1510] Running: set_part xc7z020clg484-2 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg484-2'
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.336 GB.
+INFO: [HLS 200-10] Analyzing design file 'source/average_float.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.14 seconds. CPU system time: 0.3 seconds. Elapsed time: 0.42 seconds; current allocated memory: 1.337 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 57 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 68 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 68 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 79 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-178] Inlining function 'float_sum(float*, int)' into 'average_float(float*, int)' (source/average_float.cpp:25:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'cachebuff.i'
+INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 32 in loop 'anonymous'() has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.35 seconds. CPU system time: 0.28 seconds. Elapsed time: 6.52 seconds; current allocated memory: 1.338 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.338 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.339 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.339 GB.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1' in function 'average_float' automatically.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.360 GB.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_11_1' (source/average_float.cpp:11:19) in function 'average_float' more than one sub loop.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.369 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'average_float' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'average_float_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.370 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.370 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'average_float_Pipeline_VITIS_LOOP_16_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_16_2'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 5, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.

@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER ad9226_sample
+	OPTION supported_peripherals = (ad9226_sample);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = ad9226_sample;
+END DRIVER

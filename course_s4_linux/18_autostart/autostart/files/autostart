@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "Hello PetaLinux World"
+USERHOOK_SD0=/media/sd-mmcblk0p1/autostart.sh
+USERHOOK_SD1=/media/sd-mmcblk1p1/autostart.sh
+if [  -f  $USERHOOK_SD0  ]; then
+	sh  $USERHOOK_SD0  &
+fi
+if [  -f  $USERHOOK_SD1  ]; then
+	sh  $USERHOOK_SD1  &
+fi

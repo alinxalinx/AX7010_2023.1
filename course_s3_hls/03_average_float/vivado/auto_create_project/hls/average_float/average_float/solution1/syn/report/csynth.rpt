@@ -1,0 +1,158 @@
+
+
+================================================================
+== Synthesis Summary Report of 'average_float'
+================================================================
++ General Information: 
+    * Date:           Tue Jan  9 10:50:12 2024
+    * Version:        2023.1 (Build 3854077 on May  4 2023)
+    * Project:        average_float
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg484-2
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+--------+--------+-----------+-----------+-----+
+    |                   Modules                  | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |        |        |           |           |     |
+    |                   & Loops                  | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM  |   DSP  |     FF    |    LUT    | URAM|
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+--------+--------+-----------+-----------+-----+
+    |+ average_float                             |     -|  0.00|        -|          -|         -|        -|     -|        no|  6 (2%)|  3 (1%)|  2653 (2%)|  3349 (6%)|    -|
+    | o VITIS_LOOP_11_1                          |     -|  7.30|        -|          -|         -|        -|     -|        no|       -|       -|          -|          -|    -|
+    |  + average_float_Pipeline_1                |     -|  0.00|        -|          -|         -|        -|     -|        no|       -|       -|  163 (~0%)|  185 (~0%)|    -|
+    |   o Loop 1                                 |     -|  7.30|        -|          -|         2|        1|     -|       yes|       -|       -|          -|          -|    -|
+    |  + average_float_Pipeline_VITIS_LOOP_16_2  |     -|  0.84|      389|  3.890e+03|         -|      389|     -|        no|       -|  3 (1%)|  766 (~0%)|  1324 (2%)|    -|
+    |   o VITIS_LOOP_16_2                        |    II|  7.30|      387|  3.870e+03|        10|        6|    64|       yes|       -|       -|          -|          -|    -|
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+--------+--------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| Interface  | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
+|            | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+| m_axi_gmem | 32 -> 32   | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          | BRAM=4            |
++------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 24     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register  | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL      | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER      | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER    | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR    | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | ap_return | 0x10   | 32    | R      | Data signal of ap_return         |                                                                      |
+| s_axi_control | src_1     | 0x18   | 32    | W      | Data signal of src               |                                                                      |
+| s_axi_control | src_2     | 0x1c   | 32    | W      | Data signal of src               |                                                                      |
+| s_axi_control | num       | 0x24   | 32    | W      | Data signal of num               |                                                                      |
++---------------+-----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| src      | in        | float*   |
+| num      | in        | int      |
+| return   | out       | float    |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+---------------+-----------+----------+-------------------------------------+
+| Argument | HW Interface  | HW Type   | HW Usage | HW Info                             |
++----------+---------------+-----------+----------+-------------------------------------+
+| src      | m_axi_gmem    | interface |          |                                     |
+| src      | s_axi_control | register  | offset   | name=src_1 offset=0x18 range=32     |
+| src      | s_axi_control | register  | offset   | name=src_2 offset=0x1c range=32     |
+| num      | s_axi_control | register  |          | name=num offset=0x24 range=32       |
+| return   | s_axi_control | register  |          | name=ap_return offset=0x10 range=32 |
++----------+---------------+-----------+----------+-------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* Inferred Burst Summary
++--------------+-----------+----------+-------+-----------+
+| HW Interface | Direction | Length   | Width | Loop      |
++--------------+-----------+----------+-------+-----------+
+| m_axi_gmem   | read      | variable | 32    | anonymous |
++--------------+-----------+----------+-------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+| Name                                      | DSP | Pragma | Variable   | Op   | Impl    | Latency |
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+| + average_float                           | 3   |        |            |      |         |         |
+|   sub_ln14_fu_242_p2                      | -   |        | sub_ln14   | sub  | fabric  | 0       |
+|   add_ln14_fu_274_p2                      | -   |        | add_ln14   | add  | fabric  | 0       |
+|   sub_ln14_1_fu_279_p2                    | -   |        | sub_ln14_1 | sub  | fabric  | 0       |
+|   add_ln11_fu_342_p2                      | -   |        | add_ln11   | add  | fabric  | 0       |
+|   add_ln11_1_fu_347_p2                    | -   |        | add_ln11_1 | add  | fabric  | 0       |
+|   ddiv_64ns_64ns_64_31_no_dsp_1_U13       | -   |        | div        | ddiv | fabric  | 30      |
+|  + average_float_Pipeline_1               | 0   |        |            |      |         |         |
+|    empty_fu_106_p2                        | -   |        | empty      | add  | fabric  | 0       |
+|  + average_float_Pipeline_VITIS_LOOP_16_2 | 3   |        |            |      |         |         |
+|    add_ln16_fu_81_p2                      | -   |        | add_ln16   | add  | fabric  | 0       |
+|    dadd_64ns_64ns_64_7_full_dsp_1_U6      | 3   |        | add_i      | dadd | fulldsp | 6       |
++-------------------------------------------+-----+--------+------------+------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++--------------------+------+------+--------+-----------+---------+--------+---------+
+| Name               | BRAM | URAM | Pragma | Variable  | Storage | Impl   | Latency |
++--------------------+------+------+--------+-----------+---------+--------+---------+
+| + average_float    | 6    | 0    |        |           |         |        |         |
+|   cachebuff_fifo_U | 2    | -    |        | cachebuff | fifo    | memory | 0       |
++--------------------+------+------+--------+-----------+---------+--------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------------+----------------------------------------+------------------------------------------------------+
+| Type           | Options                                | Location                                             |
++----------------+----------------------------------------+------------------------------------------------------+
+| stream         | variable=cachebuff depth=64            | source/average_float.cpp:9 in float_sum, cachebuff   |
+| loop_tripcount | min=0 max=1024                         | source/average_float.cpp:13 in float_sum             |
+| pipeline       |                                        | source/average_float.cpp:18 in float_sum             |
+| interface      | m_axi depth=1024 offset=slave port=src | source/average_float.cpp:26 in average_float, src    |
+| interface      | s_axilite port=num                     | source/average_float.cpp:27 in average_float, num    |
+| interface      | s_axilite port=return                  | source/average_float.cpp:28 in average_float, return |
++----------------+----------------------------------------+------------------------------------------------------+
+
+

@@ -1,0 +1,38 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Instructions per Function for each Compilation Phase
++------------------------------------+--------------------+-----------------+---------------+----------------------+---------------+
+| Function                           | Location           | Compile/Link    | Unroll/Inline | Performance/Pipeline | Optimizations |
++------------------------------------+--------------------+-----------------+---------------+----------------------+---------------+
+| + stream2mem                       | stream2mem.cpp:44  | 4,974           | 432           | 263                  | 431           |
+|  + Mat                             | xf_structs.hpp:652 |    41           |               |                      |               |
+|   + init                           | xf_structs.hpp:605 |    28           |               |                      |               |
+|      alloc_data<2, nullptr>        | xf_structs.hpp:493 |     1           |               |                      |               |
+|  + AXIvideo2xfMat<24, 16, 1080,... | xf_infra.hpp:100   |   574           | 181           | 110                  | 157           |
+|     write<2, nullptr>              | xf_structs.hpp:552 |     8           |   3           |                      |               |
+|  + mat2mem<1080, 1920>             | stream2mem.cpp:13  | 4,333           | 223           | 133                  | 232           |
+|     read<2, nullptr>               | xf_structs.hpp:541 |    72 (4 calls) |  12 (4 calls) |                      |               |
+|     writemem                       | stream2mem.cpp:4   |    10           |  38           |  40                  |               |
+|    ~Mat                            | xf_structs.hpp:865 |     1           |               |                      |               |
++------------------------------------+--------------------+-----------------+---------------+----------------------+---------------+
+
+* Description of Compilation Phases
++----------------------+------------------------------------------------------------+
+| Compilation Phase    | Description                                                |
++----------------------+------------------------------------------------------------+
+| Compile/Link         | All functions are compiled and linked into a single design |
+| Unroll/Inline        | After user unroll and inline pragmas are applied           |
+| Performance/Pipeline | After performance and pipeline pragmas are applied         |
+| Optimizations        | After high level synthesis optimizations                   |
++----------------------+------------------------------------------------------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+

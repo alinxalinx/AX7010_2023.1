@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Tue Jan  9 15:45:29 2024
+# Process ID: 270836
+# Current directory: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/07_auto_focus/vivado/auto_create_project/ip/hls/sobel_focus/sobel_focus/solution1/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/07_auto_focus/vivado/auto_create_project/ip/hls/sobel_focus/sobel_focus/solution1/impl/ip/vivado.log
+# Journal file: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/07_auto_focus/vivado/auto_create_project/ip/hls/sobel_focus/sobel_focus/solution1/impl/ip/vivado.jou
+# Running On: alinx-System-Product-Name, OS: Linux, CPU Frequency: 2993.747 MHz, CPU Physical cores: 32, Host memory: 134221 MB
+#-----------------------------------------------------------
+Sourcing tcl script '/home/alinx/Xilinx/Vivado/2023.1/scripts/Vivado_init.tcl'
+445 Beta devices matching pattern found, 86 enabled.
+enable_beta_device: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2329.547 ; gain = 131.902 ; free physical = 21886 ; free virtual = 92665
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/alinx/Xilinx/Vivado/2023.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Jan  9 15:45:42 2024...

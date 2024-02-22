@@ -1,0 +1,165 @@
+
+
+================================================================
+== Vivado HLS Report for 'mult_constant'
+================================================================
+* Date:           Thu Aug  1 16:28:52 2019
+
+* Version:        2017.4 (Build 2086221 on Fri Dec 15 21:13:33 MST 2017)
+* Project:        mult_constant
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.51|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    3|    3|    3|    3|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+
+* FSM state operations: 
+
+ <State 1> : 1.00ns
+ST_1 : Operation 5 [2/2] (1.00ns)   --->   "%constant_V_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %constant_V)"   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 6 [2/2] (0.00ns)   --->   "%empty = call { i32, i4, i4, i1, i1, i1, i1 } @_ssdm_op_Read.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %in_data_data_V, i4* %in_data_keep_V, i4* %in_data_strb_V, i1* %in_data_user_V, i1* %in_data_last_V, i1* %in_data_id_V, i1* %in_data_dest_V)"   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+
+ <State 2> : 1.00ns
+ST_2 : Operation 7 [1/2] (1.00ns)   --->   "%constant_V_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %constant_V)"   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_2 : Operation 8 [1/2] (0.00ns)   --->   "%empty = call { i32, i4, i4, i1, i1, i1, i1 } @_ssdm_op_Read.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %in_data_data_V, i4* %in_data_keep_V, i4* %in_data_strb_V, i1* %in_data_user_V, i1* %in_data_last_V, i1* %in_data_id_V, i1* %in_data_dest_V)"   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%in_data_data_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 0"
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%in_data_keep_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 1"
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%in_data_strb_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 2"
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%in_data_user_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 3"
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%in_data_last_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 4"
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%in_data_id_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 5"
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%in_data_dest_V_tmp = extractvalue { i32, i4, i4, i1, i1, i1, i1 } %empty, 6"
+
+ <State 3> : 8.51ns
+ST_3 : Operation 16 [1/1] (8.51ns)   --->   "%out_data_data_V_tmp = mul i32 %in_data_data_V_tmp, %constant_V_read" [mult_constant/mult_constant.cpp:11]   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 17 [2/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %out_data_data_V, i4* %out_data_keep_V, i4* %out_data_strb_V, i1* %out_data_user_V, i1* %out_data_last_V, i1* %out_data_id_V, i1* %out_data_dest_V, i32 %out_data_data_V_tmp, i4 %in_data_keep_V_tmp, i4 %in_data_strb_V_tmp, i1 %in_data_user_V_tmp, i1 %in_data_last_V_tmp, i1 %in_data_id_V_tmp, i1 %in_data_dest_V_tmp)" [mult_constant/mult_constant.cpp:11]   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+
+ <State 4> : 0.00ns
+ST_4 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %in_data_data_V), !map !43"
+ST_4 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4* %in_data_keep_V), !map !47"
+ST_4 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4* %in_data_strb_V), !map !51"
+ST_4 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_data_user_V), !map !55"
+ST_4 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_data_last_V), !map !59"
+ST_4 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_data_id_V), !map !63"
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_data_dest_V), !map !67"
+ST_4 : Operation 25 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %out_data_data_V), !map !71"
+ST_4 : Operation 26 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4* %out_data_keep_V), !map !75"
+ST_4 : Operation 27 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4* %out_data_strb_V), !map !79"
+ST_4 : Operation 28 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_data_user_V), !map !83"
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_data_last_V), !map !87"
+ST_4 : Operation 30 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_data_id_V), !map !91"
+ST_4 : Operation 31 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_data_dest_V), !map !95"
+ST_4 : Operation 32 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %constant_V), !map !99"
+ST_4 : Operation 33 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([14 x i8]* @mult_constant_str) nounwind"
+ST_4 : Operation 34 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 %constant_V, [10 x i8]* @p_str, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [mult_constant/mult_constant.cpp:7]
+ST_4 : Operation 35 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [mult_constant/mult_constant.cpp:8]
+ST_4 : Operation 36 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %in_data_data_V, i4* %in_data_keep_V, i4* %in_data_strb_V, i1* %in_data_user_V, i1* %in_data_last_V, i1* %in_data_id_V, i1* %in_data_dest_V, [5 x i8]* @p_str3, i32 1, i32 1, [5 x i8]* @p_str4, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [mult_constant/mult_constant.cpp:9]
+ST_4 : Operation 37 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32* %out_data_data_V, i4* %out_data_keep_V, i4* %out_data_strb_V, i1* %out_data_user_V, i1* %out_data_last_V, i1* %out_data_id_V, i1* %out_data_dest_V, [5 x i8]* @p_str3, i32 1, i32 1, [5 x i8]* @p_str4, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind" [mult_constant/mult_constant.cpp:10]
+ST_4 : Operation 38 [1/2] (0.00ns)   --->   "call void @_ssdm_op_Write.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %out_data_data_V, i4* %out_data_keep_V, i4* %out_data_strb_V, i1* %out_data_user_V, i1* %out_data_last_V, i1* %out_data_id_V, i1* %out_data_dest_V, i32 %out_data_data_V_tmp, i4 %in_data_keep_V_tmp, i4 %in_data_strb_V_tmp, i1 %in_data_user_V_tmp, i1 %in_data_last_V_tmp, i1 %in_data_id_V_tmp, i1 %in_data_dest_V_tmp)" [mult_constant/mult_constant.cpp:11]   --->   Core 5 'AXI4Stream' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_4 : Operation 39 [1/1] (0.00ns)   --->   "ret void" [mult_constant/mult_constant.cpp:19]
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1ns
+The critical path consists of the following:
+	s_axi read on port 'constant_V' [16]  (1 ns)
+
+ <State 2>: 1ns
+The critical path consists of the following:
+	s_axi read on port 'constant_V' [16]  (1 ns)
+
+ <State 3>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('out_data_data_V_tmp', mult_constant/mult_constant.cpp:11) [45]  (8.51 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

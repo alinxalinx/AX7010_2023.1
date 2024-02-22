@@ -1,0 +1,185 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+  **** SW Build 3854077 on May  4 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /home/alinx/Xilinx/Vitis_HLS/2023.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/home/alinx/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'alinx' on host 'alinx-System-Product-Name' (Linux_x86_64 version 5.4.0-169-generic) on Tue Jan 09 10:50:03 CST 2024
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float'
+Sourcing Tcl script 'run_hls.tcl'
+INFO: [HLS 200-1510] Running: open_project average_float 
+INFO: [HLS 200-10] Creating and opening project '/media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float'.
+INFO: [HLS 200-1510] Running: set_top average_float 
+INFO: [HLS 200-1510] Running: add_files source/average_float.cpp 
+INFO: [HLS 200-10] Adding design file 'source/average_float.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution solution1 -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening solution '/media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1'.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xc7z020clg484-2 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg484-2'
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.336 GB.
+INFO: [HLS 200-10] Analyzing design file 'source/average_float.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.14 seconds. CPU system time: 0.3 seconds. Elapsed time: 0.42 seconds; current allocated memory: 1.337 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 57 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 68 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 68 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 79 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/03_average_float/vivado/auto_create_project/hls/average_float/average_float/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-178] Inlining function 'float_sum(float*, int)' into 'average_float(float*, int)' (source/average_float.cpp:25:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'cachebuff.i'
+Resolution: For help on HLS 214-142 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-142.html
+INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 32 in loop 'anonymous'() has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.35 seconds. CPU system time: 0.28 seconds. Elapsed time: 6.52 seconds; current allocated memory: 1.338 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.338 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.339 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.339 GB.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2.1' in function 'average_float' automatically.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.360 GB.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_11_1' (source/average_float.cpp:11:19) in function 'average_float' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-960.html
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.369 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'average_float' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'average_float_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.370 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.370 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'average_float_Pipeline_VITIS_LOOP_16_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_16_2'.
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'average_float_Pipeline_VITIS_LOOP_16_2' (loop 'VITIS_LOOP_16_2'): Unable to enforce a carried dependence constraint (II = 5, distance = 1, offset = 0) between 'store' operation ('add5_i_out_write_ln16', source/average_float.cpp:16->source/average_float.cpp:31) of variable 'add_i', source/average_float.cpp:19->source/average_float.cpp:31 on local variable 'add5_i_out' and 'load' operation ('add5_i_out_load', source/average_float.cpp:19->source/average_float.cpp:31) on local variable 'add5_i_out'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 6, Depth = 10, loop 'VITIS_LOOP_16_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.371 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'average_float' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.16 seconds. CPU system time: 0 seconds. Elapsed time: 0.17 seconds; current allocated memory: 1.371 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.31 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'average_float_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'average_float_Pipeline_1' pipeline 'Loop 1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'average_float_Pipeline_1/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'average_float_Pipeline_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.371 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'average_float_Pipeline_VITIS_LOOP_16_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'average_float_Pipeline_VITIS_LOOP_16_2' pipeline 'VITIS_LOOP_16_2' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'dadd_64ns_64ns_64_7_full_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fpext_32ns_64_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'average_float_Pipeline_VITIS_LOOP_16_2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.05 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.372 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'average_float' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'average_float/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'average_float/src' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'average_float/num' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'average_float' to 's_axilite & ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Bundling port 'return', 'src' and 'num' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'ddiv_64ns_64ns_64_31_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'fptrunc_64ns_32_2_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sitodp_32s_64_5_no_dsp_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'average_float'.
+INFO: [RTMG 210-285] Implementing FIFO 'cachebuff_U(average_float_fifo_w32_d64_A)' using Vivado Default RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.374 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0.2 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.21 seconds; current allocated memory: 1.379 GB.
+INFO: [HLS 200-1603] Design has inferred MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.21 seconds. CPU system time: 0 seconds. Elapsed time: 0.22 seconds; current allocated memory: 1.383 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for average_float.
+INFO: [VLOG 209-307] Generating Verilog RTL for average_float.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2.8 seconds. CPU system time: 0.64 seconds. Elapsed time: 8.35 seconds; current allocated memory: 48.258 MB.
+INFO: [HLS 200-1510] Running: export_design -rtl verilog -format ip_catalog 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2023.1 (64-bit)
+  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/alinx/Xilinx/Vivado/2023.1/scripts/Vivado_init.tcl'
+445 Beta devices matching pattern found, 86 enabled.
+enable_beta_device: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2329.586 ; gain = 130.934 ; free physical = 36079 ; free virtual = 106042
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/alinx/Xilinx/Vivado/2023.1/data/ip'.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'average_float_dadd_64ns_64ns_64_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'average_float_dadd_64ns_64ns_64_7_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'average_float_ddiv_64ns_64ns_64_31_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'average_float_ddiv_64ns_64ns_64_31_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'average_float_fpext_32ns_64_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'average_float_fpext_32ns_64_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'average_float_fptrunc_64ns_32_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'average_float_fptrunc_64ns_32_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'average_float_sitodp_32s_64_5_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'average_float_sitodp_32s_64_5_no_dsp_1_ip'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/alinx/Xilinx/Vivado/2023.1/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Jan  9 10:50:33 2024...
+INFO: [HLS 200-802] Generated output file average_float/solution1/impl/export.zip
+INFO: [HLS 200-111] Finished Command export_design CPU user time: 20.51 seconds. CPU system time: 0.5 seconds. Elapsed time: 23.56 seconds; current allocated memory: 5.727 MB.

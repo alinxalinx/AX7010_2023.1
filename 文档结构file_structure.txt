@@ -1,0 +1,81 @@
+
+ZYNQ7000系列板卡中存在有些没有S2,S3,s4,S5,S6教程的其中任何一个或者很多个，那么可能整合到了S1教程中。如果没有找到那我们正在积极的进行补充请耐心等待。
+
+###########################################################################################################################
+AX7XXX板卡压缩包
+   │
+   ├── RSTdocxs/                                          # RST 格式文档教程（GitHub上可以直接浏览）
+   │   │
+   │   ├── 7Z010_S1_RSTdocument /                         # cource_S1_FPGA 教程
+   │   │    │
+   │   │    ├── images/                                   # RST技术文档教程用到的图片
+   │   │    │      └── xx_media/                          # 对应每个章节内的图片   
+   │   │    │
+   │   │    ├── 01_软件包说明和开发板检测_CN.rst          # 章节内容（01表示第一章节；_CN表示中文文档_EN表示英文文档）
+   │   │    └──  .... 
+   │   │   
+   │   ├── 7Z010_S2_RSTdocument                           # cource_S2_Vitis 教程
+   │   ├── 7Z010_S3_RSTdocument                           # cource_S3_HLS 教程
+   │   ├── 7Z010_S4_RSTdocument                           # cource_S4_Linux 教程
+   │   ├── conf.py                                        # sphinx 工具配置文件
+   │   ├── index.rst                                      # sphinx 目录结构配置文件
+   │   └── requirements.txt                               # sphinx 版本配置文件
+   │
+   ├── HTMLdocxs/                                         # html 格式文档教程（解压压缩包后可以在本地网页上进行浏览）   
+   │   │
+   │   ├── AX7xxx教程.html                                # course_s1,course_s2,course_s3,course_s4 教程   
+   │   │       
+   │   └──  ....    
+   │ 
+   ├──  course_s1_fpga/                                   # S1_FPGA demo 实验工程
+   │ 
+   ├──  course_s2_vitis/                                  # S2_Vitis demo 实验工程
+   │ 
+   ├──  course_s3_hls/                                    # S3_HLS demo 实验工程 
+   │ 
+   ├──  course_s4_linux/                                  # S4_Linux demo 实验工程
+   │ 
+   ├──  Hardware/                                         # 硬件资料
+   │   
+   └──  README/                                           # 板卡功能介绍
+
+
+There are some ZYNQ7000 series boards that do not have any one or more of the S2, S3, s4, S5, and S6 tutorials, so they may be integrated into the S1 tutorial. If you don't find it, we are actively adding it. Please wait patiently.
+
+###########################################################################################################################
+AX7XXX board compression package
+   │
+   ├── RSTdocxs/                                                                             # RST format document tutorial (can be browsed directly on GitHub)
+   │   │
+   │   ├── 7Z010_S1_RSTdocument /                                                            # cource_S1_FPGA tutorial
+   │   │    │
+   │   │    ├── images/                                                                      # Pictures used in RST technical documentation tutorials
+   │   │    │ └── xx_media/                                                                  # Corresponding to the pictures in each chapter
+   │   │    │
+   │   │    ├── 01_Software package description and development board detection_CN.rst       # Chapter content (01 means the first chapter; _CN means Chinese document_EN means English document)
+   │   │    └── ....
+   │   │
+   │   ├── 7Z010_S2_RSTdocument                                                              # course_S2_Vitis tutorial
+   │   ├── 7Z010_S3_RSTdocument                                                              # course_S3_HLS tutorial
+   │   ├── 7Z010_S4_RSTdocument                                                              # cource_S4_Linux tutorial
+   │   ├── conf.py                                                                           # sphinx tool configuration file
+   │   ├── index.rst                                                                         # sphinx directory structure configuration file
+   │   └── requirements.txt                                                                  # sphinx version configuration file
+   │
+   ├── HTMLdocxs/                                                                            # html format document tutorial (you can browse the local web page after decompressing the compressed package)
+   │   │
+   │   ├── AX7xxx tutorial.html                                                              # course_s1,course_s2,course_s3,course_s4 tutorial
+   │   │
+   │   └── ....
+   │
+   ├── course_s1_fpga/                                                                       # S1_FPGA demo experimental project
+   │
+   ├── course_s2_vitis/                                                                      # S2_Vitis demo experimental project
+   │
+   ├── course_s3_hls/                                                                        # S3_HLS demo experimental project
+   │
+   ├── course_s4_linux/                                                                      # S4_Linux demo experimental project
+   │
+   ├── Hardware/                                                                             # Hardware information
+   │
+   └── README/                                                                               # Board function introduction

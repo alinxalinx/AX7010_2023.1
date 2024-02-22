@@ -1,0 +1,73 @@
+
+.. image:: images/images_0/88.png  
+
+========================================
+准备工作及注意事项
+========================================
+本教程基于学习者已经熟练使用Vivado和xSDK的情况下编写，不详细讲解Vivado工程建立，xSDK裸机软件编写，中断处理等。HLS要求学习者熟练使用C++，具备一定硬件思维，对硬件流水线、组合逻辑、时序逻辑、FIFO、RAM、AXI总线协议有深刻理解才能学习，免得出现低级错误。
+
+软件环境
+========================================
+本教程基于软件版本 SDx2023.1，这里主要用到的快捷方式图标有：
+
+.. image:: images/images0/image1.png   
+   :align: left
+
+.. image:: images/images0/image2.png   
+   :align: right   
+
+硬件环境
+========================================
+ZYNQ（ALINX芯驿电子科技）开发板一块，双目镜头模块一个。当前支持的型号列表如下：
+
+.. csv-table:: 
+  :header: "开发板型号", "双目模块", "ZYNQ芯片型号","ddr参数兼容型号"
+  :widths: 20, 20, 20, 20
+  
+
+  "AX7010","AN5642","xc7z010clg400-2","MT41J256M16 RE-125"
+  "AX7020","AN5642","xc7z020clg400-2","MT41J256M16 RE-125"
+  "AX7015","AN5642","xc7z015clg485-2","MT41J256M16 RE-125"
+  "AX7Z035","AN5642","xc7z035ffg676-2","MT41J256M16 RE-125"
+  "AX7Z100","AN5642","xc7z100ffg900-2","MT41J256M16 RE-125"
+
+.. image:: images/images0/image3.png   
+   :align: center
+
+AX7020
+
+.. image:: images/images0/image4.png   
+   :align: center  
+
+AX7020正确连接摄像头方式，例程中都是插在J10    
+
+.. image:: images/images0/image5.png   
+   :align: center     
+
+AX7015   
+
+**另外需要自己准备好HDMI显示器一台（支持1080P60）。**
+
+实验工程及目录说明
+========================================
+
+.. csv-table:: 
+  :header: "工程名称", "目录路径", "说明"
+  :widths: 20, 20, 20
+
+
+  "HLS工程","hls","个算法导出的ip由vivado引用"
+  "vivado工程","vivado"," "
+  "vitis工程","vitis","软件程序"
+  "常用ip","vivado/ip/normal","verilog封装ip"
+  
+实验快速复现
+========================================
+1) 连接好jtag接口
+2) 设置启动模式为QSPI启动
+3) 将对应实验SDK工程中文件BOOT.bin拷贝到flash_load_comm目录下
+4) 开发板上电
+
+.. image:: images/images_0/888.png  
+
+*ZYNQ MPSoC开发平台 FPGA教程*    - `Alinx官方网站 <http://www.alinx.com>`_

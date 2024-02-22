@@ -1,0 +1,423 @@
+串口驱动
+=================
+
+串口是常用的外设，和其他mcu通讯、和传感器2G、
+GPS等模块通讯，都经常会选择串口。在Linux系统下也不例外，我们通过串口工具来和开发板进行交互，无疑就是用到了串口。串口有很多电平标准，TTL、232、485等等，但他们的驱动程序都是一样的。在嵌入式Linux系统中，串口被看成终端设备（tty），包括3个结构体：uart_driver、uart_port、uart_ops定义在文件include/serial_core.h中。实现一个uart驱动程序只要实现这3个结构体即可。
+
+uart的驱动一般也是由芯片厂家提供。xilinx提供的uart驱动在drivers/tty/serial/xilinx_uartps.c中。我们只要在设备树中添加相应的串口节点，就可以使用串口外设了。这章就来学习Linux中串口驱动框架，并对xilinx的串口驱动实现稍做了解。
+
+uart驱动框架
+-----------------
+
+1) usb_driver
+
+Linux内核中使用usb_driver来表示，uart_driver包含了串口设备名、串口驱动名、主次设备号等信息，并且包含了tty_driver使得底层串口驱动无需关心tty_driver。
+
+uart_driver 定义在文件include/linux/serial_core.h中，如下：
+
+.. code:: c
+   
+ struct uart_driver {
+ struct module *owner;
+ const char *driver_name;
+ const char *dev_name;
+ int major;
+ int minor;
+ int nr;
+ struct console *cons;
+
+ /*
+ * these are private; the low level driver should not
+ * touch these; they should be initialised to NULL
+ */
+ struct uart_state *state;
+ struct tty_driver *tty_driver;
+ };
+
+onwer一般为THIS_MODULE。
+
+driver_name为驱动名。
+
+dev_name为设备名。
+
+cons为控制台。
+
+定义好uart_driver后使用下面你的函数来向内核注册：
+
++-----------------------------------------------------------------------+
+| int uart_register_driver(struct uart_driver \*drv)                    |
++-----------------------------------------------------------------------+
+
+drv：要注册的 uart_driver。
+
+返回值：0成功，负值失败。
+
+相对的注销uart_driver使用下面的函数：
+
++-----------------------------------------------------------------------+
+| void uart_unregister_driver(struct uart_driver \*drv)                 |
++-----------------------------------------------------------------------+
+
+drv为要注销的uart_driver。
+
+2) uart_prot
+
+uart_port表示一个具体的uart端口，用于描述一个uart端口的I/O端口或I/O内存地址、FIFO大小、端口类型等信息。定义在文件include/linux/serial_core.h中，如下：
+
+.. code:: c
+
+ struct uart_port {
+  spinlock_t lock; /* port lock */
+  unsigned long iobase; /* in/out[bwl] */
+  unsigned char __iomem *membase; /* read/write[bwl] */
+  unsigned int (*serial_in)(struct uart_port *, int);
+  void (*serial_out)(struct uart_port *, int, int);
+  void (*set_termios)(struct uart_port *,
+  struct ktermios *new,
+  struct ktermios *old);
+  unsigned int (*get_mctrl)(struct uart_port *);
+  void (*set_mctrl)(struct uart_port *, unsigned int);
+  int (*startup)(struct uart_port *port);
+  void (*shutdown)(struct uart_port *port);
+  …………
+  const struct uart_ops *ops;
+  unsigned int custom_divisor;
+  unsigned int line; /* port index */
+  unsigned int minor;
+  resource_size_t mapbase; /* for ioremap */
+  resource_size_t mapsize;
+  struct device *dev; /* parent device */
+  unsigned char hub6; /* this should be in the 8250 driver */
+  unsigned char suspended;
+  unsigned char irq_wake;
+  unsigned char unused[2];
+  struct attribute_group *attr_group; /* port specific attributes */
+  const struct attribute_group **tty_groups; /* all attributes (serial core use only) *
+   struct serial_rs485 rs485;
+   void *private_data; /* generic platform data pointer */
+ };
+
+
+其中最主要的就是ops串口驱动操作函数集。urat_port定义后需要和uart_driver关联。使用下面的函数把uart_port添加到uart_driver中：
+
++-----------------------------------------------------------------------+
+| int uart_add_one_port(struct uart_driver \*drv, struct uart_port      |
+| \*uport)                                                              |
++-----------------------------------------------------------------------+
+
+drv：注册目标uart_port对应的uart_driver。
+
+uport：要添加到uart_driver的uart_port。
+
+返回值： 0成功；负值失败。
+
+相对的使用下面的函数把uart_port从uart_driver中删除：
+
++-----------------------------------------------------------------------+
+| int uart_remove_one_port(struct uart_driver \*drv, struct uart_port   |
+| \*uport)                                                              |
++-----------------------------------------------------------------------+
+
+drv：卸载目标uart_port对应的 uart_driver。
+
+uport：要卸载的 uart_port。
+
+返回值： 0成功；负值失败。
+
+3) uart_ops
+
+uart_ops是uart_port中重要的成员，是uart具体驱动函数的集合。内核使用串口收发数据最终都是调用ops中的函数。uart_ops定义在文件include/linux/serial_core.h中，如下：
+
+.. code:: c
+
+ struct uart_ops {
+ unsigned int (*tx_empty)(struct uart_port *);
+ void (*set_mctrl)(struct uart_port *, unsigned int mctrl);
+ unsigned int (*get_mctrl)(struct uart_port *);
+ void (*stop_tx)(struct uart_port *);
+ void (*start_tx)(struct uart_port *);
+ void (*throttle)(struct uart_port *);
+ void (*unthrottle)(struct uart_port *);
+ void (*send_xchar)(struct uart_port *, char ch);
+ void (*stop_rx)(struct uart_port *);
+ void (*enable_ms)(struct uart_port *);
+ void (*break_ctl)(struct uart_port *, int ctl);
+ int (*startup)(struct uart_port *);
+ void (*shutdown)(struct uart_port *);
+ void (*flush_buffer)(struct uart_port *);
+ void (*set_termios)(struct uart_port *, struct ktermios *new,
+ struct ktermios *old);
+ void (*set_ldisc)(struct uart_port *, struct ktermios *);
+ void (*pm)(struct uart_port *, unsigned int state,
+ unsigned int oldstate);
+
+ /*
+ * Return a string describing the type of the port
+ */
+ const char *(*type)(struct uart_port *);
+
+ /*
+ * Release IO and memory resources used by the port.
+ * This includes iounmap if necessary.
+ */
+ void (*release_port)(struct uart_port *);
+
+ /*
+ * Request IO and memory resources used by the port.
+ * This includes iomapping the port if necessary.
+ */
+ int (*request_port)(struct uart_port *);
+ void (*config_port)(struct uart_port *, int);
+ int (*verify_port)(struct uart_port *, struct serial_struct *);
+ int (*ioctl)(struct uart_port *, unsigned int, unsigned long);
+ #ifdef CONFIG_CONSOLE_POLL
+ int (*poll_init)(struct uart_port *);
+ void (*poll_put_char)(struct uart_port *, unsigned char);
+ int (*poll_get_char)(struct uart_port *);
+ #endif
+ };
+
+
+uart_ops中的函数需要底层开发人员去实现，是直接和寄存器打交道的部分。uart_ops结构体中的这些函数的具体含义可以参考文档Documentation/serial/driver。
+
+总结一下，一个串口驱动要完成的主要工作为：
+
+1. 定义uart_driver、uart_ops、uart_port等结构体变量并初始化。
+
+2. 驱动模块加载时使用uart_register_driver()和uart_add_one_port()函数注册uart_driver并添加端口。驱动模块卸载时使用函数uart_unregister_driver()和uart_remove_one_port()来注销uart_driver并移除端口。
+
+3. 根据具体硬件的datasheet实现uart_ops中的成员函数。
+
+然后我们再对应到具体的驱动代码来看。看看xilinx的uart实现。
+
+xilinx的uart驱动
+---------------------
+
+先看看设备树中uart的节点描述，打开文件zynq-7000.dtsi。找到uart相关节点，如下：
+
+.. code:: c
+
+ uart0: serial@e0000000 {
+ compatible = "xlnx,xuartps", "cdns,uart-r1p8";
+ status = "disabled";
+ clocks = <&clkc 23>, <&clkc 40>;
+ clock-names = "uart_clk", "pclk";
+ reg = <0xE0000000 0x1000>;
+ interrupts = <0 27 4>;
+ };
+
+ uart1: serial@e0001000 {
+ compatible = "xlnx,xuartps", "cdns,uart-r1p8";
+ status = "disabled";
+ clocks = <&clkc 24>, <&clkc 41>;
+ clock-names = "uart_clk", "pclk";
+ reg = <0xE0001000 0x1000>;
+ interrupts = <0 50 4>;
+ };
+  
+
+节点中两个uart节点都是ps端的串口，zynq的ps端就只有两路串口，如果需要更多，就需要借助pl端的资源。
+
+首先根据compatible属性找到对应的驱动代码，为文件drivers/tty/serial/xilinx_uartps.c。其中of_device_id如下：
+
+.. code:: c
+
+ /* Match table for of_platform binding */
+ static const struct of_device_id cdns_uart_of_match[] = {
+ { .compatible = "xlnx,xuartps", },
+ { .compatible = "cdns,uart-r1p8", },
+ { .compatible = "cdns,uart-r1p12", .data = &zynqmp_uart_def },
+ { .compatible = "xlnx,zynqmp-uart", .data = &zynqmp_uart_def },
+ {}
+ }; 
+
+在驱动代码xilinx_uartps.c中1614行，会发现如下代码：
+
+.. code:: c
+
+ static struct platform_driver cdns_uart_platform_driver = {
+ .probe = cdns_uart_probe,
+ .remove = cdns_uart_remove,
+ .driver = {
+ .name = CDNS_UART_NAME,
+ .of_match_table = cdns_uart_of_match,
+ .pm = &cdns_uart_dev_pm_ops,
+ },
+ };
+
+
+可见，uart本质上是一个platform驱动。
+
+然后根据前面说的uart框架，来对应到这个驱动代码中去。
+
+1) uart_driver
+
+.. code:: c
+
+ static struct uart_driver cdns_uart_uart_driver = {
+ .owner = THIS_MODULE,
+ .driver_name = CDNS_UART_NAME,
+ .dev_name = CDNS_UART_TTY_NAME,
+ .major = CDNS_UART_MAJOR,
+ .minor = CDNS_UART_MINOR,
+ .nr = CDNS_UART_NR_PORTS,
+ #ifdef CONFIG_SERIAL_XILINX_PS_UART_CONSOLE
+ .cons = &cdns_uart_console,
+ #endif
+ };
+ ……
+ static int __init cdns_uart_init(void)
+ {
+ int retval = 0;
+
+ /* Register the cdns_uart driver with the serial core */
+ retval = uart_register_driver(&cdns_uart_uart_driver);
+ if (retval)
+ return retval;
+ ……
+ return retval;
+ }
+
+ static void __exit cdns_uart_exit(void)
+ {
+ /* Unregister the platform driver */
+ platform_driver_unregister(&cdns_uart_platform_driver);
+ ……
+ }
+ 
+
+可以找到uart_driver类型的变量cdns_uart_uart_driver，并且初始化了。
+
+之后在驱动入口函数和出口函数中，分别有对应的注册和注销方法。
+
+1) uart_port
+
+.. code:: c
+   
+ static struct uart_port cdns_uart_port[CDNS_UART_NR_PORTS];
+
+ /**
+ * cdns_uart_get_port - Configure the port from platform device resource info
+ * @id: Port id
+ *
+ * Return: a pointer to a uart_port or NULL for failure
+ */
+ static struct uart_port *cdns_uart_get_port(int id)
+ {
+ struct uart_port *port;
+
+ /* Try the given port id if failed use default method */
+ if (cdns_uart_port[id].mapbase != 0) {
+ /* Find the next unused port */
+ for (id = 0; id < CDNS_UART_NR_PORTS; id++)
+ if (cdns_uart_port[id].mapbase == 0)
+ break;
+ }
+
+ if (id >= CDNS_UART_NR_PORTS)
+ return NULL;
+
+ port = &cdns_uart_port[id];
+
+ /* At this point, we've got an empty uart_port struct, initialize it */
+ spin_lock_init(&port->lock);
+ port->membase = NULL;
+ port->irq = 0;
+ port->type = PORT_UNKNOWN;
+ port->iotype = UPIO_MEM32;
+ port->flags = UPF_BOOT_AUTOCONF;
+ port->ops = &cdns_uart_ops;
+ port->fifosize = CDNS_UART_FIFO_SIZE;
+ port->line = id;
+ port->dev = NULL;
+ return port;
+ }
+
+ static int cdns_uart_probe(struct platform_device *pdev)
+ {
+ int rc, id, irq;
+ struct uart_port *port;
+ struct resource *res;
+ struct cdns_uart *cdns_uart_data;
+ const struct of_device_id *match;
+ ……
+ /* Look for a serialN alias */
+ id = of_alias_get_id(pdev->dev.of_node, "serial");
+ if (id < 0)
+ id = 0;
+
+ /* Initialize the port structure */
+ port = cdns_uart_get_port(id);
+
+ if (!port) {
+ dev_err(&pdev->dev, "Cannot get uart_port structure\n");
+ rc = -ENODEV;
+ goto err_out_notif_unreg;
+ }
+
+ /*
+ * Register the port.
+ * This function also registers this device with the tty layer
+ * and triggers invocation of the config_port() entry point.
+ */
+ port->mapbase = res->start;
+ port->irq = irq;
+ port->dev = &pdev->dev;
+ port->uartclk = clk_get_rate(cdns_uart_data->uartclk);
+ port->private_data = cdns_uart_data;
+ cdns_uart_data->port = port;
+ platform_set_drvdata(pdev, port);
+
+ ……
+ rc = uart_add_one_port(&cdns_uart_uart_driver, port);
+ if (rc) {
+ dev_err(&pdev->dev,
+ "uart_add_one_port() failed; err=%i\n", rc);
+ goto err_out_pm_disable;
+ }
+
+ ……
+ }
+
+
+
+在程序中，可以找到如上的代码片段，首先定义了uart_port型的数组cdns_uart_port[CDNS_UART_NR_PORTS]。
+
+又实现了函数cdns_uart_get_port来对uart_port实现初始化。
+
+在probe函数中73行(实际源码中1554行)，把uart_port添加到设备驱动结构体的私有数据中，以便于在之后ops函数实现时调用。
+
+同样在probe函数76行(实际源码1561行)，调用uart_add_one_port把uart_port添加到uart_driver中。
+
+1) uart_ops
+
+uart_ops变量定义在1081行，名为cdns_uart_ops，如下：
+
+.. code:: c
+   
+ static const struct uart_ops cdns_uart_ops = {
+ .set_mctrl = cdns_uart_set_mctrl,
+ .get_mctrl = cdns_uart_get_mctrl,
+ .start_tx = cdns_uart_start_tx,
+ .stop_tx = cdns_uart_stop_tx,
+ .stop_rx = cdns_uart_stop_rx,
+ .tx_empty = cdns_uart_tx_empty,
+ .break_ctl = cdns_uart_break_ctl,
+ .set_termios = cdns_uart_set_termios,
+ .startup = cdns_uart_startup,
+ .shutdown = cdns_uart_shutdown,
+ .pm = cdns_uart_pm,
+ .type = cdns_uart_type,
+ .verify_port = cdns_uart_verify_port,
+ .request_port = cdns_uart_request_port,
+ .release_port = cdns_uart_release_port,
+ .config_port = cdns_uart_config_port,
+ #ifdef CONFIG_CONSOLE_POLL
+ .poll_get_char = cdns_uart_poll_get_char,
+ .poll_put_char = cdns_uart_poll_put_char,
+ #endif
+ };
+
+在1112行的uart_port初始化函数中，其中的ops就是赋值为cdns_uart_ops。
+
+cdns_uart_ops中的函数，也就是uart具体的驱动函数了。

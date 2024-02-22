@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PL的”Hello World”LED实验 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S1_RSTdocument_CN/05_PL的_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Vivado下PLL实验" href="06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html" />
+    <link rel="prev" title="Verilog基础模块介绍" href="04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/02_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B0%E5%86%99%E6%B3%95_CN.html">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S6_RSTdocument_CN/25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S1_RSTdocument_CN/05_PL的_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PL的”Hello World”LED实验</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#led">LED硬件介绍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vivado">创建Vivado工程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verilog-hdlled">创建Verilog HDL文件点亮LED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">添加管脚约束</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">添加时序约束</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit">生成BIT文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Vivado仿真</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">下载</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">在线调试</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ila-ip">添加ILA IP核</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-debug">MARK DEBUG</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">实验总结</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="pl-hello-world-led">
+<h1>PL的”Hello World”LED实验<a class="headerlink" href="#pl-hello-world-led" title="此标题的永久链接">#</a></h1>
+<p><strong>实验Vivado工程为“led”。</strong></p>
+<p>对于ZYNQ来说PL（FPGA）开发是至关重要的，这也是ZYNQ比其他ARM的有优势的地方，可以定制化很多ARM端的外设，在定制ARM端的外设之前先让我们通过一个LED例程来熟悉PL（FPGA）的开发流程，熟悉Vivado软件的基本操作，这个开发流程和不带ARM的FPGA芯片完全一致。</p>
+<p>在本例程中，我们要做的是LED灯控制实验，每秒钟控制开发板上的LED灯翻转一次，实现亮、灭、亮、灭的控制。会控制LED灯，其它外设也慢慢就会了。</p>
+<section id="led">
+<h2>LED硬件介绍<a class="headerlink" href="#led" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>开发板的PL部分连接了4个红色的用户LED灯。这4个灯完全由PL控制。</p></li>
+</ol>
+<img alt="../_images/image115.png" src="../_images/image115.png" />
+<ol class="arabic simple" start="2">
+<li><p>我们可以根据原理图的连线关系确定LED和PL管脚的绑定关系。</p></li>
+</ol>
+<img alt="../_images/image213.png" src="../_images/image213.png" />
+<p>对应的管脚信息</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>原理图中以PS_MIO开头的IO都是PS端IO，不需要绑定，也不能绑定</strong></p></li>
+</ol>
+<img alt="../_images/image313.png" src="../_images/image313.png" />
+</section>
+<section id="vivado">
+<h2>创建Vivado工程<a class="headerlink" href="#vivado" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>启动Vivado，在Windows中可以通过双击Vivado快捷方式启动</p></li>
+</ol>
+<img alt="../_images/image410.png" src="../_images/image410.png" />
+<ol class="arabic simple" start="2">
+<li><p>在Vivado开发环境里点击“Create New Project”，创建一个新的工程。</p></li>
+</ol>
+<img alt="../_images/image56.png" src="../_images/image56.png" />
+<ol class="arabic simple" start="3">
+<li><p>弹出一个建立新工程的向导，点击“Next”</p></li>
+</ol>
+<img alt="../_images/image64.png" src="../_images/image64.png" />
+<ol class="arabic simple" start="4">
+<li><p>在弹出的对话框中输入工程名和工程存放的目录，我们这里取一个led的工程名。需要注意工程路径“Project location”不能有中文空格，路径名称也不能太长。</p></li>
+</ol>
+<img alt="../_images/image74.png" src="../_images/image74.png" />
+<ol class="arabic simple" start="5">
+<li><p>在工程类型中选择“RTL Project”</p></li>
+</ol>
+<img alt="../_images/image84.png" src="../_images/image84.png" />
+<ol class="arabic simple" start="6">
+<li><p>目标语言“Target language”选择“Verilog”，虽然选择Verilog，但VHDL也可以使用，支持多语言混合编程。</p></li>
+</ol>
+<img alt="../_images/image94.png" src="../_images/image94.png" />
+<ol class="arabic simple" start="7">
+<li><p>点击“Next”，不添加任何文件</p></li>
+</ol>
+<img alt="../_images/image104.png" src="../_images/image104.png" />
+<ol class="arabic simple" start="8">
+<li><p>在“Part”选项中，器件家族“Family”选择“Zynq-7000”，AX7020开发板封装类型“Package”选择“clg400”,Speed选择”-2”减少选择范围。在下拉列表中选择“xc7z020clg400-2”,“-2”表示速率等级，数字越大，性能越好，速率高的芯片向下兼容速率低的芯片。</p></li>
+</ol>
+<img alt="../_images/image116.png" src="../_images/image116.png" />
+<p>AX7010开发板选择型号“xc7z010clg400-1”</p>
+<img alt="../_images/image124.png" src="../_images/image124.png" />
+<ol class="arabic simple" start="9">
+<li><p>点击“Finish”就可以完成以后名为“led”工程的创建。</p></li>
+</ol>
+<img alt="../_images/image134.png" src="../_images/image134.png" />
+<ol class="arabic simple" start="10">
+<li><p>Vivado软件界面</p></li>
+</ol>
+<img alt="../_images/image143.png" src="../_images/image143.png" />
+</section>
+<section id="verilog-hdlled">
+<h2>创建Verilog HDL文件点亮LED<a class="headerlink" href="#verilog-hdlled" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>点击Project Manager下的Add Sources图标（或者使用快捷键Alt+A）</p></li>
+</ol>
+<img alt="../_images/image153.png" src="../_images/image153.png" />
+<ol class="arabic simple" start="2">
+<li><p>选择添加或创建设计源文件“Add or create design sources”,点击“Next”</p></li>
+</ol>
+<img alt="../_images/image163.png" src="../_images/image163.png" />
+<ol class="arabic simple" start="3">
+<li><p>选择创建文件“Create File”</p></li>
+</ol>
+<img alt="../_images/image172.png" src="../_images/image172.png" />
+<ol class="arabic simple" start="4">
+<li><p>文件名“File name”设置为“led”，点击“OK”</p></li>
+</ol>
+<img alt="../_images/image182.png" src="../_images/image182.png" />
+<ol class="arabic simple" start="5">
+<li><p>点击“Finish”,完成“led.v”文件添加</p></li>
+</ol>
+<img alt="../_images/image192.png" src="../_images/image192.png" />
+<ol class="arabic simple" start="6">
+<li><p>在弹出的模块定义“Define Module”,中可以指定“led.v”文件的模块名称“Module name”,这里默认不变为“led”，还可以指定一些端口，这里暂时不指定，点击“OK”。</p></li>
+</ol>
+<img alt="../_images/image202.png" src="../_images/image202.png" />
+<ol class="arabic simple" start="7">
+<li><p>在弹出的对话框中选择“Yes”</p></li>
+</ol>
+<img alt="../_images/image214.png" src="../_images/image214.png" />
+<ol class="arabic simple" start="8">
+<li><p>双击“led.v”可以打开文件，然后编辑</p></li>
+</ol>
+<img alt="../_images/image223.png" src="../_images/image223.png" />
+<ol class="arabic simple" start="9">
+<li><p>编写“led.v”,这里定义了一个32位的寄存器timer, 用于循环计数0~49999999(1秒钟), 计数到49999999(1秒)的时候, 寄存器timer变为0，并翻转四个LED。这样原来LED是灭的话，就会点亮，如果原来LED为亮的话，就会熄灭。编写好后的代码如下：</p></li>
+</ol>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="no">`timescale</span><span class="w"> </span><span class="mh">1</span><span class="n">ns</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mh">1</span><span class="n">ps</span>
+<span class="k">module</span><span class="w"> </span><span class="n">led</span><span class="p">(</span>
+<span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">sys_clk</span><span class="p">,</span>
+<span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">led</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="kt">reg</span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">timer_cnt</span><span class="p">;</span>
+<span class="k">always</span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">sys_clk</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">timer_cnt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d49</span><span class="n">_999_999</span><span class="p">)</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="n">led</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">~</span><span class="n">led</span><span class="p">;</span>
+<span class="w">        </span><span class="n">timer_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="n">led</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+<span class="w">        </span><span class="n">timer_cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">timer_cnt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">end</span>
+
+<span class="k">end</span>
+<span class="k">endmodule</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>编写好代码后保存</p></li>
+</ol>
+</section>
+<section id="id1">
+<h2>添加管脚约束<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>Vivado使用的约束文件格式为xdc文件。xdc文件里主要是完成管脚的约束,时钟的约束,以及组的约束。这里我们需要对led.v程序中的输入输出端口分配到FPGA的真实管脚上。</p>
+<ol class="arabic simple">
+<li><p>点击“Open Elaborated Design”</p></li>
+</ol>
+<img alt="../_images/image232.png" src="../_images/image232.png" />
+<ol class="arabic simple" start="2">
+<li><p>在弹出的窗口中点击“OK”按钮</p></li>
+</ol>
+<img alt="../_images/image242.png" src="../_images/image242.png" />
+<ol class="arabic simple" start="3">
+<li><p>在菜单中选择“Window -&gt; I/O Ports”</p></li>
+</ol>
+<img alt="../_images/image252.png" src="../_images/image252.png" />
+<ol class="arabic simple" start="4">
+<li><p>在弹出的I/O Ports中可以看到管脚分配情况</p></li>
+</ol>
+<img alt="../_images/image262.png" src="../_images/image262.png" />
+<ol class="arabic simple" start="5">
+<li><p>将复位信号rst_n绑定到PL端的按键，给LED和时钟分配管脚、电平标准，完成后点击保存图标</p></li>
+</ol>
+<img alt="../_images/image272.png" src="../_images/image272.png" />
+<ol class="arabic simple" start="6">
+<li><p>弹出窗口，要求保存约束文件，文件名我们填写“led”，文件类型默认“XDC”，点击“OK”</p></li>
+</ol>
+<img alt="../_images/image282.png" src="../_images/image282.png" />
+<ol class="arabic simple" start="7">
+<li><p>打开刚才生成的“led.xdc”文件，我们可以看到是一个TCL脚本，如果我们了解这些语法，完全可以通过自己编写led.xdc文件的方式来约束管脚</p></li>
+</ol>
+<img alt="../_images/image292.png" src="../_images/image292.png" />
+<p>下面来介绍一下最基本的XDC编写的语法，普通IO口只需约束引脚号和电压，管脚约束如下：</p>
+<p><strong>set_property PACKAGE_PIN “引脚编号” [get_ports “端口名称”]</strong></p>
+<p>电平信号的约束如下：</p>
+<p><strong>set_property IOSTANDARD “电平标准” [get_ports “端口名称”]</strong></p>
+<p>这里需要注意文字的大小写，端口名称是数组的话用{
+}刮起来，端口名称必须和源代码中的名字一致，且端口名字不能和关键字一样。</p>
+<p>电平标准中“LVCMOS33”后面的数字指FPGA的BANK电压，LED所在BANK电压为3.3伏，所以电平标准为“LVCMOS33”。<strong>Vivado默认要求为所有IO分配正确的电平标准和管脚编号</strong>。</p>
+</section>
+<section id="id2">
+<h2>添加时序约束<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>一个FPGA设计除了管脚分配以外，还有一个重要的约束，那就是时序约束，这里通过向导方式演示如果进行一个时序约束。</p>
+<ol class="arabic simple">
+<li><p>点击“Run Synthesis”开始综合</p></li>
+</ol>
+<img alt="../_images/image302.png" src="../_images/image302.png" />
+<ol class="arabic simple" start="2">
+<li><p>弹出对话框点击“OK”</p></li>
+</ol>
+<img alt="../_images/image314.png" src="../_images/image314.png" />
+<ol class="arabic simple" start="3">
+<li><p>综合完成以后点击“Cancel”</p></li>
+</ol>
+<img alt="../_images/image323.png" src="../_images/image323.png" />
+<ol class="arabic simple" start="4">
+<li><p>点击“Constraints Wizard”</p></li>
+</ol>
+<img alt="../_images/image332.png" src="../_images/image332.png" />
+<ol class="arabic simple" start="5">
+<li><p>在弹出的窗口中点击“Next”</p></li>
+</ol>
+<img alt="../_images/image342.png" src="../_images/image342.png" />
+<ol class="arabic simple" start="6">
+<li><p>时序约束向导分析出设计中的时钟，这里把“sys_clk”频率设置为50Mhz，然后点击“Skip to Finish”结束时序约束向导。</p></li>
+</ol>
+<img alt="../_images/image352.png" src="../_images/image352.png" />
+<ol class="arabic simple" start="7">
+<li><p>弹出的窗口中点击“OK”</p></li>
+</ol>
+<img alt="../_images/image362.png" src="../_images/image362.png" />
+<ol class="arabic simple" start="8">
+<li><p>点击“Finish”</p></li>
+</ol>
+<img alt="../_images/image372.png" src="../_images/image372.png" />
+<ol class="arabic simple" start="9">
+<li><p>这个时候led.xdc文件已经更新，点击“Reload”重新加载文件，并保存文件</p></li>
+</ol>
+<img alt="../_images/image382.png" src="../_images/image382.png" />
+</section>
+<section id="bit">
+<h2>生成BIT文件<a class="headerlink" href="#bit" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>编译的过程可以细分为综合、布局布线、生成bit文件等，这里我们直接点击“Generate Bitstream”,直接生成bit文件。</p></li>
+</ol>
+<img alt="../_images/image392.png" src="../_images/image392.png" />
+<ol class="arabic simple" start="2">
+<li><p>在弹出的对话框中可以选择任务数量，这里和CPU核心数有关，一般数字越大，编译越快，点击“OK”</p></li>
+</ol>
+<img alt="../_images/image402.png" src="../_images/image402.png" />
+<ol class="arabic simple" start="3">
+<li><p>这个时候开始编译，可以看到右上角有个状态信息，在编译过程中可能会被杀毒软件、电脑管家拦截运行，导致无法编译或很长时间没有编译成功。</p></li>
+</ol>
+<img alt="../_images/image413.png" src="../_images/image413.png" />
+<ol class="arabic simple" start="4">
+<li><p>编译中没有任何错误，编译完成，弹出一个对话框让我们选择后续操作，可以选择“Open Hardware Manger”，当然，也可以选择“Cancel”，我们这里选择 “Cancel”，先不下载。</p></li>
+</ol>
+<img alt="../_images/image423.png" src="../_images/image423.png" />
+</section>
+<section id="id3">
+<h2>Vivado仿真<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>接下来我们不妨小试牛刀，利用Vivado自带的仿真工具来输出波形验证流水灯程序设计结果和我们的预想是否一致（注意：在生成bit文件之前也可以仿真）。具体步骤如下：</p>
+<ol class="arabic simple">
+<li><p>设置Vivado的仿真配置，右击SIMULATION中Simulation Settings。</p></li>
+</ol>
+<img alt="../_images/image432.png" src="../_images/image432.png" />
+<ol class="arabic simple" start="2">
+<li><p>在Simulation Settings窗口中进行如下图来配置，这里设置成50ms（根据需要自行设定）,其它按默认设置，单击OK完成。</p></li>
+</ol>
+<img alt="../_images/image442.png" src="../_images/image442.png" />
+<ol class="arabic simple" start="3">
+<li><p>添加激励测试文件，点击Project Manager下的Add Sources图标,按下图设置后单击Next。</p></li>
+</ol>
+<img alt="../_images/image452.png" src="../_images/image452.png" />
+<ol class="arabic simple" start="4">
+<li><p>点击Create File生成仿真激励文件。</p></li>
+</ol>
+<img alt="../_images/image462.png" src="../_images/image462.png" />
+<p>在弹出的对话框中输入激励文件的名字，这里我们输入名为vtf_led_test。</p>
+<img alt="../_images/image472.png" src="../_images/image472.png" />
+<ol class="arabic simple" start="5">
+<li><p>点击Finish按钮返回。</p></li>
+</ol>
+<img alt="../_images/image482.png" src="../_images/image482.png" />
+<p>这里我们先不添加IO Ports，点击OK。</p>
+<img alt="../_images/image492.png" src="../_images/image492.png" />
+<p>在Simulation Sources目录下多了一个刚才添加的vtf_led_test文件。双击打开这个文件，可以看到里面只有module名的定义，其它都没有。</p>
+<img alt="../_images/image501.png" src="../_images/image501.png" />
+<ol class="arabic simple" start="6">
+<li><p>接下去我们需要编写这个vtf_led_test.v文件的内容。首先定义输入和输出信号，然后需要实例化led_test模块，让led_test程序作为本测试程序的一部分。再添加复位和时钟的激励。完成后的vtf_led_test.v文件如下：</p></li>
+</ol>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="no">`timescale</span><span class="w"> </span><span class="mh">1</span><span class="n">ns</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mh">1</span><span class="n">ps</span>
+<span class="c1">//////////////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// Module Name: vtf_led_test</span>
+<span class="c1">//////////////////////////////////////////////////////////////////////////////////</span>
+
+<span class="k">module</span><span class="w"> </span><span class="n">vtf_led_test</span><span class="p">;</span>
+<span class="c1">// Inputs</span>
+<span class="kt">reg</span><span class="w"> </span><span class="n">sys_clk</span><span class="p">;</span>
+<span class="kt">reg</span><span class="w"> </span><span class="n">rst_n</span><span class="w"> </span><span class="p">;</span>
+<span class="c1">// Outputs</span>
+<span class="kt">wire</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+
+<span class="c1">// Instantiate the Unit Under Test (UUT)</span>
+<span class="n">led</span><span class="w"> </span><span class="n">uut</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sys_clk</span><span class="p">(</span><span class="n">sys_clk</span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">rst_n</span><span class="p">(</span><span class="n">rst_n</span><span class="p">),</span>
+<span class="w">    </span><span class="p">.</span><span class="n">led</span><span class="p">(</span><span class="n">led</span><span class="p">)</span>
+<span class="w"> </span><span class="p">);</span>
+
+<span class="k">initial</span>
+<span class="k">begin</span>
+<span class="c1">// Initialize Inputs</span>
+<span class="w">    </span><span class="n">sys_clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">rst_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">#</span><span class="mh">1000</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="n">rst_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="c1">//Create clock</span>
+<span class="k">always</span><span class="w"> </span><span class="p">#</span><span class="mh">10</span><span class="w"> </span><span class="n">sys_clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sys_clk</span><span class="p">;</span>
+
+<span class="k">endmodule</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>编写好后保存，vtf_led_test.v自动成了这个仿真Hierarchy的顶层了，它下面是设计文件led_test.v。</p></li>
+</ol>
+<img alt="../_images/image512.png" src="../_images/image512.png" />
+<ol class="arabic simple" start="8">
+<li><p>点击Run Simulation按钮，再选择Run Behavioral Simulation。这里我们做一下行为级的仿真就可以了。</p></li>
+</ol>
+<img alt="../_images/image522.png" src="../_images/image522.png" />
+<p>如果没有错误，Vivado中的仿真软件开始工作了。</p>
+<ol class="arabic simple" start="10">
+<li><p>在弹出仿真界面后如下图，界面是仿真软件自动运行到仿真设置的50ms的波形。</p></li>
+</ol>
+<img alt="../_images/image532.png" src="../_images/image532.png" />
+<p>由于LED[3：0]在程序中设计的状态变化时间长，而仿真又比较耗时，在这里观测timer[31:0]计数器变化。把它放到Wave中观察(点击Scope界面下的uut， 再右键选择Objects界面下的timer， 在弹出的下拉菜单里选择Add Wave Window)。</p>
+<img alt="../_images/image541.png" src="../_images/image541.png" />
+<p>添加后timer显示在Wave的波形界面上，如下图所示。</p>
+<img alt="../_images/image551.png" src="../_images/image551.png" />
+<ol class="arabic simple" start="11">
+<li><p>点击如下标注的Restart按钮复位一下，再点击Run All按钮。（需要耐心！！！），可以看到仿真波形与设计相符。（注意：仿真的时间越长，仿真的波形文件占用的磁盘空间越大，波形文件在工程目录的xx.sim文件夹）</p></li>
+</ol>
+<img alt="../_images/image561.png" src="../_images/image561.png" />
+<img alt="../_images/image57.png" src="../_images/image57.png" />
+<p>我们可以看到led的信号会变成F，说明LED1~LED4灯同时变亮。</p>
+</section>
+<section id="id4">
+<h2>下载<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<ol class="arabic simple">
+<li><p>连接好开发板的JTAG接口，给开发板上电</p></li>
+<li><p>在“HARDWARE MANAGER”界面点击“Auto Connect”，自动连接设备</p></li>
+</ol>
+<img alt="../_images/image58.png" src="../_images/image58.png" />
+<ol class="arabic simple" start="3">
+<li><p>可以看到JTAG扫描到arm和FPGA内核</p></li>
+</ol>
+<img alt="../_images/image59.png" src="../_images/image59.png" />
+<ol class="arabic simple" start="4">
+<li><p>选择xc7z020_1，右键“Program Device…”</p></li>
+</ol>
+<img alt="../_images/image60.png" src="../_images/image60.png" />
+<ol class="arabic simple" start="5">
+<li><p>在弹出窗口中点击“Program”</p></li>
+</ol>
+<img alt="../_images/image611.png" src="../_images/image611.png" />
+<ol class="arabic simple" start="6">
+<li><p>等待下载</p></li>
+</ol>
+<img alt="../_images/image621.png" src="../_images/image621.png" />
+<ol class="arabic simple" start="7">
+<li><p>下载完成以后，我们可以看到4颗LED开始每秒变化一次。到此为止Vivado简单流程体验完成。后面的章节会介绍如果把程序烧录到Flash，需要PS系统的配合才能完成，只有PL的工程不能直接烧写Flash。在”体验ARM，裸机输出”Hello World”一章的常见问题中有介绍。</p></li>
+</ol>
+</section>
+<section id="id5">
+<h2>在线调试<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>前面介绍了仿真和下载，但仿真并不需要程序烧写到板子，是比较理想化的结果，下面介绍Vivado在线调试方法，观察内部信号的变化。Vivado有内嵌的逻辑分析仪，叫做ILA，可以用于在线观察内部信号的变化，对于调试有很大帮助。在本实验中我们观察timer_cnt和led的信号变化。</p>
+<section id="ila-ip">
+<h3>添加ILA IP核<a class="headerlink" href="#ila-ip" title="此标题的永久链接">#</a></h3>
+<ol class="arabic simple">
+<li><p>点击IP Catalog，在搜索框中搜索ila，双击ILA的IP</p></li>
+</ol>
+<img alt="../_images/image631.png" src="../_images/image631.png" />
+<ol class="arabic simple" start="2">
+<li><p>修改名称为ila，由于要采样两个信号，Probes的数量设置为2，Sample Data Depth指的是采样深度，设置的越高，采集的信号越多，同样消耗的资源也会越多。</p></li>
+</ol>
+<img alt="../_images/image641.png" src="../_images/image641.png" />
+<ol class="arabic simple" start="3">
+<li><p>在Probe_Ports页面，设置Probe的宽度，设置PROBE0位宽为32，用于采样timer_cnt，设置PROBE1位宽为4，用于采样led。点击OK</p></li>
+</ol>
+<img alt="../_images/image65.png" src="../_images/image65.png" />
+<p>弹出界面，选择OK</p>
+<img alt="../_images/image66.png" src="../_images/image66.png" />
+<p>再如下设置，点击Generate</p>
+<img alt="../_images/image67.png" src="../_images/image67.png" />
+<ol class="arabic simple" start="4">
+<li><p>在led.v中例化ila，并保存</p></li>
+</ol>
+<img alt="../_images/image68.png" src="../_images/image68.png" />
+<ol class="arabic simple" start="5">
+<li><p>重新生成Bitstream</p></li>
+</ol>
+<img alt="../_images/image69.png" src="../_images/image69.png" />
+<ol class="arabic simple" start="6">
+<li><p>下载程序</p></li>
+</ol>
+<img alt="../_images/image60.png" src="../_images/image60.png" />
+<p>这时候看到有bit和ltx文件，点击program</p>
+<img alt="../_images/image70.png" src="../_images/image70.png" />
+<ol class="arabic simple" start="7">
+<li><p>此时弹出在线调试窗口，出现了我们添加的信号</p></li>
+</ol>
+<img alt="../_images/image711.png" src="../_images/image711.png" />
+<p>点击运行按钮，出现信号的数据</p>
+<img alt="../_images/image721.png" src="../_images/image721.png" />
+<p>也可以触发采集，在Trigger Setup窗口点击“+”，深度选择timer_cnt信号</p>
+<img alt="../_images/image731.png" src="../_images/image731.png" />
+<p>将Radix改为U，也就是十进制，在Value中设置为49999999，也就是timer_cnt计数的最大值</p>
+<img alt="../_images/image741.png" src="../_images/image741.png" />
+<p>再次点击运行，即可以看到触发成功，此时timer_cnt显示为十六进制，而led也在此时翻转。</p>
+<img alt="../_images/image75.png" src="../_images/image75.png" />
+</section>
+<section id="mark-debug">
+<h3>MARK DEBUG<a class="headerlink" href="#mark-debug" title="此标题的永久链接">#</a></h3>
+<p>上面介绍了添加ILA IP的方式在线调试，下面介绍在代码中添加综合属性，实现在线调试。</p>
+<ol class="arabic simple">
+<li><p>首先打开led.v，将ila的例化部分注释掉</p></li>
+</ol>
+<img alt="../_images/image76.png" src="../_images/image76.png" />
+<ol class="arabic simple" start="2">
+<li><p>在led和timer_cnt的定义前面添加(* MARK_DEBUG=”true” *)，保存文件。</p></li>
+</ol>
+<img alt="../_images/image77.png" src="../_images/image77.png" />
+<ol class="arabic simple" start="3">
+<li><p>点击综合</p></li>
+</ol>
+<img alt="../_images/image78.png" src="../_images/image78.png" />
+<ol class="arabic simple" start="4">
+<li><p>综合结束后，点击Set Up Debug</p></li>
+</ol>
+<img alt="../_images/image79.png" src="../_images/image79.png" />
+<ol class="arabic simple" start="5">
+<li><p>弹出的窗口点击Next</p></li>
+</ol>
+<img alt="../_images/image80.png" src="../_images/image80.png" />
+<p>按照默认点击Next</p>
+<img alt="../_images/image811.png" src="../_images/image811.png" />
+<p>采样深度窗口，选择Next</p>
+<img alt="../_images/image821.png" src="../_images/image821.png" />
+<p>点击Finish</p>
+<img alt="../_images/image831.png" src="../_images/image831.png" />
+<p>点击保存</p>
+<img alt="../_images/image841.png" src="../_images/image841.png" />
+<p>在xdc文件中即可看到添加的ila核约束</p>
+<img alt="../_images/image85.png" src="../_images/image85.png" />
+<ol class="arabic simple" start="5">
+<li><p>重新生成bitstream</p></li>
+</ol>
+<img alt="../_images/image86.png" src="../_images/image86.png" />
+<ol class="arabic simple" start="6">
+<li><p>调试方法与前面一样，不再赘述。</p></li>
+</ol>
+</section>
+</section>
+<section id="id6">
+<h2>实验总结<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>本章节介绍了如何在PL端开发程序，包括工程建立，约束，仿真，在线调试等方法，在后续的代码开发方式中皆可参考此方法。</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">Verilog基础模块介绍</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">Vivado下PLL实验</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#led">LED硬件介绍</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vivado">创建Vivado工程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verilog-hdlled">创建Verilog HDL文件点亮LED</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">添加管脚约束</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">添加时序约束</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bit">生成BIT文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Vivado仿真</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">下载</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">在线调试</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ila-ip">添加ILA IP核</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-debug">MARK DEBUG</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">实验总结</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

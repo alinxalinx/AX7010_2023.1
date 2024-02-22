@@ -1,0 +1,393 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+Tool Version Limit: 2023.05
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+==============================================================
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1510] Running: set_part xc7z020clg484-2 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg484-2'
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.336 GB.
+INFO: [HLS 200-10] Analyzing design file 'source/mem2stream.cpp' ... 
+WARNING: [HLS 207-5533] 'factor' in '#pragma HLS array_reshape' is ignored (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_video_mem.hpp:759:47)
+WARNING: [HLS 207-5544] Invalid variable in '#pragma HLS stream': expect variable to have 'hls::stream or array' type (source/mem2stream.cpp:77:50)
+WARNING: [HLS 214-110] As the loop bound is not a constant or function argument, the compiler may not successfully process the dataflow loop (source/mem2stream.cpp:38:38)
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (source/mem2stream.cpp:42:20)
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (source/mem2stream.cpp:42:45)
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (source/mem2stream.cpp:42:57)
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (source/mem2stream.cpp:42:68)
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region (source/mem2stream.cpp:41:9)
+WARNING: [HLS 200-471] Dataflow form checks found 6 issue(s) in file source/mem2stream.cpp
+WARNING: [HLS 207-4074] variable templates are a C++14 extension (/home/alinx/Xilinx/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h:51:45)
+WARNING: [HLS 207-4074] variable templates are a C++14 extension (/home/alinx/Xilinx/Vitis_HLS/2023.1/common/technology/autopilot/ap_axi_sdata.h:61:23)
+WARNING: [HLS 207-5292] unused parameter 'src' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:517:30)
+WARNING: [HLS 207-5292] unused parameter '_data' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:528:30)
+WARNING: [HLS 207-5292] unused parameter 'index' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:541:14)
+WARNING: [HLS 207-5292] unused parameter 'index' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:552:20)
+WARNING: [HLS 207-5292] unused parameter 'stride' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:1036:41)
+WARNING: [HLS 207-5292] unused parameter 'index' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:1224:102)
+WARNING: [HLS 207-5292] unused parameter 'index' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:1530:34)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 2.69 seconds. CPU system time: 0.31 seconds. Elapsed time: 3 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 1,247 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/mem2stream/mem2stream/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 325 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/mem2stream/mem2stream/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 212 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/mem2stream/mem2stream/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 275 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /media/alinx/nvme4t/yang/course_s3_tcl/ax7010/08_edge_detector/vivado/auto_create_project/ip/hls/mem2stream/mem2stream/solution1/syn/report/csynth_design_size.rpt
+WARNING: [HLS 214-273] In function 'xf::cv::Mat<16, 1080, 1920, 1, 2>::Mat()', Pragma conflict happens on 'INLINE' and DATAFLOW pragmas: Inline into dataflow region may break the canonical form (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:652:0)
+WARNING: [HLS 214-273] In function 'xf::cv::Mat<16, 1080, 1920, 1, 2>::init(int, int, bool)', Pragma conflict happens on 'INLINE' and DATAFLOW pragmas: Inline into dataflow region may break the canonical form (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:605:0)
+INFO: [HLS 214-131] Inlining function 'xf::cv::Mat<16, 1080, 1920, 1, 2>::init(int, int, bool)' into 'xf::cv::Mat<16, 1080, 1920, 1, 2>::Mat()' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_structs.hpp:657:2)
+INFO: [HLS 214-131] Inlining function 'xf::cv::Mat<16, 1080, 1920, 1, 2>::Mat()' into 'mem2stream(hls::stream<hls::axis<ap_uint<24>, 1ul, 1ul, 1ul>, 0>&, unsigned int*, int, int, int*, int, int&)' (source/mem2stream.cpp:76:42)
+WARNING: [HLS 214-386] A depth specification is required for MAXI interface port 'pMemPort' for cosimulation. (source/mem2stream.cpp:67:0)
+INFO: [HLS 214-178] Inlining function 'void xf::cv::Mat<16, 1080, 1920, 1, 2>::write<2, (void*)0>(int, ap_uint<24>)' into 'void mem2mat<1080, 1920>(xf::cv::Mat<16, 1080, 1920, 1, 2>&, unsigned int*, int*, int, int&)' (source/mem2stream.cpp:27:0)
+INFO: [HLS 214-178] Inlining function 'ap_uint<24> xf::cv::Mat<16, 1080, 1920, 1, 2>::read<2, (void*)0>(int)' into 'int xf::cv::xfMat2AXIvideo<24, 16, 1080, 1920, 1, 2>(xf::cv::Mat<16, 1080, 1920, 1, 2>&, hls::stream<hls::axis<ap_uint<24>, 1ul, 1ul, 1ul>, 0>&)' (/media/alinx/nvme4t/yang/Vitis_Libraries-main/vision/L1/include/common/xf_infra.hpp:181:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'cacheBuff'
+INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 32 in loop 'anonymous'() has been inferred on bundle 'gmem'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1.65 seconds. CPU system time: 0.21 seconds. Elapsed time: 6.67 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.342 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 1.343 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.01 seconds. CPU system time: 0 seconds. Elapsed time: 0.01 seconds; current allocated memory: 1.343 GB.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2' in function 'readmem' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3' in function 'readmem' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'VITIS_LOOP_43_2' (source/mem2stream.cpp:43) in function 'dataflow_in_loop_VITIS_LOOP_38_1.1' automatically.
+WARNING: [XFORM 203-561] Updating loop lower bound from 0 to 1 for loop 'Loop-0' in function 'readmem'.
+WARNING: [XFORM 203-561] Updating loop lower bound from 0 to 1 for loop 'Loop-1' in function 'readmem'.
+INFO: [XFORM 203-721] Changing loop 'Loop_VITIS_LOOP_43_2_proc' (source/mem2stream.cpp:43) to a process function for dataflow in function 'dataflow_in_loop_VITIS_LOOP_38_1.1'.
+INFO: [XFORM 203-712] Applying dataflow to function 'dataflow_in_loop_VITIS_LOOP_38_1.1' (source/mem2stream.cpp:29:2), detected/extracted 3 process function(s): 
+	 'dataflow_in_loop_VITIS_LOOP_38_1.1_Block_newFuncRoot17_proc3'
+	 'readmem4'
+	 'dataflow_in_loop_VITIS_LOOP_38_1.1_Loop_VITIS_LOOP_43_2_proc5'.
+INFO: [XFORM 203-712] Applying dataflow to function 'mem2stream' (source/mem2stream.cpp:66:1), detected/extracted 3 process function(s): 
+	 'Block_entry1_proc'
+	 'mem2mat<1080, 1920>'
+	 'xf::cv::xfMat2AXIvideo<24, 16, 1080, 1920, 1, 2>'.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.365 GB.
+WARNING: [XFORM 203-561] Updating loop lower bound from 12 to 1080 for loop 'VITIS_LOOP_38_1' (source/mem2stream.cpp:40:9) in function 'dataflow_parent_loop_proc'.
+WARNING: [XFORM 203-561] Ignored invalid trip count directive (MIN (= 1080) > AVE (= 546)) for loop 'VITIS_LOOP_38_1' (source/mem2stream.cpp:40:9) in function 'dataflow_parent_loop_proc'.
+WARNING: [HLS 200-1449] Process readmem4 has both a predecessor and reads an input from its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this input via a predecessor process.
+WARNING: [HLS 200-1449] Process dataflow_in_loop_VITIS_LOOP_38_1.1 has both a predecessor and reads an input from its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this input via a predecessor process.
+WARNING: [HLS 200-1450] Process mem2mat<1080, 1920> has both a successor and writes an output to its caller (see the GUI dataflow viewer). This may lead to lower throughput. Consider copying this output via a successor process.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.06 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.461 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mem2stream' ...
+WARNING: [SYN 201-103] Legalizing function name 'dataflow_in_loop_VITIS_LOOP_38_1.1_Block_newFuncRoot17_proc3' to 'dataflow_in_loop_VITIS_LOOP_38_1_1_Block_newFuncRoot17_proc3'.
+WARNING: [SYN 201-103] Legalizing function name 'dataflow_in_loop_VITIS_LOOP_38_1.1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' to 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO'.
+WARNING: [SYN 201-103] Legalizing function name 'dataflow_in_loop_VITIS_LOOP_38_1.1_Loop_VITIS_LOOP_43_2_proc5' to 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5'.
+WARNING: [SYN 201-103] Legalizing function name 'dataflow_in_loop_VITIS_LOOP_38_1.1' to 'dataflow_in_loop_VITIS_LOOP_38_1_1'.
+WARNING: [SYN 201-103] Legalizing function name 'mem2mat<1080, 1920>' to 'mem2mat_1080_1920_s'.
+WARNING: [SYN 201-103] Legalizing function name 'xfMat2AXIvideo<24, 16, 1080, 1920, 1, 2>_Pipeline_loop_col_mat2axi' to 'xfMat2AXIvideo_24_16_1080_1920_1_2_Pipeline_loop_col_mat2axi'.
+WARNING: [SYN 201-103] Legalizing function name 'xfMat2AXIvideo<24, 16, 1080, 1920, 1, 2>' to 'xfMat2AXIvideo_24_16_1080_1920_1_2_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Block_newFuncRoot17_proc3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.461 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.461 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'readmem4_Pipeline_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.462 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.462 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'readmem4_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.463 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.463 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'readmem4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.11 seconds; current allocated memory: 1.463 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.15 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 1.463 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'VITIS_LOOP_43_2'.
+WARNING: [HLS 200-880] The II Violation in module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' (loop 'VITIS_LOOP_43_2'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1) between fifo read operation ('cacheBuff_read_1', source/mem2stream.cpp:51) on port 'cacheBuff' (source/mem2stream.cpp:51) and fifo read operation ('cacheBuff_read', source/mem2stream.cpp:46) on port 'cacheBuff' (source/mem2stream.cpp:46).
+WARNING: [HLS 200-880] The II Violation in module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' (loop 'VITIS_LOOP_43_2'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1) between fifo read operation ('cacheBuff_read_2', source/mem2stream.cpp:56) on port 'cacheBuff' (source/mem2stream.cpp:56) and fifo read operation ('cacheBuff_read', source/mem2stream.cpp:46) on port 'cacheBuff' (source/mem2stream.cpp:46).
+WARNING: [HLS 200-880] The II Violation in module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' (loop 'VITIS_LOOP_43_2'): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1) between fifo write operation ('img_data_write_ln553', source/mem2stream.cpp:553) on port 'img_data' (source/mem2stream.cpp:553) and fifo write operation ('img_data_write_ln553', source/mem2stream.cpp:553) on port 'img_data' (source/mem2stream.cpp:553).
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 4, Depth = 5, loop 'VITIS_LOOP_43_2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.464 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.05 seconds; current allocated memory: 1.464 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.464 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.464 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dataflow_in_loop_VITIS_LOOP_38_1_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+WARNING: [HLS 200-1020] Increasing the depth of FIFO p_cast16_loc_i_i_channel (from dataflow_in_loop_VITIS_LOOP_38_1_1_Block_newFuncRoot17_proc3_U0 to dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_U0) to 3 to improve performance and/or avoid deadlocks.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.464 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.464 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dataflow_parent_loop_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.464 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.464 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mem2mat_1080_1920_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.465 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.465 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'xfMat2AXIvideo_24_16_1080_1920_1_2_Pipeline_loop_col_mat2axi' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loop_col_mat2axi'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 2, loop 'loop_col_mat2axi'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.465 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.465 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'xfMat2AXIvideo_24_16_1080_1920_1_2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.465 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.465 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mem2stream' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.465 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.465 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Block_newFuncRoot17_proc3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dataflow_in_loop_VITIS_LOOP_38_1_1_Block_newFuncRoot17_proc3'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.02 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.465 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'readmem4_Pipeline_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'readmem4_Pipeline_2' pipeline 'Loop 1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_2/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'readmem4_Pipeline_2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.466 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'readmem4_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'readmem4_Pipeline_1' pipeline 'Loop 1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'readmem4_Pipeline_1/m_axi_gmem_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'readmem4_Pipeline_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.467 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'readmem4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'cache_len' is power-on initialization.
+INFO: [RTGEN 206-100] Generating core module 'mul_31s_12ns_32_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'readmem4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 1.468 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO' pipeline 'VITIS_LOOP_43_2' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5_Pipeline_VITIS_LOO'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.12 seconds; current allocated memory: 1.470 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dataflow_in_loop_VITIS_LOOP_38_1_1_Loop_VITIS_LOOP_43_2_proc5'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.471 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dataflow_in_loop_VITIS_LOOP_38_1_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WDATA' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WSTRB' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WLAST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_WUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_in_loop_VITIS_LOOP_38_1_1/m_axi_gmem_BREADY' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dataflow_in_loop_VITIS_LOOP_38_1_1'.
+INFO: [RTMG 210-285] Implementing FIFO 'p_cast16_loc_i_i_channel_U(mem2stream_fifo_w32_d3_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'trunc_ln42_loc_i_i_channel_U(mem2stream_fifo_w30_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'cacheBuff_U(mem2stream_fifo_w32_d3840_A)' using Vivado Default RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.472 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dataflow_parent_loop_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_AWUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WDATA' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WSTRB' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WLAST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_WUSER' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'dataflow_parent_loop_proc/m_axi_gmem_BREADY' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dataflow_parent_loop_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.16 seconds; current allocated memory: 1.473 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mem2mat_1080_1920_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'index' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mem2mat_1080_1920_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 1.474 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'xfMat2AXIvideo_24_16_1080_1920_1_2_Pipeline_loop_col_mat2axi' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'xfMat2AXIvideo_24_16_1080_1920_1_2_Pipeline_loop_col_mat2axi' pipeline 'loop_col_mat2axi' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'xfMat2AXIvideo_24_16_1080_1920_1_2_Pipeline_loop_col_mat2axi'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.475 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'xfMat2AXIvideo_24_16_1080_1920_1_2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'xfMat2AXIvideo_24_16_1080_1920_1_2_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.08 seconds. CPU system time: 0 seconds. Elapsed time: 0.08 seconds; current allocated memory: 1.476 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mem2stream' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/gmem' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/vstream_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/pMemPort' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/rows' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/cols' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/baseAddr' to 's_axilite & ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/indexw' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mem2stream/indexr' to 'ap_none'.
+WARNING: [RTGEN 206-101] Port 'indexr' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port.
+INFO: [RTGEN 206-500] Setting interface mode on function 'mem2stream' to 's_axilite & ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Bundling port 'pMemPort', 'rows', 'cols', 'baseAddr' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mem2stream'.
+INFO: [RTMG 210-285] Implementing FIFO 'img_data_U(mem2stream_fifo_w24_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'img_rows_c_U(mem2stream_fifo_w11_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'img_cols_c_U(mem2stream_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_xfMat2AXIvideo_24_16_1080_1920_1_2_U0_U(mem2stream_start_for_xfMat2AXIvideo_24_16_1080_1920_1_2_U0)' using Shift Registers.

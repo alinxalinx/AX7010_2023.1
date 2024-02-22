@@ -1,0 +1,8 @@
+set_property IOSTANDARD LVCMOS33 [get_ports {btns_tri_i[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {btns_tri_i[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {btns_tri_i[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {btns_tri_i[0]}]
+set_property PACKAGE_PIN N15 [get_ports {btns_tri_i[0]}]
+set_property PACKAGE_PIN N16 [get_ports {btns_tri_i[1]}]
+set_property PACKAGE_PIN T17 [get_ports {btns_tri_i[2]}]
+set_property PACKAGE_PIN R17 [get_ports {btns_tri_i[3]}]

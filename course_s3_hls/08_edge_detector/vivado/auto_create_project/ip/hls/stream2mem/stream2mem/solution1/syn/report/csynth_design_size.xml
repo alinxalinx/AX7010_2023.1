@@ -1,0 +1,41 @@
+<design_size title="Design Size Report">
+    <item name="Instructions per Function for each Compilation Phase">
+        <hiertable>
+            <header size="6" col0="Function" col1="Location" col2="Compile/Link" col3="Unroll/Inline" col4="Performance/Pipeline" col5="Optimizations"/>
+            <rows>
+                <row id="0" col0="stream2mem" col1="stream2mem.cpp:44" col2="4974" col3="432" col4="263" col5="431">
+                    <row id="7" col0="Mat" col1="xf_structs.hpp:652" col2="41" col3="" col4="" col5="">
+                        <row id="9" col0="init" col1="xf_structs.hpp:605" col2="28" col3="" col4="" col5="">
+                            <row id="8" col0="alloc_data&lt;2, nullptr&gt;" col1="xf_structs.hpp:493" col2="1" col3="" col4="" col5=""/>
+                        </row>
+                    </row>
+                    <row id="2" col0="AXIvideo2xfMat&lt;24, 16, 1080, 1920, 1, 2&gt;" col1="xf_infra.hpp:100" col2="574" col3="181" col4="110" col5="157">
+                        <row id="4" col0="write&lt;2, nullptr&gt;" col1="xf_structs.hpp:552" col2="8" col3="3" col4="" col5=""/>
+                    </row>
+                    <row id="1" col0="mat2mem&lt;1080, 1920&gt;" col1="stream2mem.cpp:13" col2="4333" col3="223" col4="133" col5="232">
+                        <row id="6" col0="read&lt;2, nullptr&gt;" col1="xf_structs.hpp:541" col2="72" col2_disp="   72 (4 calls)" col3="12" col3_disp=" 12 (4 calls)" col4="" col5=""/>
+                        <row id="3" col0="writemem" col1="stream2mem.cpp:4" col2="10" col3="38" col4="40" col5=""/>
+                    </row>
+                    <row id="5" col0="~Mat" col1="xf_structs.hpp:865" col2="1" col3="" col4="" col5=""/>
+                </row>
+            </rows>
+            <notes/>
+        </hiertable>
+    </item>
+    <item name="Description of Compilation Phases">
+        <table>
+            <keys size="2">Compilation Phase, Description</keys>
+            <column name="Compile/Link">All functions are compiled and linked into a single design</column>
+            <column name="Unroll/Inline">After user unroll and inline pragmas are applied</column>
+            <column name="Performance/Pipeline">After performance and pipeline pragmas are applied</column>
+            <column name="Optimizations">After high level synthesis optimizations</column>
+        </table>
+    </item>
+    <item name="Design Size Message Settings">
+        <table>
+            <keys size="3">Message Setting, Value, Description</keys>
+            <column name="config_compile -design_size_maximum_warning">100000, Show a warning when total design instructions exceeds this value</column>
+        </table>
+    </item>
+</design_size>
+

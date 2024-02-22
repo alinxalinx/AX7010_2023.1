@@ -1,0 +1,22 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="sobel_focus"/>
+    </project>
+    <flowTarget value="vivado"/>
+    <targetInfo>
+        <TargetInfo value="xc7z020:-clg484:-2"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="10" default="false"/>
+    </clockList>
+    <config>
+        <config_export format="ip_catalog" rtl="verilog"/>
+    </config>
+</AutoPilot:solution>
+

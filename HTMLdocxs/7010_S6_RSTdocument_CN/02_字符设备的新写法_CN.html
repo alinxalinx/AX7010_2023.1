@@ -1,0 +1,1225 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>字符设备的新写法 &#8212; ZYNQ 7000开发平台FPGA教程 1.0 文档</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7010_S6_RSTdocument_CN/02_字符设备的新写法_CN';</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="设备树和of函数" href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html" />
+    <link rel="prev" title="字符设备" href="01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/8.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/8.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    ZYNQ 7000 开发平台
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">公司简介</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">关于ALINX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E5%BA%8F_CN.html">序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%B1%A5%E5%8E%86_CN.html">文档版本履历</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S1_FPGA教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/01_ZYNQ%E7%AE%80%E4%BB%8B_CN.html">ZYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/02_Vivado%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83_CN.html">Vivado开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/03_%E5%BC%80%E5%8F%91%E6%9D%BF%E7%A1%AC%E4%BB%B6%E4%BB%8B%E7%BB%8D_CN.html">开发板硬件介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/04_Verilog%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D_CN.html">Verilog基础模块介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/05_PL%E7%9A%84_CN.html">PL的”Hello World”LED实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/06_Vivado%E4%B8%8BPLL%E5%AE%9E%E9%AA%8C_CN.html">Vivado下PLL实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/07_FPGA%E7%89%87%E5%86%85RAM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内RAM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/08_FPGA%E7%89%87%E5%86%85ROM%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内ROM读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/09_FPGA%E7%89%87%E5%86%85FIFO%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">FPGA片内FIFO读写测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/10_Vivado%E4%B8%8B%E6%8C%89%E9%94%AE%E5%AE%9E%E9%AA%8C_CN.html">Vivado下按键实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/11_%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96%E5%AE%9E%E9%AA%8C_CN.html">按键消抖实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/12_PWM%E5%91%BC%E5%90%B8%E7%81%AF%E5%AE%9E%E9%AA%8C_CN.html">PWM呼吸灯实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/13_I2C%E6%8E%A5%E5%8F%A3EEPROM%E5%AE%9E%E9%AA%8C_CN.html">I2C接口EEPROM实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/14_RS232%E5%AE%9E%E9%AA%8C_CN.html">RS232实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/15_RS422%E5%AE%9E%E9%AA%8C_CN.html">RS422实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/16_RS485%E5%AE%9E%E9%AA%8C_CN.html">RS485实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/17_HDMI%E8%BE%93%E5%87%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI输出实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/18_HDMI%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI字符显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/19_HDMI%E6%97%B6%E9%92%9F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">HDMI时钟显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/20_7%E5%AF%B8%E6%B6%B2%E6%99%B6%E5%B1%8F%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">7寸液晶屏显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/21_AD7606%E5%A4%9A%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD7606多通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/22_AD9238%E5%8F%8C%E9%80%9A%E9%81%93%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BA%E5%AE%9E%E9%AA%8C_CN.html">AD9238双通道波形显示实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/23_ADDA%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C_CN.html">ADDA测试实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/24_AD9767%E5%8F%8C%E9%80%9A%E9%81%93%E6%AD%A3%E5%BC%A6%E6%B3%A2%E4%BA%A7%E7%94%9F%E5%AE%9E%E9%AA%8C_CN.html">AD9767双通道正弦波产生实验</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S2_Vitis教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%89%8D%E8%A8%80_CN.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%87%86%E5%A4%87%E5%B7%A5%E7%A8%8B%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_CN.html">准备工程及注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%9F%BA%E7%A1%80%E7%AF%87_CN.html">基础篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/01_%E4%BD%93%E9%AA%8CARM_CN.html">体验ARM，裸机输出“Hello World”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/02_PS%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%AE%9E%E9%AA%8C_CN.html">PS定时器中断实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/03_PS%E7%AB%AFMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端MIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/04_PS%E7%AB%AFEMIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PS端EMIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/05_PL%E7%AB%AFAXI%20GPIO%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">PL端AXI GPIO的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/06_%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%AE%9E%E9%AA%8C_CN.html">以太网实验（LWIP）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/07_%E8%87%AA%E5%AE%9A%E4%B9%89IP%E5%AE%9E%E9%AA%8C_CN.html">自定义IP实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/08_PS%E7%AB%AFUART%E8%AF%BB%E5%86%99%E6%8E%A7%E5%88%B6_CN.html">PS端UART读写控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/09_XADC%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">XADC的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/10_%E5%8F%8C%E6%A0%B8AMP%E7%9A%84%E4%BD%BF%E7%94%A8_CN.html">双核AMP的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/11_ZYNQ%E4%B8%8B%E4%BD%BF%E7%94%A8Free%20RTOS_CN.html">ZYNQ下使用Free RTOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/12_PL%E8%AF%BB%E5%86%99PS%E7%AB%AFDDR%E6%95%B0%E6%8D%AE_CN.html">PL读写PS端DDR数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/13_%E9%80%9A%E8%BF%87BRAM%E5%AE%9E%E7%8E%B0PS%E4%B8%8EPL%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92_CN.html">通过BRAM实现PS与PL数据交互</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/00_%E5%BA%94%E7%94%A8%E7%AF%87_CN.html">应用篇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/14_%E4%BD%BF%E7%94%A8VDMA%E9%A9%B1%E5%8A%A8HDMI%E6%98%BE%E7%A4%BA_CN.html">使用VDMA驱动HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/15_DMA%E7%8E%AF%E9%80%9A%E6%B5%8B%E8%AF%95_CN.html">DMA环通测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/16_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BDAC%E6%B3%A2%E5%BD%A2%E5%8F%91%E7%94%9F%E5%99%A8_CN.html">DMA使用之DAC波形发生器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/17_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/18_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器(AN9238)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/19_DMA%E4%BD%BF%E7%94%A8%E4%B9%8BADC%E7%A4%BA%E6%B3%A2%E5%99%A8_CN.html">DMA使用之ADC示波器（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/20_%E5%9F%BA%E4%BA%8EADC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于ADC模块的Scatter/Gather DMA使用(AN108)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/21_%E5%9F%BA%E4%BA%8EDAC%E6%A8%A1%E5%9D%97%E7%9A%84Scatter_CN.html">基于DAC模块的Scatter/Gather DMA使用（AN9767）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/22_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%B8%80_CN.html">OV5640摄像头的采集显示一</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/23_OV5640%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E9%87%87%E9%9B%86%E6%98%BE%E7%A4%BA%E4%BA%8C_CN.html">OV5640摄像头的采集显示二</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/24_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">双目摄像头以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/25_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8BBMP%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA_CN.html">SD卡读写操作之BMP图片显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/26_SD%E5%8D%A1%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%E4%B9%8B%E6%91%84%E5%83%8F%E5%A4%B4%E6%8A%93%E6%8B%8D_CN.html">SD卡读写操作之摄像头抓拍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/27_%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9D%97AN831%E7%9A%84%E5%BD%95%E9%9F%B3%E4%B8%8E%E6%92%AD%E6%94%BE_CN.html">音频模块AN831的录音与播放</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/28_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E7%9A%84%E6%98%BE%E7%A4%BA_CN.html">7寸触摸屏模块的显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/29_7%E5%AF%B8%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%9A%84GUI%E5%8F%8A%E8%A7%A6%E6%91%B8%E6%8E%A7%E5%88%B6_CN.html">7寸触摸屏的GUI及触摸控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/30_%E5%9F%BA%E4%BA%8EAN108%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN108模块的ADC采集以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/31_%E5%9F%BA%E4%BA%8EAN9238%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN9238模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/32_%E5%9F%BA%E4%BA%8EAN706%E6%A8%A1%E5%9D%97%E7%9A%84ADC%E9%87%87%E9%9B%86%E4%B9%8B%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BC%A0%E8%BE%93_CN.html">基于AN706模块的ADC采集之以太网传输</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S2_RSTdocument_CN/33_%E5%9F%BA%E4%BA%8EUDP_CN.html">基于UDP/TCP的远程更新QSPI Flash</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S3_HLS教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/01_led_control_CN.html">初识HLS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/02_led_register_CN.html">状态指示led</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/03_average_float_CN.html">浮点协处理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/04_colorbar_CN.html">视频彩条</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/05_video_show_CN.html">视频帧缓存读写管理</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/06_contrast_adj_CN.html">图像对比度调整</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/07_auto_focus_CN.html">自动聚焦</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/08_edge_detector_CN.html">边缘检测</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../7010_S3_RSTdocument_CN/09_dual_corner_CN.html">角点检测</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S4_LINUX教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/01_%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CUbuntu%E7%B3%BB%E7%BB%9F_CN.html">安装虚拟机和Ubuntu系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/02_Ubuntu%E5%AE%89%E8%A3%85Linux%E7%89%88Vitis%E8%BD%AF%E4%BB%B6_CN.html">Ubuntu安装Linux版Vitis软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/03_Petalinux%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85_CN.html">Petalinux工具安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/04_NFS%E6%9C%8D%E5%8A%A1%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85_CN.html">NFS服务软件安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/05_%E4%BD%BF%E7%94%A8Petalinux%E5%AE%9A%E5%88%B6Linux%E7%B3%BB%E7%BB%9F_CN.html">使用Petalinux定制Linux系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/06_%E4%BD%BF%E7%94%A8Vitis%E5%BC%80%E5%8F%91Linux%E7%A8%8B%E5%BA%8F_CN.html">使用Vitis开发Linux程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/07_Linux%E4%B8%8BGPIO%E5%AE%9E%E9%AA%8C_CN.html">Linux下GPIO实验</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/08_Petalinux%E4%B8%8B%E7%9A%84HDMI%E6%98%BE%E7%A4%BA_CN.html">Petalinux下的HDMI显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/09_%E4%BD%BF%E7%94%A8Debian%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F_CN.html">使用Debian桌面系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/10_%E5%88%B6%E4%BD%9CQSPI%20Flash%E5%90%AF%E5%8A%A8%E7%9A%84Linux_CN.html">制作QSPI Flash启动的Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/11_QT%E5%9C%A8ZYNQ%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8_CN.html">QT在ZYNQ上的应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/12_OpenCV%E5%BA%94%E7%94%A8_CN.html">OpenCV应用（USB摄像头显示）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/13_%E5%8F%8C%E7%9B%AE%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97OpenCV%E6%98%BE%E7%A4%BA_CN.html">双目摄像头模块OpenCV显示</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/14_%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%A8%A1%E5%9D%97%E5%BA%94%E7%94%A8_CN.html">触摸屏模块应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/15_AXI%20DMA%E8%AF%BB%E5%86%99%E6%B5%8B%E8%AF%95_CN.html">AXI DMA读写测试</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/16_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN9238_CN.html">基于DMA的ADC波形显示（AN9238）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/17_%E5%9F%BA%E4%BA%8EDMA%E7%9A%84ADC%E6%B3%A2%E5%BD%A2%E6%98%BE%E7%A4%BAAN706_CN.html">基于DMA的ADC波形显示（AN706）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S4_RSTdocument_CN/18_%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%E7%9A%84petalinux%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F_CN.html">自动运行的petalinux应用程序</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S5_PYNQ教程</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/01_PYNQ%E7%AE%80%E4%BB%8B_CN.html">PYNQ简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/02_PYNQ%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B_CN.html">PYNQ快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/03_USB%E6%91%84%E5%83%8F%E5%A4%B4%E8%BE%B9%E6%B2%BF%E6%A3%80%E6%B5%8B%E5%92%8C%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB_CN.html">USB摄像头边沿检测和人脸识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/04_%E5%9F%BA%E4%BA%8E%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">基于寄存器操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/05_%E5%90%AB%E6%9C%89DMA%E6%93%8D%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89Overlays_CN.html">含有DMA操作自定义Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7010_S5_RSTdocument_CN/06_ADC%E9%87%87%E9%9B%86%E5%B9%B6%E6%98%BE%E7%A4%BA%E6%B3%A2%E5%BD%A2_CN.html">ADC采集并显示波形</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">AX7010型号板卡S6_LINUX驱动教程</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html">字符设备</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">字符设备的新写法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html">设备树和of函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_pinctrl%E5%92%8Cgpio%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">pinctrl和gpio子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_%E5%B9%B6%E5%8F%91%E7%9A%84%E5%A4%84%E7%90%86_CN.html">并发的处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_gpio%E8%BE%93%E5%85%A5_CN.html">gpio输入</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_%E5%AE%9A%E6%97%B6%E5%99%A8_CN.html">定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_%E4%B8%AD%E6%96%AD_CN.html">中断</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_%E9%98%BB%E5%A1%9EIO_CN.html">阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_%E9%9D%9E%E9%98%BB%E5%A1%9EIO_CN.html">非阻塞IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_%E5%BC%82%E6%AD%A5IO_CN.html">异步IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_platform%E5%B9%B3%E5%8F%B0%E8%AE%BE%E5%A4%87.html">platform平台设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_platform%E4%B8%8E%E8%AE%BE%E5%A4%87%E6%A0%91_CN.html">platform与设备树</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_MISC%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">第十四章 MISC设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_input%E5%AD%90%E7%B3%BB%E7%BB%9F_CN.html">input子系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_pwm%E9%A9%B1%E5%8A%A8_CN.html">pwm驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_I2C%E9%A9%B1%E5%8A%A8_CN.html">I2C驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_USB%E9%A9%B1%E5%8A%A8_CN.html">USB驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_SPI%E9%A9%B1%E5%8A%A8_CN.html">SPI驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_%E4%B8%B2%E5%8F%A3%E9%A9%B1%E5%8A%A8_CN.html">串口驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_%E5%9D%97%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8_CN.html">块设备驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8_CN.html">网卡驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_DMA%E9%A9%B1%E5%8A%A8_CN.html">DMA驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_%E5%A4%9A%E7%82%B9%E8%A7%A6%E6%91%B8%E5%B1%8F%E9%A9%B1%E5%8A%A8_CN.html">多点触摸屏驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_LCD%E9%A9%B1%E5%8A%A8_CN.html">LCD驱动</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Alinx版权</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7010_S1_RSTdocument_CN/00_%E8%B4%A3%E4%BB%BB%E5%A3%B0%E6%98%8E_CN.html">版权说明</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/alinxalinx/AX7010_2023.1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="源码库"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="下载此页面">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/7010_S6_RSTdocument_CN/02_字符设备的新写法_CN.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="下载源文件"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="列印成 PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>字符设备的新写法</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">设备号管理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">新的注册方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">字符设备数据结构</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdev">2.1.2 cdev结构体初始化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">新的注册和注销函数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">自动创建设备文件</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mdev">mdev</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">类的创建和删除</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">设备节点的创建和删除</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">字符设备新驱动实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">查看硬件原理图以及数据手册</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">编写字符设备驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app">编写测试APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">运行测试</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="id1">
+<h1>字符设备的新写法<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<section id="id2">
+<h2>设备号管理<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>在上一章中的实验中，设备号直接在驱动代码中写死了。这样做会带来很多麻烦：</p>
+<ol class="arabic simple">
+<li><p>编译驱动代码前，必须要先查看目标系统中设备号的占用情况;</p></li>
+<li><p>更换设备后原先驱动中写死的设备号就可能已被占用;</p></li>
+<li><p>原先的驱动注册函数register_chrdev()输入参数中仅有主设备号而没有次设备号，这意味着一个设备就会占用所有的次设备号，十分浪费。</p></li>
+</ol>
+<p>针对这些问题，Linux内核提出了新的字符设备注册方法，并由内核来管理设备号。新增两个设备号注册函数。</p>
+<ol class="arabic simple">
+<li><p>当驱动程序需要给定主设备号时，使用函数来注册设备号：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>int register_chrdev_region(dev_t from, unsigned count, const char
+*name);</p></td>
+</tr>
+</tbody>
+</table>
+<p>输入参数说明：</p>
+<p><strong>from</strong>：需要申请的起始设备号，dev_t类型，它取代了原先的主设备号和次设备号，在需要指定主次设备号的情况下，可以通过方法from=MKDEV(major,
+minor);来获取他的值。</p>
+<p><strong>count</strong>：需要申请设备号的个数，一般只要申请一个。</p>
+<p><strong>name</strong>：设备名。</p>
+<p>示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span><span class="w"> </span><span class="c1">//主设备号指定为 200</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//次设备号为 0</span>
+<span class="kt">dev_t</span><span class="w"> </span><span class="n">devid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MKDEV</span><span class="p">(</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">);</span><span class="w"> </span><span class="c1">//通过主次设备号获得设备号</span>
+<span class="cm">/* 向内核注册设备号 */</span>
+<span class="n">register_chrdev_region</span><span class="p">(</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xxx-dev&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>驱动程序不需要指定主设备号时，使用函数:</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned
+count,const char *name)</p></td>
+</tr>
+</tbody>
+</table>
+<p>输入参数说明：
+<strong>dev</strong>：设备号指针，不指定主次设备号的情况下，设备号由内核分配，因此传入指针来获取设备号，注册成功后可以通过方法major = MAJOR(*dev); 和minor = MINOR(*dev);分别获取主次设备号，如果不需要用到主次设备号，不获取也可以。</p>
+<p><strong>baseminor</strong>：次设备号起始地址。</p>
+<p><strong>count</strong>：需要申请设备号的个数，一般只要申请一个。</p>
+<p><strong>name</strong>：设备名。</p>
+<p>示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">dev_t</span><span class="w"> </span><span class="n">devid</span><span class="p">;</span><span class="w"> </span><span class="c1">//设备号</span>
+<span class="cm">/* 申请设备号 */</span>
+<span class="n">alloc_chrdev_region</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xxx-dev&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>注销设备号只要使用同一个函数：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void unregister_chrdev_region(dev_t from, unsigned count);</p></td>
+</tr>
+</tbody>
+</table>
+<p>输入参数含义和注册函数一致。</p>
+<p>示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">dev_t</span><span class="w"> </span><span class="n">devid</span><span class="p">;</span><span class="w"> </span><span class="c1">//设备号</span>
+<span class="cm">/* 申请设备号 */</span>
+<span class="n">alloc_chrdev_region</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xxx-dev&quot;</span><span class="p">);</span>
+<span class="cm">/* 注销设备号 */</span>
+<span class="n">unregister_chrdev_region</span><span class="p">(</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>新的注册方法<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>上面提到过注册函数register_chrdev()存在问题。和新的设备号管理方式相对应，现在摒弃register_chrdev()，使用一套新的方法来来注册字符设备。</p>
+<section id="id4">
+<h3>字符设备数据结构<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<p>使用cdev结构体来定来定义一个字符设备，他定义在include/linux/cdev.h中，具体如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">cdev</span><span class="w"> </span><span class="p">{</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">kobject</span><span class="w"> </span><span class="n">kobj</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">module</span><span class="w"> </span><span class="o">*</span><span class="n">owner</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">file_operations</span><span class="w"> </span><span class="o">*</span><span class="n">ops</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">list_head</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+<span class="kt">dev_t</span><span class="w"> </span><span class="n">dev</span><span class="p">;</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>重要成员变量：</p>
+<p><strong>owner</strong>：一般设置为THIS_MODULE;</p>
+<p><strong>ops</strong>：设备操作函数指针;</p>
+<p><strong>dev</strong>：设备号。</p>
+</section>
+<section id="cdev">
+<h3>2.1.2 cdev结构体初始化<a class="headerlink" href="#cdev" title="此标题的永久链接">#</a></h3>
+<p>cdev结构体变量定义后需要用cdev_init()函数初始化，函数原型为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void cdev_init(struct cdev *cdev, const struct file_operations
+*fops)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>cdev</strong>：字符设备结构体指针;</p>
+<p><strong>fops</strong>：设备操作函数集合结构体指针。</p>
+<p>使用示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>/* 字符设备 */
+struct cdev ax_cdev = {
+.owner = THIS_MODULE,
+};
+/* 设备操作函数 */
+static struct file_operations ax_fops = {
+.owner = THIS_MODULE,
+.open…… /* 此处有省略 */
+};
+
+/* ax_cdev 变量初始化 */
+cdev_init(&amp;ax_cdev, &amp;ax_fops)
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>新的注册和注销函数<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>初始化字符结构体变量后，便可以使用这个变量来向Linux系统注册字符设备。使用新的注册函数cdev_add，原型为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>int cdev_add(struct cdev *p, dev_t dev, unsigned count);</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>p</strong>：上面初始化后的字符设备结构体变量;</p>
+<p><strong>dev</strong>：设备号;</p>
+<p><strong>count</strong>：需要添加的设备数量。</p>
+<p>注册函数变了，注销卸载函数也一样，不再使用unregister_chrdev()函数，改用cdev_del()函数，原型：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void cdev_del(struct cdev *p);</p></td>
+</tr>
+</tbody>
+</table>
+<p>输入参数即为字符设备结构体变量。</p>
+<p>结合上设备号，补充一下中的示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>/* 字符设备 */
+struct cdev ax_cdev = {
+.owner = THIS_MODULE,
+};
+
+/* 设备操作函数 */
+static struct file_operations ax_fops = {
+.owner = THIS_MODULE,
+.open……
+};
+
+/* 设备号 */
+cdev_t devid;
+/* 申请设备号 */
+alloc_chrdev_region(&amp;devid, 0, 1, &quot; xxx-dev&quot;);
+
+/* ax_cdev 变量初始化 */
+cdev_init(&amp;ax_cdev, &amp;ax_fops);
+/* 注册字符设备 */
+cdev_add(&amp;ax_cdev, devid, 1);
+…… /* 此处有省略 */
+/* 卸载字符设备 */
+cdev_del(&amp;ax_cdev);
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>自动创建设备文件<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<section id="mdev">
+<h3>mdev<a class="headerlink" href="#mdev" title="此标题的永久链接">#</a></h3>
+<p>medv是一个用户程序，是udev的简化版。它可以检测并根据系统中硬件设备状态来创建或者删除设备文件。在加载驱动模块后，会自动在/dev目录下创建设备节点文件，卸载驱动模块后设备节点也会自动删除。接下来看看如何实现。</p>
+</section>
+<section id="id7">
+<h3>类的创建和删除<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>创建设备前需要先创建类，设备是在类下面创建的。类的结构体struct
+class结构体定义在include/linux/device.h中，需要使用函数class_create()来创建。class_create()是个宏定义：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define class_create(owner, name) \</span>
+<span class="cp">({ \</span>
+<span class="cp">static struct lock_class_key __key; \</span>
+<span class="cp">__class_create(owner, name, &amp;__key); \</span>
+<span class="cp">})</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">class</span><span class="w"> </span><span class="o">*</span><span class="n">__class_create</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">module</span><span class="w"> </span><span class="o">*</span><span class="n">owner</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">lock_class_key</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>展开后可以看出：</p>
+<p><strong>输入参数</strong>：</p>
+<p><strong>owner</strong>：至今出现的owner值都是THIS_MODULE，这里任然不例外;</p>
+<p><strong>name</strong>：类的名字。</p>
+<p><strong>返回值</strong>：struct class类型的结构体指针。</p>
+<p>卸载驱动程序时需要删除类，使用函数class_destroy()，原型如下：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void class_destroy(struct class *cls);</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>cls</strong>为需要删除的类。</p>
+</section>
+<section id="id8">
+<h3>设备节点的创建和删除<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>创建类后，使用device_create()函数在类下面创建设备，原型为：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">device_create</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">class</span><span class="w"> </span><span class="o">*</span><span class="n">class</span><span class="p">,</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">,</span>
+<span class="kt">dev_t</span><span class="w"> </span><span class="n">devt</span><span class="p">,</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">drvdata</span><span class="p">,</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">fmt</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
+</pre></div>
+</div>
+<p>参数说明：</p>
+<p><strong>class</strong>：上节介绍的类，设备会在这个类下创建;</p>
+<p><strong>parent</strong>：父设备，没有父设备的话填NULL;</p>
+<p><strong>devt</strong>：设备号;</p>
+<p><strong>drvdata</strong>：设备可能会用到的数据，没有的话填NULL;</p>
+<p><strong>fmt</strong>：设备名，比如当fmt=axled时，创建设备后就会生成/dev/axled文件。</p>
+<p>删除设备函数为：</p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>void device_destroy(struct class *class, dev_t devt);</p></td>
+</tr>
+</tbody>
+</table>
+<p>输入参数含义和上面一样。</p>
+<p>自动创建设备节点的实现一般放在驱动入口函数中，结合上一节类的创建以及设备号，自动创建设备节点的实现示例如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>struct class *class; /* 类 */
+struct device *device; /* 设备 */
+dev_t devid; /* 设备号 */
+
+/* 驱动入口函数 */
+static int __init xxx_init(void)
+{
+……
+/* 申请设备号 */
+alloc_chrdev_region(&amp;devid, 0, 1, &quot;xxx-dev&quot;);
+……
+/* 创建类 */
+class = class_create(THIS_MODULE, &quot;xxx&quot;);
+/* 创建设备 */
+device = device_create(class, NULL, devid, NULL, &quot;xxx&quot;);
+
+return 0;
+}
+
+/* 驱动出口函数 */
+static void __exit led_exit(void)
+{
+/* 删除设备 */
+device_destroy(class, devid);
+/* 删除类 */
+class_destroy(class);
+/* 注销字符设备 */
+unregister_chrdev_region(devid, 1);
+}
+
+module_init(led_init);
+module_exit(led_exit);
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>字符设备新驱动实验<a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h2>
+<p>现在了解字符设备驱动的新写法相关的要点，接下来就动手尝试，这章我们要达成的目标和上一章相同，编写开发板上”PS
+LED1”这个led的设备驱动，通过驱动程序能点亮、熄灭这个led。</p>
+<section id="id10">
+<h3>查看硬件原理图以及数据手册<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<p>和上一章内容相同。</p>
+</section>
+<section id="id11">
+<h3>编写字符设备驱动程序<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
+<p>使用petalinux创建新的驱动，方法也和上一章相同，之后重复的步骤就略过了。这里我新建了名为ax-newled-drv的驱动。打开文件ax-newled-drv.c，输入以下内容：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/module.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/kernel.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/fs.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/init.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/ide.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/types.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/errno.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/cdev.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;linux/device.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;asm/uaccess.h&gt;</span>
+
+<span class="cm">/* 设备节点名称 */</span>
+<span class="cp">#define DEVICE_NAME &quot;gpio_leds&quot;</span>
+<span class="cm">/* 设备号个数 */</span>
+<span class="cp">#define DEVID_COUNT 1</span>
+<span class="cm">/* 设备个数 */</span>
+<span class="cp">#define DEVICE_COUNT 1</span>
+<span class="cm">/* 主设备号 */</span>
+<span class="cp">#define MAJOR</span>
+<span class="cm">/* 次设备号 */</span>
+<span class="cp">#define MINOR 0</span>
+
+<span class="cm">/* gpio 寄存器虚拟地址 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">gpio_add_minor</span><span class="p">;</span>
+<span class="cm">/* gpio 寄存器物理基地址 */</span>
+<span class="cp">#define GPIO_BASE 0xE000A000</span>
+<span class="cm">/* gpio 寄存器所占空间大小 */</span>
+<span class="cp">#define GPIO_SIZE 0x1000</span>
+<span class="cm">/* gpio 方向寄存器 */</span>
+<span class="cp">#define GPIO_DIRM_0 (unsigned int *)(0xE000A204 - GPIO_BASE + gpio_add_minor)</span>
+<span class="cm">/* gpio 使能寄存器 */</span>
+<span class="cp">#define GPIO_OEN_0 (unsigned int *)(0xE000A208 - GPIO_BASE + gpio_add_minor)</span>
+<span class="cm">/* gpio 控制寄存器 */</span>
+<span class="cp">#define GPIO_DATA_0 (unsigned int *)(0xE000A040 - GPIO_BASE + gpio_add_minor)</span>
+
+<span class="cm">/* 时钟使能寄存器虚拟地址 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">clk_add_minor</span><span class="p">;</span>
+<span class="cm">/* 时钟使能寄存器物理基地址 */</span>
+<span class="cp">#define CLK_BASE 0xF8000000</span>
+<span class="cm">/* 时钟使能寄存器所占空间大小 */</span>
+<span class="cp">#define CLK_SIZE 0x1000</span>
+<span class="cm">/* AMBA 外设时钟使能寄存器 */</span>
+<span class="cp">#define APER_CLK_CTRL (unsigned int *)(0xF800012C - CLK_BASE + clk_add_minor)</span>
+
+<span class="cm">/* 把驱动代码中会用到的数据打包进设备结构体 */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">alinx_char_dev</span><span class="p">{</span>
+<span class="kt">dev_t</span><span class="w"> </span><span class="n">devid</span><span class="p">;</span><span class="w"> </span><span class="c1">//设备号</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">cdev</span><span class="w"> </span><span class="n">cdev</span><span class="p">;</span><span class="w"> </span><span class="c1">//字符设备</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">class</span><span class="w"> </span><span class="o">*</span><span class="n">class</span><span class="p">;</span><span class="w"> </span><span class="c1">//类</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">device</span><span class="p">;</span><span class="w"> </span><span class="c1">//设备节点</span>
+<span class="p">};</span>
+<span class="cm">/* 声明设备结构体 */</span>
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">alinx_char_dev</span><span class="w"> </span><span class="n">alinx_char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="p">.</span><span class="n">cdev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="p">.</span><span class="n">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">THIS_MODULE</span><span class="p">,</span>
+<span class="p">},</span>
+<span class="p">};</span>
+
+<span class="cm">/* open 函数实现, 对应到 Linux 系统调用函数的 open 函数 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">gpio_leds_open</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">inode</span><span class="w"> </span><span class="o">*</span><span class="n">inode_p</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">file</span><span class="w"> </span><span class="o">*</span><span class="n">file_p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cm">/* 把需要修改的物理地址映射到虚拟地址 */</span>
+<span class="n">gpio_add_minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">ioremap</span><span class="p">(</span><span class="n">GPIO_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">GPIO_SIZE</span><span class="p">);</span>
+<span class="n">clk_add_minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="n">ioremap</span><span class="p">(</span><span class="n">CLK_BASE</span><span class="p">,</span><span class="w"> </span><span class="n">CLK_SIZE</span><span class="p">);</span>
+
+<span class="cm">/* MIO_0 时钟使能 */</span>
+<span class="o">*</span><span class="n">APER_CLK_CTRL</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x00400000</span><span class="p">;</span>
+<span class="cm">/* MIO_0 设置成输出 */</span>
+<span class="o">*</span><span class="n">GPIO_DIRM_0</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x00000001</span><span class="p">;</span>
+<span class="cm">/* MIO_0 使能 */</span>
+<span class="o">*</span><span class="n">GPIO_OEN_0</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x00000001</span><span class="p">;</span>
+
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test module open</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="cm">/* write 函数实现, 对应到 Linux 系统调用函数的 write 函数 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">gpio_leds_write</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">file</span><span class="w"> </span><span class="o">*</span><span class="n">file_p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">__user</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">loff_t</span><span class="w"> </span><span class="o">*</span><span class="n">loff_t_p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">rst</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">writeBuf</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test module write</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">copy_from_user</span><span class="p">(</span><span class="n">writeBuf</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rst</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test len err</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">-2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">writeBuf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">{</span>
+<span class="o">*</span><span class="n">GPIO_DATA_0</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xFFFFFFFE</span><span class="p">;</span>
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test ON</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">writeBuf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">{</span>
+<span class="o">*</span><span class="n">GPIO_DATA_0</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x00000001</span><span class="p">;</span>
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test OFF</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test para err</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">-3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* release 函数实现, 对应到 Linux 系统调用函数的 close 函数 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">gpio_leds_release</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">inode</span><span class="w"> </span><span class="o">*</span><span class="n">inode_p</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">file</span><span class="w"> </span><span class="o">*</span><span class="n">file_p</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_test module release</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* file_operations 结构体声明, 是上面 open、write 实现函数与系统调用函数对应的关键 */</span>
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">file_operations</span><span class="w"> </span><span class="n">ax_char_fops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="p">.</span><span class="n">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">THIS_MODULE</span><span class="p">,</span>
+<span class="p">.</span><span class="n">open</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpio_leds_open</span><span class="p">,</span>
+<span class="p">.</span><span class="n">write</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpio_leds_write</span><span class="p">,</span>
+<span class="p">.</span><span class="n">release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gpio_leds_release</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="cm">/* 模块加载时会调用的函数 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">__init</span><span class="w"> </span><span class="nf">gpio_led_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cm">/* 注册设备号 */</span>
+<span class="n">alloc_chrdev_region</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="n">MINOR</span><span class="p">,</span><span class="w"> </span><span class="n">DEVID_COUNT</span><span class="p">,</span><span class="w"> </span><span class="n">DEVICE_NAME</span><span class="p">);</span>
+
+<span class="cm">/* 初始化字符设备结构体 */</span>
+<span class="n">cdev_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">cdev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ax_char_fops</span><span class="p">);</span>
+
+<span class="cm">/* 注册字符设备 */</span>
+<span class="n">cdev_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">cdev</span><span class="p">,</span><span class="w"> </span><span class="n">alinx_char</span><span class="p">.</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="n">DEVICE_COUNT</span><span class="p">);</span>
+
+<span class="cm">/* 创建类 */</span>
+<span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">class_create</span><span class="p">(</span><span class="n">THIS_MODULE</span><span class="p">,</span><span class="w"> </span><span class="n">DEVICE_NAME</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">IS_ERR</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="n">PTR_ERR</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* 创建设备节点 */</span>
+<span class="n">alinx_char</span><span class="p">.</span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">device_create</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span>
+<span class="n">alinx_char</span><span class="p">.</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span>
+<span class="n">DEVICE_NAME</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IS_ERR</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">device</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="n">PTR_ERR</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">device</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* 卸载模块 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">__exit</span><span class="w"> </span><span class="nf">gpio_led_exit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cm">/* 释放对虚拟地址的占用 */</span>
+<span class="n">iounmap</span><span class="p">((</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">gpio_add_minor</span><span class="p">);</span>
+<span class="n">iounmap</span><span class="p">((</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">clk_add_minor</span><span class="p">);</span>
+<span class="cm">/* 注销字符设备 */</span>
+<span class="n">cdev_del</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">cdev</span><span class="p">);</span>
+
+<span class="cm">/* 注销设备号 */</span>
+<span class="n">unregister_chrdev_region</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">devid</span><span class="p">,</span><span class="w"> </span><span class="n">DEVID_COUNT</span><span class="p">);</span>
+
+<span class="cm">/* 删除设备节点 */</span>
+<span class="n">device_destroy</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="n">alinx_char</span><span class="p">.</span><span class="n">devid</span><span class="p">);</span>
+
+<span class="cm">/* 删除类 */</span>
+<span class="n">class_destroy</span><span class="p">(</span><span class="n">alinx_char</span><span class="p">.</span><span class="n">class</span><span class="p">);</span>
+
+<span class="n">printk</span><span class="p">(</span><span class="s">&quot;gpio_led_dev_exit_ok</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* 标记加载、卸载函数 */</span>
+<span class="n">module_init</span><span class="p">(</span><span class="n">gpio_led_init</span><span class="p">);</span>
+<span class="n">module_exit</span><span class="p">(</span><span class="n">gpio_led_exit</span><span class="p">);</span>
+
+<span class="cm">/* 驱动描述信息 */</span>
+<span class="n">MODULE_AUTHOR</span><span class="p">(</span><span class="s">&quot;Alinx&quot;</span><span class="p">);</span>
+<span class="n">MODULE_ALIAS</span><span class="p">(</span><span class="s">&quot;gpio_led&quot;</span><span class="p">);</span>
+<span class="n">MODULE_DESCRIPTION</span><span class="p">(</span><span class="s">&quot;NEW GPIO LED driver&quot;</span><span class="p">);</span>
+<span class="n">MODULE_VERSION</span><span class="p">(</span><span class="s">&quot;v1.0&quot;</span><span class="p">);</span>
+<span class="n">MODULE_LICENSE</span><span class="p">(</span><span class="s">&quot;GPL&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>与上一章相比，改动的部分加粗了，除了新增了一些宏定义和参数声明之外，改动的只有入口函数和出口函数两个地方。</p>
+<p><strong>13~21</strong>行，新增了几个宏定义，DEVICE_NAME表示设备名，也是设备节点名，最终我们要到/dev目录中去寻找这个名字的设备文件。</p>
+<p>DEVID_COUNT和DEVICE_COUNT分别表示设备号数和设备节点数。一般一个设备对应一个驱动，所以在一个驱动代码中就只有一个设备，所以这里都为1。</p>
+<p>MAJOR主设备号，这里我们通过函数获取设备号，主设备号不需要自己设置。MAJOR次设备号一般从0开始。</p>
+<p><strong>46~57</strong>行，新建了一个结构体类型，并用这个类型声明了一个变量。把之后会用到的设备号、字符设备、类、设备节点等数据类型都打包进这个结构体中。驱动开发中通常在open函数中将文件(struct
+file结构体)的私有数据(private_data元素)指向设备结构体，在read()、write()、ioctl()等函数通过
+private_data 访问数据 设备结构体。举例如下：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>/* 定义一个设备结构体 */
+struct char_dev {
+…………
+int value;
+};
+/* 声明设备结构体 */
+static struct char_dev charDev_t = {
+.cdev = {
+.owner = THIS_MODULE,
+},
+};
+
+static int xxx_open(struct inode *inode, struct file *filp)
+{
+filp-&gt;private_data = &amp;charDev_t;
+…………
+return 0;
+}
+
+static ssize_t xxx_read(struct file *filp, char __user *buf, size_t cnt, loff_t *offt)
+{
+int value = 0;
+
+struct char_dev *dev = (struct char_dev *)filp-&gt;private_data;
+
+value = dev-&gt;value;
+…………
+}
+</pre></div>
+</div>
+<p>对于这种一般性的规范，慢慢去习惯就好了，一开始不这么写也没问题。</p>
+<p><strong>140~162</strong>行是关键的地方，在驱动入口函数中，把本章先后讲到的知识点申请设备号、初始化并注册字符设备、创建类和设备节点全部结合。</p>
+<p><strong>171~180</strong>行出口函数中就是做与入口函数中注册创建相对应的注销和删除。</p>
+<p>结合上面几节的内容，这个新驱动代码不难理解。完成后在ubuntu虚拟机重编译得到驱动模块文件ax-newled-dev.ko。</p>
+</section>
+<section id="app">
+<h3>编写测试APP<a class="headerlink" href="#app" title="此标题的永久链接">#</a></h3>
+<p>测试APP与上一章内容一致，可以直接使用上一章的测试程序。</p>
+</section>
+<section id="id12">
+<h3>运行测试<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
+<p>测试方法也与之前一样，给开发板上电，并挂在虚拟机的工作目录到开发板/mnt路径。</p>
+<img alt="../_images/image1209.png" src="../_images/image1209.png" />
+<ol class="arabic simple">
+<li><p>先加载驱动，执行命令：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>insmod ax-newled-dev.ko</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image2175.png" src="../_images/image2175.png" />
+<ol class="arabic simple">
+<li><p>驱动加载成功，再看看设备文件有没有创建成功，执行命令：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>ls /dev</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image3153.png" src="../_images/image3153.png" />
+<ol class="arabic simple" start="3">
+<li><p>设备节点文件已经存在了，可以使用测试APP来试试驱动程序了，执行下列命令：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>cd ./build-axleddev_test-ZYNQ-Debug/</p>
+<p>./axleddev_test /dev/gpio_leds on</p>
+</td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image4128.png" src="../_images/image4128.png" />
+<ol class="arabic simple" start="4">
+<li><p>led被点亮，最后在测试卸载驱动，执行命令：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>rmmod ax-newled-dev</p></td>
+</tr>
+</tbody>
+</table>
+<p>如果不确定驱动名称，可以先执行lsmod命令查看。</p>
+<img alt="../_images/image5101.png" src="../_images/image5101.png" />
+<ol class="arabic simple" start="5">
+<li><p>删除设备后，再确认设备节点文件有没有被删除：</p></li>
+</ol>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>ls /dev/gpio_led</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/image693.png" src="../_images/image693.png" />
+<p>没有问题，试验成功。</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87_CN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">字符设备</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_%E8%AE%BE%E5%A4%87%E6%A0%91%E5%92%8Cof%E5%87%BD%E6%95%B0_CN.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">设备树和of函数</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">设备号管理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">新的注册方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">字符设备数据结构</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdev">2.1.2 cdev结构体初始化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">新的注册和注销函数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">自动创建设备文件</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mdev">mdev</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">类的创建和删除</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">设备节点的创建和删除</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">字符设备新驱动实验</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">查看硬件原理图以及数据手册</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">编写字符设备驱动程序</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app">编写测试APP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">运行测试</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： JunFN
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024 , ALINX .
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        These engineering documents are copyrighted by
+            <a
+                href="https://www.alinx.com/"
+            >ALINX official website</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.en.alinx.com/">English</a> | <a href="https://ax7010-20231-v101.readthedocs.io/zh-cn/latest/7010_S1_RSTdocument_CN/00_%E5%85%B3%E4%BA%8EALINX_CN.html">中文</a>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

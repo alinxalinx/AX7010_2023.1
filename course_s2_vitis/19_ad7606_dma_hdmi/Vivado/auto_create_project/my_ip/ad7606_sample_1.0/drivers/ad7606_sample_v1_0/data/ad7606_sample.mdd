@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER ad7606_sample
+	OPTION supported_peripherals = (ad7606_sample);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = ad7606_sample;
+END DRIVER

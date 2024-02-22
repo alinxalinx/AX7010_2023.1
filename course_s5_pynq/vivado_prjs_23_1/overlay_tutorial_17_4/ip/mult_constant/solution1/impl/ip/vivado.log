@@ -1,0 +1,16 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Thu Aug  1 16:28:57 2019
+# Process ID: 15552
+# Current directory: D:/test/overlay_tutorial_17_4/ip/mult_constant/solution1/impl/ip
+# Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
+# Log file: D:/test/overlay_tutorial_17_4/ip/mult_constant/solution1/impl/ip/vivado.log
+# Journal file: D:/test/overlay_tutorial_17_4/ip/mult_constant/solution1/impl/ip\vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.4/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Thu Aug  1 16:29:05 2019...

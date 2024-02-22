@@ -1,0 +1,177 @@
+
+
+================================================================
+== Vitis HLS Report for 'sobel_focus'
+================================================================
+* Date:           Tue Jan  9 15:45:25 2024
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        sobel_focus
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg484-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.051 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+---------+---------+----------+
+    |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline |
+    |   min   |   max   |    min    |    max    |   min   |   max   |   Type   |
+    +---------+---------+-----------+-----------+---------+---------+----------+
+    |  2086336|  2086336|  20.863 ms|  20.863 ms|  2086326|  2086326|  dataflow|
+    +---------+---------+-----------+-----------+---------+---------+----------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------+---------------------------------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |                                                                |                                                               |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline|
+        |                            Instance                            |                             Module                            |   min   |   max   |    min    |    max    |   min   |   max   |   Type  |
+        +----------------------------------------------------------------+---------------------------------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |AXIvideo2xfMat_24_16_1080_1920_1_2_U0                           |AXIvideo2xfMat_24_16_1080_1920_1_2_s                           |  2083326|  2084407|  20.833 ms|  20.844 ms|  2083326|  2084407|       no|
+        |duplicate_1080_1920_U0                                          |duplicate_1080_1920_s                                          |  2073602|  2073602|  20.736 ms|  20.736 ms|  2073602|  2073602|       no|
+        |xfrgb2gray_1080_1920_U0                                         |xfrgb2gray_1080_1920_s                                         |  2073606|  2073606|  20.736 ms|  20.736 ms|  2073606|  2073606|       no|
+        |xfMat2AXIvideo_24_16_1080_1920_1_2_U0                           |xfMat2AXIvideo_24_16_1080_1920_1_2_s                           |  2079002|  2079002|  20.790 ms|  20.790 ms|  2079002|  2079002|       no|
+        |xFSobelFilter3x3_0_0_1080_1920_1_0_0_1_2_2_2_1_1_1920_false_U0  |xFSobelFilter3x3_0_0_1080_1920_1_0_0_1_2_2_2_1_1_1920_false_s  |  2086325|  2086325|  20.863 ms|  20.863 ms|  2086325|  2086325|       no|
+        |AddWeightedKernel_1080_1920_U0                                  |AddWeightedKernel_1080_1920_s                                  |  2073603|  2073603|  20.736 ms|  20.736 ms|  2073603|  2073603|       no|
+        |sum_of_stream_1080_1920_U0                                      |sum_of_stream_1080_1920_s                                      |  2073603|  2073603|  20.736 ms|  20.736 ms|  2073603|  2073603|       no|
+        +----------------------------------------------------------------+---------------------------------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      1|    -|
+|FIFO             |        -|    -|     693|    476|    -|
+|Instance         |        3|    3|     798|   2336|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|      -|    -|
+|Register         |        -|    -|       -|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        3|    3|    1491|   2813|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        1|    1|       1|      5|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+------+-----+
+    |                            Instance                            |                             Module                            | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +----------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+------+-----+
+    |AXIvideo2xfMat_24_16_1080_1920_1_2_U0                           |AXIvideo2xfMat_24_16_1080_1920_1_2_s                           |        0|   0|   99|   352|    0|
+    |AddWeightedKernel_1080_1920_U0                                  |AddWeightedKernel_1080_1920_s                                  |        0|   0|   35|   127|    0|
+    |control_s_axi_U                                                 |control_s_axi                                                  |        0|   0|   68|   104|    0|
+    |duplicate_1080_1920_U0                                          |duplicate_1080_1920_s                                          |        0|   0|   25|   119|    0|
+    |sum_of_stream_1080_1920_U0                                      |sum_of_stream_1080_1920_s                                      |        0|   0|   85|   149|    0|
+    |xFSobelFilter3x3_0_0_1080_1920_1_0_0_1_2_2_2_1_1_1920_false_U0  |xFSobelFilter3x3_0_0_1080_1920_1_0_0_1_2_2_2_1_1_1920_false_s  |        3|   0|  392|  1195|    0|
+    |xfMat2AXIvideo_24_16_1080_1920_1_2_U0                           |xfMat2AXIvideo_24_16_1080_1920_1_2_s                           |        0|   0|   36|   175|    0|
+    |xfrgb2gray_1080_1920_U0                                         |xfrgb2gray_1080_1920_s                                         |        0|   3|   58|   115|    0|
+    +----------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+------+-----+
+    |Total                                                           |                                                               |        3|   3|  798|  2336|    0|
+    +----------------------------------------------------------------+---------------------------------------------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +-------------------+---------+----+----+-----+------+-----+---------+
+    |        Name       | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +-------------------+---------+----+----+-----+------+-----+---------+
+    |grayImg_data_U     |        0|  99|   0|    -|     2|    8|       16|
+    |sobelImg_data_U    |        0|  99|   0|    -|     2|    8|       16|
+    |sobelImg_x_data_U  |        0|  99|   0|    -|     2|    8|       16|
+    |sobelImg_y_data_U  |        0|  99|   0|    -|     2|    8|       16|
+    |split0_data_U      |        0|  99|   0|    -|     2|   24|       48|
+    |split1_data_U      |        0|  99|   0|    -|     2|   24|       48|
+    |srcImg_data_U      |        0|  99|   0|    -|     2|   24|       48|
+    +-------------------+---------+----+----+-----+------+-----+---------+
+    |Total              |        0| 693|   0|    0|    14|  104|      208|
+    +-------------------+---------+----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |            Variable Name            | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |duplicate_1080_1920_U0_start_full_n  |       and|   0|  0|   1|           1|           1|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                |          |   0|  0|   1|           1|           1|
+    +-------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+--------------+--------------+--------------+
+|       RTL Ports       | Dir | Bits|   Protocol   | Source Object|    C Type    |
++-----------------------+-----+-----+--------------+--------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|         s_axi|       control|       pointer|
+|s_axi_control_AWREADY  |  out|    1|         s_axi|       control|       pointer|
+|s_axi_control_AWADDR   |   in|    5|         s_axi|       control|       pointer|
+|s_axi_control_WVALID   |   in|    1|         s_axi|       control|       pointer|
+|s_axi_control_WREADY   |  out|    1|         s_axi|       control|       pointer|
+|s_axi_control_WDATA    |   in|   32|         s_axi|       control|       pointer|
+|s_axi_control_WSTRB    |   in|    4|         s_axi|       control|       pointer|
+|s_axi_control_ARVALID  |   in|    1|         s_axi|       control|       pointer|
+|s_axi_control_ARREADY  |  out|    1|         s_axi|       control|       pointer|
+|s_axi_control_ARADDR   |   in|    5|         s_axi|       control|       pointer|
+|s_axi_control_RVALID   |  out|    1|         s_axi|       control|       pointer|
+|s_axi_control_RREADY   |   in|    1|         s_axi|       control|       pointer|
+|s_axi_control_RDATA    |  out|   32|         s_axi|       control|       pointer|
+|s_axi_control_RRESP    |  out|    2|         s_axi|       control|       pointer|
+|s_axi_control_BVALID   |  out|    1|         s_axi|       control|       pointer|
+|s_axi_control_BREADY   |   in|    1|         s_axi|       control|       pointer|
+|s_axi_control_BRESP    |  out|    2|         s_axi|       control|       pointer|
+|ap_clk                 |   in|    1|  ap_ctrl_none|   sobel_focus|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_none|   sobel_focus|  return value|
+|src_TDATA              |   in|   24|          axis|  src_V_data_V|       pointer|
+|src_TKEEP              |   in|    3|          axis|  src_V_keep_V|       pointer|
+|src_TSTRB              |   in|    3|          axis|  src_V_strb_V|       pointer|
+|src_TUSER              |   in|    1|          axis|  src_V_user_V|       pointer|
+|src_TLAST              |   in|    1|          axis|  src_V_last_V|       pointer|
+|src_TID                |   in|    1|          axis|    src_V_id_V|       pointer|
+|src_TDEST              |   in|    1|          axis|  src_V_dest_V|       pointer|
+|src_TVALID             |   in|    1|          axis|  src_V_dest_V|       pointer|
+|src_TREADY             |  out|    1|          axis|  src_V_dest_V|       pointer|
+|dst_TDATA              |  out|   24|          axis|  dst_V_data_V|       pointer|
+|dst_TKEEP              |  out|    3|          axis|  dst_V_keep_V|       pointer|
+|dst_TSTRB              |  out|    3|          axis|  dst_V_strb_V|       pointer|
+|dst_TUSER              |  out|    1|          axis|  dst_V_user_V|       pointer|
+|dst_TLAST              |  out|    1|          axis|  dst_V_last_V|       pointer|
+|dst_TID                |  out|    1|          axis|    dst_V_id_V|       pointer|
+|dst_TDEST              |  out|    1|          axis|  dst_V_dest_V|       pointer|
+|dst_TVALID             |  out|    1|          axis|  dst_V_dest_V|       pointer|
+|dst_TREADY             |   in|    1|          axis|  dst_V_dest_V|       pointer|
++-----------------------+-----+-----+--------------+--------------+--------------+
+

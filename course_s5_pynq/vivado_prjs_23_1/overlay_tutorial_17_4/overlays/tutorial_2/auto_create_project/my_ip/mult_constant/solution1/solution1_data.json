@@ -1,0 +1,503 @@
+{
+  "Top": "mult_constant",
+  "RtlTop": "mult_constant",
+  "RtlPrefix": "",
+  "SourceLanguage": "cpp",
+  "ResetStyle": "control",
+  "GenerateBdFiles": "1",
+  "HostMachineBits": "64",
+  "Target": {
+    "Family": "zynq",
+    "Device": "xc7z020",
+    "Package": "clg484",
+    "Speed": "-1"
+  },
+  "HlsSolution": {
+    
+  },
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "ClockPeriod": "10",
+    "IsCombLogic": "0",
+    "II": "x",
+    "Latency": "3",
+    "Uncertainty": "1.25"
+  },
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 10.000 [get_ports ap_clk]"]},
+  "Ipx": {
+    "Vendor": "Xilinx",
+    "Library": "hls",
+    "Name": "mult_constant",
+    "Version": "1.0",
+    "DisplayName": "Constant Multiply",
+    "Description": "Multiply the stream by a user-programmable constant",
+    "Taxonomy": "\/VIVADO_HLS_IP"
+  },
+  "Files": {
+    "CSource": ["..\/mult_constant.cpp"],
+    "Vhdl": [
+      "impl\/vhdl\/mult_constant_AXILiteS_s_axi.vhd",
+      "impl\/vhdl\/mult_constant.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/mult_constant_AXILiteS_s_axi.v",
+      "impl\/verilog\/mult_constant.v"
+    ],
+    "SwDriver": [
+      "impl\/misc\/drivers\/mult_constant_v1_0\/data\/mult_constant.mdd",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/data\/mult_constant.tcl",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/Makefile",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/xmult_constant.c",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/xmult_constant.h",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/xmult_constant_hw.h",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/xmult_constant_linux.c",
+      "impl\/misc\/drivers\/mult_constant_v1_0\/src\/xmult_constant_sinit.c"
+    ],
+    "Misc": ["impl\/misc\/logo.png"]
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "IP": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "ctype": {"CLK": {"Type": "bool"}},
+      "buses": "s_axi_AXILiteS in_data out_data",
+      "reset": "ap_rst_n"
+    },
+    "ap_rst_n": {
+      "type": "reset",
+      "polarity": "ACTIVE_LOW",
+      "ctype": {"RST": {"Type": "bool"}}
+    },
+    "in_data": {
+      "type": "axi4stream",
+      "mode": "slave",
+      "port_prefix": "in_data",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"},
+        "TDEST": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TKEEP": {
+          "Type": "integer unsigned",
+          "Width": "4"
+        },
+        "TSTRB": {
+          "Type": "integer unsigned",
+          "Width": "4"
+        },
+        "TUSER": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TLAST": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TID": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }
+      },
+      "port_width": {
+        "TDATA": "32",
+        "TDEST": "1",
+        "TID": "1",
+        "TKEEP": "4",
+        "TLAST": "1",
+        "TSTRB": "4",
+        "TUSER": "1"
+      }
+    },
+    "out_data": {
+      "type": "axi4stream",
+      "mode": "master",
+      "port_prefix": "out_data",
+      "has_tready": "1",
+      "ctype": {
+        "TDATA": {
+          "Type": "integer unsigned",
+          "Width": "32"
+        },
+        "TVALID": {"Type": "bool"},
+        "TREADY": {"Type": "bool"},
+        "TDEST": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TKEEP": {
+          "Type": "integer unsigned",
+          "Width": "4"
+        },
+        "TSTRB": {
+          "Type": "integer unsigned",
+          "Width": "4"
+        },
+        "TUSER": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TLAST": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        },
+        "TID": {
+          "Type": "integer unsigned",
+          "Width": "1"
+        }
+      },
+      "port_width": {
+        "TDATA": "32",
+        "TDEST": "1",
+        "TID": "1",
+        "TKEEP": "4",
+        "TLAST": "1",
+        "TSTRB": "4",
+        "TUSER": "1"
+      }
+    },
+    "s_axi_AXILiteS": {
+      "type": "axi4lite",
+      "is_adaptor": "true",
+      "mode": "slave",
+      "port_prefix": "s_axi_AXILiteS",
+      "param_prefix": "C_S_AXI_AXILITES",
+      "addr_bits": "5",
+      "registers": [{
+          "offset": "0x10",
+          "name": "constant_V",
+          "access": "W",
+          "reset_value": "0x0",
+          "description": "Data signal of constant_V",
+          "fields": [{
+              "offset": "0",
+              "width": "32",
+              "name": "constant_V",
+              "access": "W",
+              "reset_value": "0",
+              "description": "Bit 31 to 0 Data signal of constant_V"
+            }]
+        }],
+      "memories": "",
+      "ctype": {
+        "AWVALID": {"Type": "bool"},
+        "AWREADY": {"Type": "bool"},
+        "WVALID": {"Type": "bool"},
+        "WREADY": {"Type": "bool"},
+        "BVALID": {"Type": "bool"},
+        "BREADY": {"Type": "bool"},
+        "BRESP": {
+          "Type": "integer unsigned",
+          "Width": "2"
+        },
+        "ARVALID": {"Type": "bool"},
+        "ARREADY": {"Type": "bool"},
+        "RVALID": {"Type": "bool"},
+        "RREADY": {"Type": "bool"},
+        "RRESP": {
+          "Type": "integer unsigned",
+          "Width": "2"
+        },
+        "AWADDR": {
+          "Type": "integer unsigned",
+          "Width": "5"
+        },
+        "WDATA": {
+          "Type": "integer signed",
+          "Width": "32"
+        },
+        "WSTRB": {
+          "Type": "integer unsigned",
+          "Width": "4"
+        },
+        "ARADDR": {
+          "Type": "integer unsigned",
+          "Width": "5"
+        },
+        "RDATA": {
+          "Type": "integer signed",
+          "Width": "32"
+        }
+      },
+      "data_width": "32",
+      "port_width": {
+        "ARADDR": "5",
+        "AWADDR": "5",
+        "RDATA": "32",
+        "WDATA": "32",
+        "WSTRB": "4"
+      }
+    }
+  },
+  "RtlPorts": {
+    "s_axi_AXILiteS_AWVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_AWREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_AWADDR": {
+      "dir": "in",
+      "width": "5"
+    },
+    "s_axi_AXILiteS_WVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_WREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_WDATA": {
+      "dir": "in",
+      "width": "32"
+    },
+    "s_axi_AXILiteS_WSTRB": {
+      "dir": "in",
+      "width": "4"
+    },
+    "s_axi_AXILiteS_ARVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_ARREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_ARADDR": {
+      "dir": "in",
+      "width": "5"
+    },
+    "s_axi_AXILiteS_RVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_RREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_RDATA": {
+      "dir": "out",
+      "width": "32"
+    },
+    "s_axi_AXILiteS_RRESP": {
+      "dir": "out",
+      "width": "2"
+    },
+    "s_axi_AXILiteS_BVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_BREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "s_axi_AXILiteS_BRESP": {
+      "dir": "out",
+      "width": "2"
+    },
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "in_data_TDATA": {
+      "dir": "in",
+      "width": "32"
+    },
+    "in_data_TVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "in_data_TREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "in_data_TDEST": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "in_data_TKEEP": {
+      "dir": "in",
+      "width": "4"
+    },
+    "in_data_TSTRB": {
+      "dir": "in",
+      "width": "4"
+    },
+    "in_data_TUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "in_data_TLAST": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "in_data_TID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "out_data_TDATA": {
+      "dir": "out",
+      "width": "32"
+    },
+    "out_data_TVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "out_data_TREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "out_data_TDEST": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "out_data_TKEEP": {
+      "dir": "out",
+      "width": "4"
+    },
+    "out_data_TSTRB": {
+      "dir": "out",
+      "width": "4"
+    },
+    "out_data_TUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "out_data_TLAST": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "out_data_TID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    }
+  },
+  "CPorts": {
+    "constant_V": {
+      "interfaceRef": "s_axi_AXILiteS",
+      "dir": "in",
+      "offset": "16",
+      "statusOffset": "NA",
+      "handshakeRef": "ap_none",
+      "Object": "AXILiteS"
+    },
+    "in_data_data_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_dest_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_keep_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_strb_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_user_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_last_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "in_data_id_V": {
+      "interfaceRef": "in_data",
+      "dir": "in"
+    },
+    "out_data_data_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_dest_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_keep_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_strb_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_user_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_last_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    },
+    "out_data_id_V": {
+      "interfaceRef": "out_data",
+      "dir": "out",
+      "firstOutLatency": "2"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {"ModuleName": "mult_constant"},
+    "Metrics": {"mult_constant": {
+        "Latency": {
+          "LatencyBest": "3",
+          "LatencyAvg": "3",
+          "LatencyWorst": "3",
+          "PipelineII": "4",
+          "PipelineDepth": "",
+          "PipelineType": "none"
+        },
+        "Timing": {
+          "Target": "10.00",
+          "Uncertainty": "1.25",
+          "Estimate": "8.51"
+        },
+        "Area": {
+          "BRAM_18K": "0",
+          "DSP48E": "3",
+          "FF": "412",
+          "LUT": "849"
+        }
+      }}
+  },
+  "GenData": {
+    "DataVersion": "0.1",
+    "Time": "2019-08-01 16:28:55 +0800",
+    "ToolName": "vivado_hls",
+    "ToolVersion": "2017.4"
+  }
+}
