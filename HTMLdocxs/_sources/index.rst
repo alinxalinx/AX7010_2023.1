@@ -15,7 +15,13 @@ ZYNQ 7000 开发平台
    7010_S1_RSTdocument_CN/00_关于ALINX_CN
    7010_S1_RSTdocument_CN/00_序_CN
    7010_S1_RSTdocument_CN/00_文档版本履历_CN
-   
+
+.. toctree::
+   :maxdepth: 3
+   :caption: 用户手册
+
+   AX7010UserManual_CN/AX7010UserManual
+
 .. toctree::
    :maxdepth: 2
    :caption: AX7010型号板卡S1_FPGA教程
